@@ -51,7 +51,7 @@ dans `design/screens/` : elles ont été collées dans la conversation, pas
 déposées sur le disque. Les couleurs de `tokens.css` proviennent donc d'une
 lecture visuelle et non d'un prélèvement au pixel. Chaque jeton porte son
 statut : `[LU]`, `[ESTIME]`, `[DEDUIT]`. Déposer les fichiers suivants permettra
-de reprendre les treize jetons `[ESTIME]` par prélèvement direct :
+de reprendre les 46 jetons `[ESTIME]` par prélèvement direct :
 
 ```
 design/screens/01-dossier-patient-complet.png
