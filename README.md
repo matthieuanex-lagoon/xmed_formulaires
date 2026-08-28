@@ -7,83 +7,136 @@ Cette maquette n'est pas le produit final. Elle sert à faire valider les écran
 le référentiel de scores et le contrat d'interface avant réimplémentation en
 environnement Windows natif par l'équipe Olaqin.
 
-**Maquette de démonstration — aucune donnée réelle de patient.**
+> **Maquette de démonstration. Aucune donnée réelle de patient : les trois
+> dossiers sont fictifs, noms et numéros de sécurité sociale inventés.**
 
 ---
 
-## État d'avancement
+## Lancer la démo
 
-| Étape | Contenu | État |
-|-------|---------|------|
-| 1 | Analyse des captures, `tokens.css`, planche de composants | **validée** |
-| 2 | Arborescence + schéma JSON de définition d'un score | **à valider** |
-| 3 | Tranche verticale SCORE2 de bout en bout | à venir |
-| 4 | PHQ-9 | à venir |
-| 5 | HDRS-17 | à venir |
+**Double-clic sur `index.html`.** Rien à installer.
 
-## Ce qui existe aujourd'hui
-
-```
-assets/css/tokens.css      jetons visuels (couleurs, métriques) issus des captures
-assets/css/xmed.css        composants : cadre, fenêtre modale, grille, boutons, saisie
-docs/composants.html       planche de validation de la charte
-docs/SPECIFICATION.md      spécification technique destinée à Olaqin
-docs/schema-score.json     schéma JSON formel d'une définition de score (draft-07)
-data/scores/phq9.json      première définition de score, conforme au schéma
-design/screens/            emplacement des captures de référence (voir plus bas)
-```
-
-## Lancer la planche de composants
-
-Double-clic sur `docs/composants.html` — elle n'utilise que du CSS, elle
-fonctionne depuis le disque.
-
-Pour servir le dossier en HTTP (nécessaire dès que les données JSON seront
-chargées, voir « Limite connue » ci-dessous) :
+Ou, pour servir le dossier en HTTP et lire les vrais fichiers `.json` :
 
 ```bash
 python -m http.server 8777
 ```
 
-puis <http://localhost:8777/docs/composants.html>.
+puis <http://localhost:8777/>.
 
-## Captures de référence manquantes
+La planche de validation de la charte visuelle est dans
+[`docs/composants.html`](docs/composants.html).
 
-Les quatre captures citées par le cahier des charges ne sont **pas** présentes
-dans `design/screens/` : elles ont été collées dans la conversation, pas
-déposées sur le disque. Les couleurs de `tokens.css` proviennent donc d'une
-lecture visuelle et non d'un prélèvement au pixel. Chaque jeton porte son
-statut : `[LU]`, `[ESTIME]`, `[DEDUIT]`. Déposer les fichiers suivants permettra
-de reprendre les 46 jetons `[ESTIME]` par prélèvement direct :
+## Le parcours de démonstration
 
+Le sélecteur en haut à droite bascule entre trois dossiers, conçus pour être
+déroulés dans cet ordre.
+
+**1. Marcel BERTHOMIEU, 58 ans — le cas principal.**
+Épisodes I10 et E78.0, tabagisme actif, bilan lipidique récent. Ouvrir le cadre
+« Episodes et suivis en cours », puis le bouton **Scores de cet épisode (1)** :
+SCORE2 s'ouvre directement, **six items sur sept sont renseignés depuis le
+dossier** et le septième — le non-HDL — est calculé. Le cholestérol total
+affiche sa conversion `2,31 g/l → 5,97 mmol/l`. Le résultat annonce **« Abaque
+non renseigné »** : voir plus bas.
+
+**2. Léa CHAUVEAU, 34 ans — le menu, l'historique, l'alerte.**
+Épisode F33.1, rattaché à deux scores. Le bouton devient **Scores de cet épisode
+(2)** et ouvre un menu déroulant portant le dernier résultat de chacun. Le PHQ-9
+a trois évaluations antérieures : la courbe d'évolution les trace, avec les
+bandes de seuils en fond. Coter l'item 9 au-dessus de 0 déclenche un bandeau
+d'alerte non masquable.
+
+**3. Bastien TESSIER, 35 ans — les garde-fous.**
+Aucun de ses épisodes n'est rattaché à un score : **le bouton contextuel est
+masqué, pas grisé**. Il faut passer par « Scores… ». En ouvrant SCORE2 :
+un bandeau bloquant explique que l'échelle est validée à partir de 40 ans, et la
+pression artérielle de 2023 n'est **pas** reprise — trop ancienne au regard de
+`fraicheurMaxJours`. Deux items sur sept seulement sont pré-remplis.
+
+Au clavier : `Tab` passe d'un item au suivant, les touches `0` à `9` cotent et
+avancent, `Ctrl+S` enregistre, `Entrée` déclenche le bouton par défaut, `Échap`
+ferme. Aucun `alert()` natif nulle part.
+
+## Pourquoi SCORE2 n'affiche pas de pourcentage
+
+C'est **voulu**, et c'est le cœur de la démonstration.
+
+`data/scores/score2-abaque-bas-risque.json` contient les 384 cellules de
+l'abaque ESC (2 sexes × 6 tranches d'âge × 2 statuts tabagiques × 4 tranches de
+PAS × 4 tranches de non-HDL) — **toutes à `null`**. Aucun pourcentage n'a été
+inventé. Le moteur renvoie proprement
+`{ valeur: null, motif: "abaque incomplet" }` et l'interface affiche « Abaque
+non renseigné » au lieu de bricoler un chiffre.
+
+Remplir une cellule suffit à faire apparaître le résultat pour la combinaison
+correspondante : la structure est faite pour être relue ligne à ligne face au
+document source, et chaque cellule porte un champ `source` pour la référence du
+report.
+
+## Documentation
+
+| Fichier | Contenu |
+|---------|---------|
+| [`docs/SPECIFICATION.md`](docs/SPECIFICATION.md) | Le document destiné à Olaqin : schéma d'une définition de score, contrat d'interface des résolveurs, modèle de persistance `SCORE_*`, rattachement à l'épisode, fiche CHA₂DS₂-VASc, points ouverts |
+| [`docs/schema-score.json`](docs/schema-score.json) | Schéma JSON formel (draft-07) d'une définition de score |
+| [`docs/composants.html`](docs/composants.html) | Planche de validation de la charte visuelle |
+
+## Ce qui est simulé, ce qui devra être branché
+
+| Dans la maquette | En production XMed |
+|------------------|--------------------|
+| `assets/js/dossier.js` lit un JSON de démonstration | Le vrai dossier patient. **C'est le seul fichier à réécrire** : les résolveurs ne parlent qu'à lui |
+| `assets/js/store.js` écrit dans `localStorage` | Les tables `SCORE_EVAL` / `SCORE_EVAL_ITEM` (section 8 de la spécification). L'interface est déjà `async` |
+| Les définitions sont des `.json` du dépôt | La table `SCORE_DEF`, le JSON stocké tel quel |
+| Icônes 16×16 dessinées en SVG | La bibliothèque d'icônes XMed |
+
+## Limites connues
+
+- **L'abaque SCORE2 est vide.** Voir plus haut. Volontaire.
+- **Les intitulés d'items du PHQ-9 et du HDRS-17 sont des formulations de
+  travail marquées `[À VALIDER]`**, jamais la rédaction officielle des échelles.
+  Les libellés de modalités du HDRS-17 ne sont pas rédigés : seule la valeur
+  numérique s'affiche.
+- **Aucun seuil d'interprétation pour le HDRS-17** : plusieurs conventions
+  coexistent, aucune n'est retenue tant que le médecin n'a pas tranché.
+- **Les licences ne sont pas établies** — PHQ-9, HDRS-17, abaque ESC. À trancher
+  avant toute diffusion large. Le dépôt ne reproduit à ce jour aucun contenu
+  protégé : c'est précisément parce que les intitulés sont des formulations de
+  travail et que l'abaque est vide.
+- **CHA₂DS₂-VASc n'est pas implémenté**, seulement décrit (section 10 de la
+  spécification). Il apparaît au catalogue, déclaré indisponible.
+- Les quatre captures de référence ne sont pas dans `design/screens/` : les
+  couleurs de `tokens.css` viennent d'une lecture visuelle, pas d'un prélèvement
+  au pixel. Chaque jeton porte son statut `[LU]` / `[ESTIME]` / `[DEDUIT]`.
+
+## Chargement des données en `file://`
+
+Le cahier des charges demandait des `.json`, des modules ES **et** l'ouverture
+en double-clic. Les trois sont incompatibles : en `file://` un navigateur refuse
+aussi bien `fetch()` que l'import d'un module ES.
+
+**Option retenue** : scripts classiques, et `data/referentiel.js` — copie
+générée des `.json`, qui restent la source de vérité — chargée uniquement quand
+`fetch` échoue. Servie en HTTP, la démo lit les vrais fichiers. Le raisonnement
+complet est en section 2 de la spécification.
+
+Après toute modification d'une définition, d'un patient ou du mapping :
+
+```bash
+python outils/generer-referentiel.py
 ```
-design/screens/01-dossier-patient-complet.png
-design/screens/02-cadre-episodes-dossier.png
-design/screens/03-fenetre-episodes-plein-ecran.png
-design/screens/04-fenetre-episodes-en-contexte.png
-```
-
-## Limite connue — chargement des données en `file://`
-
-Le cahier des charges demande à la fois un référentiel en fichiers `.json`, des
-modules ES, et un fonctionnement en double-clic depuis le disque. Les trois sont
-incompatibles : en `file://` un navigateur refuse aussi bien `fetch()` que
-l'import d'un module ES (politique d'origine).
-
-Deux options ont été posées en section 2 de
-[`docs/SPECIFICATION.md`](docs/SPECIFICATION.md). **Option A retenue** : scripts
-classiques et `data/referentiel.js` généré depuis les `.json`, qui restent la
-source de vérité. Le double-clic et GitHub Pages fonctionnent tous les deux.
 
 ## Interdits tenus
 
-- Aucun framework, aucun CDN, aucune dépendance npm.
+- Aucun framework, aucun CDN, aucune dépendance npm, aucune étape de
+  compilation.
 - Aucune valeur de score, seuil, coefficient ou libellé d'item inventé : ce qui
   n'est pas sourcé est marqué `[À VALIDER]` ou laissé à `null`.
 - Aucune conduite à tenir thérapeutique : le module affiche un score et son
   interprétation standardisée, rien de plus.
-
-## Points ouverts
-
-Ils sont tenus à jour dans `docs/SPECIFICATION.md` (à partir de l'étape 2). À ce
-stade, ceux qui portent sur la charte figurent en fin de `docs/composants.html`.
+- Aucun pré-remplissage silencieux : chaque valeur reprise du dossier porte la
+  mention `Auto`, son origine est consultable, et une reprise manuelle la fait
+  passer en `Modifié` sans perdre l'origine.
+- Rien n'est déduit d'un silence du dossier : un facteur de risque absent n'est
+  pas un facteur de risque négatif, et l'item reste vide.

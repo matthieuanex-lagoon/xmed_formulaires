@@ -4,18 +4,23 @@ Destinataire : équipe de développement Olaqin.
 Objet : réimplémentation en environnement Windows natif du module démontré par
 la maquette web de ce dépôt.
 
-**Statut : étape 2 — arborescence et schéma de définition d'un score.
-En attente de validation.**
+**Statut : étape 3 — SCORE2, PHQ-9 et HDRS-17 implémentés de bout en bout.
+Document complet.**
 
-Ce document se complètera aux étapes suivantes :
-
-| Section | Contenu | Étape |
-|---------|---------|-------|
-| 1 à 6 | Arborescence, schéma d'une définition de score, procédure d'ajout | 2 — ici |
-| 7 | Contrat d'interface des résolveurs (signatures de fonctions) | 3 |
-| 8 | Modèle de persistance `SCORE_DEF`, `SCORE_EVAL`, `SCORE_EVAL_ITEM`, `SCORE_CIM10_MAP` | 3 |
-| 9 | Rattachement à l'épisode de soins et survie à sa clôture | 3 |
-| 10 | Fiche CHA₂DS₂-VASc, décrite et non implémentée | 3 |
+| Section | Contenu |
+|---------|---------|
+| 1 | Arborescence du dépôt et rôle de chaque module |
+| 2 | Contrainte de chargement des données — arbitrée |
+| 3 | Schéma d'une définition de score |
+| 4 | Exemples de référence : PHQ-9, HDRS-17, SCORE2, abaque |
+| 5 | Rattachement CIM-10 |
+| 6 | Procédure d'ajout d'un nouveau score |
+| 7 | Contrat d'interface des résolveurs — **ce que XMed doit exposer** |
+| 8 | Modèle de persistance `SCORE_DEF`, `SCORE_EVAL`, `SCORE_EVAL_ITEM`, `SCORE_CIM10_MAP` |
+| 9 | Rattachement à l'épisode de soins et survie à sa clôture |
+| 10 | Fiche CHA₂DS₂-VASc, décrite et non implémentée |
+| 11 | Ce que XMed devra exposer, en résumé |
+| 12 | Points ouverts |
 
 ---
 
@@ -27,11 +32,14 @@ Ce document se complètera aux étapes suivantes :
 /index.html                             dossier patient simulé, point d'entrée de la démo
 /assets/css/tokens.css                  jetons visuels prélevés sur les captures
 /assets/css/xmed.css                    composants : cadre, fenêtre, grille, boutons, saisie
+/assets/css/application.css             chrome de l'application et pièces du module Scores
 /assets/js/app.js                       amorçage, ouverture des fenêtres, raccourcis globaux
 /assets/js/store.js                     persistance des évaluations, interface async
 /assets/js/donnees.js                   chargement du référentiel et du jeu de démo
 /assets/js/dossier.js                   façade d'accès au dossier patient  ← contrat XMed
+/assets/js/outils.js                    dates, nombres, chaînes
 /assets/js/moteur-score.js              calcul, interprétation, éligibilité, validation
+/assets/js/rattachement.js              quels scores proposer, et pourquoi
 /assets/js/resolveurs/registre.js       enregistrement et résolution des items
 /assets/js/resolveurs/demographie.js
 /assets/js/resolveurs/facteur-risque.js
@@ -54,6 +62,7 @@ Ce document se complètera aux étapes suivantes :
 /data/demo/patient-35-captures.json
 /data/referentiel.js                    GÉNÉRÉ — copie des .json pour l'ouverture hors serveur
 /outils/generer-referentiel.py          régénère le fichier ci-dessus
+/outils/generer-abaque-vide.py          régénère la grille vide de l'abaque SCORE2
 /design/screens/*.png                   captures de référence
 /docs/SPECIFICATION.md                  ce document
 /docs/schema-score.json                 schéma JSON formel d'une définition de score
@@ -69,6 +78,8 @@ Ce document se complètera aux étapes suivantes :
 | `assets/js/donnees.js` | Sépare le *chargement* du référentiel de son *exploitation*. Le moteur ne sait pas d'où viennent les définitions. |
 | `data/referentiel.js` + `outils/generer-referentiel.py` | Rend la démo ouvrable en double-clic. Voir la section 2 : option A retenue. |
 | `docs/schema-score.json` | Schéma JSON formel (draft-07). Permet à Olaqin de valider automatiquement toute nouvelle définition de score avant intégration. |
+| `assets/js/rattachement.js` | Isole la logique « quels scores proposer, et pourquoi ». Distingue le rattachement par code CIM-10 de celui par facteur de risque, ce qui conditionne le libellé du bouton contextuel. Voir point ouvert 10. |
+| `assets/js/outils.js` | Dates, nombres, comparaison de codes CIM-10 par préfixe. Aucune règle métier. |
 
 ### 1.3 Rôle de chaque module
 
@@ -611,10 +622,304 @@ d'entrée) et l'annonce plutôt que de calculer faux.
 
 ---
 
-## 7 à 10. Sections à venir (étape 3)
+## 7. Contrat d'interface des résolveurs
 
-Contrat d'interface des résolveurs, modèle de persistance `SCORE_*`, rattachement
-à l'épisode de soins, fiche CHA₂DS₂-VASc.
+C'est la partie que XMed doit fournir. Tout le reste du module en découle.
+
+### 7.1 Ce que XMed expose
+
+Une seule interface, matérialisée dans la maquette par
+[`assets/js/dossier.js`](../assets/js/dossier.js). Les résolveurs ne parlent
+qu'à elle, jamais aux données brutes : la remplacer suffit à brancher le module
+sur le vrai dossier.
+
+```ts
+interface Dossier {
+  demographie():     Demographie;
+  facteursRisque():  FacteurRisque[];
+  episodes():        Episode[];        // épisodes en cours
+  episodesFermes():  Episode[];        // ATCD
+  antecedents():     Episode[];        // les deux réunis
+  biologie():        ResultatBiologique[];
+  traitements():     Traitement[];
+}
+
+interface Demographie {
+  dateNaissance: string;        // AAAA-MM-JJ
+  age:           number;        // années révolues, recalculé, jamais stocké
+  sexe:          'homme' | 'femme';
+}
+
+interface FacteurRisque {
+  libelle: string;              // libellé local, pas de codage normalisé
+  debut:   string | null;       // date de saisie
+  actif:   boolean;
+  notes:   string;
+}
+
+interface Episode {
+  id:             string;
+  libelle:        string;
+  cim10:          string | null;   // INDISPENSABLE, y compris après clôture
+  debut:          string;
+  fin:            string | null;   // renseignée = épisode clos
+  dernierContact: string | null;
+}
+
+interface ResultatBiologique {
+  loinc:        string | null;  // code LOINC issu de l'intégration HPRIM
+  libelle:      string;         // libellé local, repli quand le LOINC manque
+  valeur:       number;
+  unite:        string;
+  valeur2:      number | null;  // seconde valeur (PAD, seconde unité)
+  unite2:       string | null;
+  date:         string;         // date de prélèvement — INDISPENSABLE
+  anormal:      boolean;        // hors normes selon le laboratoire
+  laboratoire:  string;
+}
+
+interface Traitement {
+  atc:          string | null;  // code ATC
+  libelle:      string;
+  dernier:      string | null;  // dernière prescription
+  periodicite:  string;
+}
+```
+
+**Trois exigences dures, sans lesquelles le module ne peut pas fonctionner :**
+
+1. **Le code LOINC de la biologie.** Sans lui, le rattachement d'un item à un
+   examen repose sur des chaînes de caractères et casse au premier laboratoire
+   qui écrit « CHOLESTEROL TOTAL » au lieu de « Cholestérol total ». Les
+   libellés locaux sont un repli, pas une solution. À confirmer : le code issu
+   de l'intégration HPRIM est-il conservé et accessible en lecture ?
+2. **L'unité et la date de chaque résultat.** Sans unité, pas de conversion ;
+   sans date, pas de contrôle de fraîcheur. Une valeur seule est inexploitable.
+3. **Le code CIM-10 des épisodes, y compris clos.** Les règles d'exclusion de
+   SCORE2 et la totalité du futur CHA₂DS₂-VASc reposent dessus.
+
+Deux codes LOINC ont été fournis par le commanditaire et sont fiables :
+`2093-3` (cholestérol total) et `2085-9` (cholestérol HDL). Le code `8480-6`
+retenu pour la pression artérielle systolique est **à confirmer**.
+
+### 7.2 Signature d'un résolveur
+
+```ts
+type Resolveur = (declaration: DeclarationResolveur, dossier: Dossier)
+                 => ResultatBrut | null;
+
+interface ResultatBrut {
+  valeur:        number | string | boolean;
+  unite:         string | null;
+  dateSource:    string | null;
+  libelleSource: string;        // phrase lisible : « Cholestérol total — Biolab (HPRIM) »
+  anormal:       boolean;
+}
+```
+
+Un résolveur renvoie `null` dès qu'il ne trouve rien de fiable. **Il ne produit
+jamais de valeur par défaut.**
+
+### 7.3 Ce que fait le registre, une fois pour toutes
+
+[`resolveurs/registre.js`](../assets/js/resolveurs/registre.js) applique après
+chaque résolution, pour que les cinq résolveurs n'aient pas à s'en soucier :
+
+| Traitement | Règle |
+|------------|-------|
+| Chaîne de repli | `resolveur` peut être un tableau : les sources sont essayées dans l'ordre, la première qui répond gagne |
+| Fraîcheur | au-delà de `fraicheurMaxJours`, le résultat est **écarté** et l'item reste vide ; au-delà de la moitié, il est proposé avec `confiance: 'vetuste'` et la mention d'ancienneté apparaît dans l'info-bulle |
+| Conversion | appliquée selon `conversions`, avec conservation de `valeurSource` et `uniteSource` : l'affichage montre toujours `2,31 g/l → 5,97 mmol/l` |
+| Traçabilité | le résultat porte `libelleSource`, `dateSource`, `confiance`, `anormal`, et la conversion appliquée |
+
+Le résultat enrichi rendu à la vue :
+
+```ts
+interface Resolution {
+  valeur; unite;
+  valeurSource; uniteSource;          // avant conversion
+  type;                                // 'biologie', 'demographie', ...
+  libelleSource; dateSource;
+  confiance: 'exacte' | 'vetuste';
+  anormal:   boolean;
+  conversion: { de, vers, facteur } | null;
+}
+```
+
+### 7.4 Les cinq types
+
+| Type | Source XMed | Déclaration | Ce qu'il renvoie |
+|------|-------------|-------------|------------------|
+| `demographie` | Cadre Identité | `{ champ: 'age' \| 'sexe' }` | l'âge recalculé, ou le sexe |
+| `facteurRisque` | Cadre Facteurs de risque | `{ libelles: [...] }` | `true` si trouvé et actif — **jamais `false`** : l'absence au dossier ne prouve pas l'absence chez le patient |
+| `biologie` | Cadre Eléments de suivi | `{ code: { loinc, libellesLocaux }, champ: 'valeur' \| 'valeur2' }` | la valeur la plus récente |
+| `antecedent` | Episodes ouverts et clos | `{ codesCim10: [...] }` | `true` + l'épisode trouvé, par correspondance de préfixe |
+| `traitement` | Cadre Traitements | `{ code: { atc } }` | `true` + le traitement, par préfixe ATC |
+
+---
+
+## 8. Modèle de persistance
+
+Quatre tables. Les noms suivent la convention majuscule + préfixe observée dans
+XMed ; **à aligner sur les conventions internes d'Olaqin**, que je ne connais
+qu'à travers les captures.
+
+### `SCORE_DEF` — définitions de scores
+
+| Colonne | Type | Contrainte | Rôle |
+|---------|------|-----------|------|
+| `SCORE_ID` | VARCHAR(32) | **PK** | `score2`, `phq9` |
+| `VERSION` | VARCHAR(16) | **PK** | versionnée : une définition modifiée est une nouvelle ligne, jamais une mise à jour |
+| `ACRONYME` | VARCHAR(32) | NOT NULL | |
+| `LIBELLE` | VARCHAR(255) | NOT NULL | |
+| `DOMAINE` | VARCHAR(64) | NOT NULL | regroupement du catalogue |
+| `STATUT` | VARCHAR(16) | NOT NULL | `brouillon` / `a-valider` / `valide` |
+| `DEFINITION` | CLOB / NVARCHAR(MAX) | NOT NULL | le JSON complet, tel quel |
+| `ACTIF` | BOOLEAN | NOT NULL | retrait du catalogue sans suppression |
+| `MAJ_LE`, `MAJ_PAR` | DATETIME, VARCHAR | | traçabilité |
+
+Le JSON est stocké **entier**. Éclater les items en colonnes rendrait
+l'évolution du schéma coûteuse sans rien apporter : le module ne requête jamais
+l'intérieur d'une définition en SQL.
+
+### `SCORE_EVAL` — une évaluation
+
+| Colonne | Type | Contrainte | Rôle |
+|---------|------|-----------|------|
+| `EVAL_ID` | BIGINT | **PK**, auto | |
+| `PATIENT_ID` | BIGINT | **FK**, NOT NULL, indexé | |
+| `EPISODE_ID` | BIGINT | **FK**, NULLABLE, indexé | voir section 9 |
+| `SCORE_ID` | VARCHAR(32) | **FK** → `SCORE_DEF` | |
+| `SCORE_VERSION` | VARCHAR(16) | NOT NULL | version employée au moment de la cotation |
+| `DATE_EVAL` | DATE | NOT NULL, indexé | date clinique, modifiable par le praticien |
+| `EVALUATEUR_ID` | BIGINT | **FK** utilisateur | |
+| `VALEUR` | DECIMAL(10,3) | NULLABLE | **null est une valeur légitime** : abaque incomplet, score non calculable |
+| `UNITE` | VARCHAR(16) | NULLABLE | `%` pour SCORE2, null pour un score additif |
+| `MOTIF_NON_CALCUL` | VARCHAR(64) | NULLABLE | `abaque incomplet`, `items requis manquants` |
+| `COMPLET` | BOOLEAN | NOT NULL | tous les items requis renseignés |
+| `INTERPRETATION` | VARCHAR(128) | NULLABLE | libellé du seuil atteint, figé à l'enregistrement |
+| `NOTES` | VARCHAR(2000) | | |
+| `CREE_LE` | DATETIME | NOT NULL | horodatage technique, distinct de `DATE_EVAL` |
+
+`VALEUR` et `INTERPRETATION` sont **figées** à l'enregistrement. Un score coté
+en 2026 doit se relire en 2036 tel qu'il a été coté, même si la définition ou
+les seuils ont changé entre-temps. C'est aussi pourquoi `SCORE_VERSION` est
+conservée.
+
+### `SCORE_EVAL_ITEM` — la cotation item par item
+
+| Colonne | Type | Contrainte | Rôle |
+|---------|------|-----------|------|
+| `EVAL_ID` | BIGINT | **PK**, **FK** → `SCORE_EVAL`, ON DELETE CASCADE | |
+| `ITEM_ID` | VARCHAR(48) | **PK** | `phq9_1`, `score2_chol_total` |
+| `VALEUR_NUM` | DECIMAL(10,3) | NULLABLE | items ordinaux, numériques, calculés |
+| `VALEUR_TXT` | VARCHAR(64) | NULLABLE | items énumérés (`homme`) |
+| `ORIGINE` | VARCHAR(16) | NOT NULL | `saisie` / `auto` / `modifie` / `calcule` |
+| `SOURCE_TYPE` | VARCHAR(16) | NULLABLE | `biologie`, `demographie`, … |
+| `SOURCE_LIBELLE` | VARCHAR(255) | NULLABLE | ce qui s'affiche dans l'info-bulle |
+| `SOURCE_DATE` | DATE | NULLABLE | date de la donnée d'origine |
+| `SOURCE_VALEUR` | DECIMAL(10,3) | NULLABLE | valeur **avant** conversion |
+| `SOURCE_UNITE` | VARCHAR(16) | NULLABLE | unité avant conversion |
+
+Sans cette table, on ne saurait plus, six mois après, si le cholestérol coté
+venait du laboratoire ou de la main du médecin. C'est une exigence de
+traçabilité, pas un confort.
+
+### `SCORE_CIM10_MAP` — rattachement
+
+| Colonne | Type | Contrainte | Rôle |
+|---------|------|-----------|------|
+| `MAP_ID` | BIGINT | **PK**, auto | |
+| `REFERENTIEL` | VARCHAR(8) | NOT NULL | `CIM10`, `CISP2`, `DRC`, `FDR` |
+| `PREFIXE` | VARCHAR(16) | NOT NULL, indexé | `F32`, `E78.01` — **préfixe**, pas code exact |
+| `LIBELLE` | VARCHAR(128) | | intitulé du préfixe, affiché dans le groupe épinglé |
+| `SCORE_ID` | VARCHAR(32) | **FK** → `SCORE_DEF` | |
+| `PERTINENCE` | SMALLINT | NOT NULL | 1 = le plus pertinent |
+| `ACTIF` | BOOLEAN | NOT NULL | |
+
+Index `(REFERENTIEL, PREFIXE)`. La recherche se fait par préfixe le plus long
+d'abord : `E78.01` doit l'emporter sur `E78`.
+
+---
+
+## 9. Rattachement à l'épisode de soins
+
+Une évaluation porte un `EPISODE_ID`, et ce lien doit **survivre à la clôture de
+l'épisode**.
+
+- La clôture d'un épisode renseigne sa date de fin ; elle ne supprime rien et
+  ne détache rien. Les évaluations restent lisibles depuis l'épisode clos,
+  affiché dans le cadre « Episodes fermés (ATCD) ».
+- **Pas de suppression en cascade** depuis l'épisode vers les évaluations. Un
+  épisode supprimé par erreur ne doit pas emporter l'historique de cotation.
+  Si une suppression d'épisode est autorisée, `EPISODE_ID` passe à `NULL` et
+  l'évaluation reste rattachée au patient.
+- `EPISODE_ID` est **nullable** : une évaluation peut exister hors épisode.
+  C'est le cas de dépistage évoqué au point ouvert 9 — SCORE2 lancé depuis le
+  cadre Prévention plutôt que depuis un épisode.
+- Une même évaluation n'est rattachée qu'à un seul épisode. Un score utile à
+  deux épisodes est coté deux fois : les deux cotations ont des dates et des
+  contextes distincts, les fusionner ferait perdre l'information.
+
+---
+
+## 10. CHA₂DS₂-VASc — décrit, non implémenté
+
+Ce score n'est **pas** implémenté. Il est décrit ici parce qu'il servira à
+valider le résolveur `antecedent` à l'itération suivante : contrairement aux
+trois autres, la quasi-totalité de ses items sont des antécédents codés, donc
+entièrement résolubles depuis le dossier.
+
+| Caractéristique | Valeur |
+|-----------------|--------|
+| Domaine | Cardio-vasculaire |
+| Usage | Risque thrombo-embolique dans la fibrillation atriale non valvulaire |
+| Déclencheur | CIM-10 `I48` — déjà déclaré dans `mapping-cim10.json`, `disponible: false` |
+| Calcul | `pondere` : chaque item porte son propre poids |
+| Passation | `calcule` — aucune saisie si le dossier est bien codé |
+| Référence | [À VALIDER] |
+| Licence | [À VALIDER] |
+
+Squelette de déclaration, à compléter par le médecin :
+
+```json
+{
+  "id": "cha2ds2vasc",
+  "statut": "brouillon",
+  "typePassation": "calcule",
+  "calcul": { "type": "pondere", "min": 0, "max": null },
+  "items": [
+    { "id": "chadsvasc_insuffisance_cardiaque", "numero": 1,
+      "intitule": "[À VALIDER] Insuffisance cardiaque",
+      "type": "booleen", "requis": true,
+      "modalites": [ { "valeur": false, "libelle": "Non" },
+                     { "valeur": true,  "libelle": "Oui" } ],
+      "resolveur": { "type": "antecedent", "codesCim10": ["[À VALIDER]"] } }
+  ]
+}
+```
+
+**Les poids de chaque item et les codes CIM-10 de rattachement ne sont pas
+renseignés ici : ils sont à reporter depuis la source par le médecin.** C'est la
+même règle que pour l'abaque SCORE2 — une valeur plausible mais fausse est pire
+qu'une case vide.
+
+Ce que l'implémentation validera :
+
+1. le résolveur `antecedent` sur une dizaine d'items d'affilée, avec des
+   préfixes CIM-10 de longueurs différentes ;
+2. le calcul `pondere`, écrit mais encore employé par aucun score ;
+3. le cas d'un score `typePassation: "calcule"` sans aucune saisie manuelle ;
+4. le comportement quand le dossier est mal codé : le score doit rester
+   ostensiblement incomplet plutôt que de compter les antécédents absents
+   comme des « non ».
+
+Le point 4 est le plus important, et il n'est pas tranché : un antécédent non
+codé au dossier n'est pas un antécédent absent. Un CHA₂DS₂-VASc calculé
+automatiquement sur un dossier incomplet **sous-estimerait** le risque. La règle
+retenue par la maquette — ne rien déduire d'un silence — impose ici que chaque
+item non résolu reste vide et bloque le résultat. À confirmer avant
+implémentation.
 
 ---
 
@@ -661,3 +966,13 @@ Ils appellent une décision, pas une proposition technique.
    avec le module Prévention en cours de développement chez Olaqin.
 9. **SCORE2 hors épisode** — doit-il remonter comme score de dépistage depuis le
    cadre Prévention, et non depuis les épisodes de soins ?
+10. **Bouton contextuel et facteurs de risque** — un score déclenché par un
+    facteur de risque du patient n'est pas un « score de cet épisode ». La
+    maquette distingue les deux voies et adapte le libellé du bouton
+    (« Scores de cet épisode (2) » contre « Scores proposés (1) »). Faut-il
+    conserver cette distinction, ou tout fondre sous un seul libellé ?
+11. **Fraîcheur de la pression artérielle** — `fraicheurMaxJours` vaut 730 pour
+    la PAS et 1095 pour le bilan lipidique. Ces durées sont des propositions,
+    pas des recommandations : à arbitrer.
+12. **Item non résolu du CHA₂DS₂-VASc** — voir section 10, point 4. Bloquant
+    avant son implémentation.
