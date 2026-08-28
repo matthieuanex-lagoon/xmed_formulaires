@@ -70,9 +70,10 @@ modules ES, et un fonctionnement en double-clic depuis le disque. Les trois sont
 incompatibles : en `file://` un navigateur refuse aussi bien `fetch()` que
 l'import d'un module ES (politique d'origine).
 
-Deux options sont posées, avec leur coût, en section 2 de
-[`docs/SPECIFICATION.md`](docs/SPECIFICATION.md). **Décision attendue : elle
-bloque l'étape 3.**
+Deux options ont été posées en section 2 de
+[`docs/SPECIFICATION.md`](docs/SPECIFICATION.md). **Option A retenue** : scripts
+classiques et `data/referentiel.js` généré depuis les `.json`, qui restent la
+source de vérité. Le double-clic et GitHub Pages fonctionnent tous les deux.
 
 ## Interdits tenus
 

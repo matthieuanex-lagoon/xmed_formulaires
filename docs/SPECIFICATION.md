@@ -67,7 +67,7 @@ Ce document se complètera aux étapes suivantes :
 |-------|-------|
 | `assets/js/dossier.js` | Isole en un seul point tout ce que le module lit du dossier patient. C'est ce fichier qui matérialise le contrat que XMed devra fournir : le remplacer suffit à brancher le module sur le vrai dossier. Les résolveurs ne parlent qu'à lui. |
 | `assets/js/donnees.js` | Sépare le *chargement* du référentiel de son *exploitation*. Le moteur ne sait pas d'où viennent les définitions. |
-| `data/referentiel.js` + `outils/generer-referentiel.py` | Rend la démo ouvrable en double-clic. Voir la section 2 : à arbitrer. |
+| `data/referentiel.js` + `outils/generer-referentiel.py` | Rend la démo ouvrable en double-clic. Voir la section 2 : option A retenue. |
 | `docs/schema-score.json` | Schéma JSON formel (draft-07). Permet à Olaqin de valider automatiquement toute nouvelle définition de score avant intégration. |
 
 ### 1.3 Rôle de chaque module
@@ -87,7 +87,7 @@ qu'Olaqin réécrira à l'identique, et il doit pouvoir être testé sans écran
 
 ---
 
-## 2. Contrainte de chargement des données — à arbitrer
+## 2. Contrainte de chargement des données — arbitrée : option A
 
 Le cahier des charges demande trois choses simultanément :
 
@@ -135,8 +135,14 @@ python -m http.server 8777
 C'est plus propre techniquement, mais en réunion cela suppose une connexion ou
 un terminal.
 
-**Recommandation : option A.** Elle préserve les trois usages — double-clic,
-GitHub Pages, et des `.json` intacts pour Olaqin — au prix d'un fichier généré.
+**Décision du commanditaire (28/08/2026) : option A.** Elle préserve les trois
+usages — double-clic, GitHub Pages, et des `.json` intacts pour Olaqin — au prix
+d'un fichier généré. L'étape 3 est construite sur cette base.
+
+> Pour Olaqin : ce choix n'a aucune portée sur le produit final. Il ne concerne
+> que l'ouverture de la maquette hors serveur. En natif, les définitions seront
+> lues en base (`SCORE_DEF`, section 8) ou sur disque, sans passer par le
+> navigateur.
 
 ---
 
@@ -637,7 +643,8 @@ conservé et accessible.
 
 Ils appellent une décision, pas une proposition technique.
 
-1. **Chargement des données** — option A ou B (section 2). Bloquant pour l'étape 3.
+1. ~~**Chargement des données** — option A ou B (section 2).~~ **Tranché le
+   28/08/2026 : option A.**
 2. **Licences** — PHQ-9, HDRS-17 et abaque SCORE2 de l'ESC. À trancher avant
    toute mise en ligne publique du dépôt.
 3. **Libellés d'items** — PHQ-9 et HDRS-17 : les intitulés sont des descripteurs
