@@ -15,8 +15,8 @@ environnement Windows natif par l'équipe Olaqin.
 
 | Étape | Contenu | État |
 |-------|---------|------|
-| 1 | Analyse des captures, `tokens.css`, planche de composants | **à valider** |
-| 2 | Arborescence + schéma JSON de définition d'un score | à venir |
+| 1 | Analyse des captures, `tokens.css`, planche de composants | **validée** |
+| 2 | Arborescence + schéma JSON de définition d'un score | **à valider** |
 | 3 | Tranche verticale SCORE2 de bout en bout | à venir |
 | 4 | PHQ-9 | à venir |
 | 5 | HDRS-17 | à venir |
@@ -27,6 +27,9 @@ environnement Windows natif par l'équipe Olaqin.
 assets/css/tokens.css      jetons visuels (couleurs, métriques) issus des captures
 assets/css/xmed.css        composants : cadre, fenêtre modale, grille, boutons, saisie
 docs/composants.html       planche de validation de la charte
+docs/SPECIFICATION.md      spécification technique destinée à Olaqin
+docs/schema-score.json     schéma JSON formel d'une définition de score (draft-07)
+data/scores/phq9.json      première définition de score, conforme au schéma
 design/screens/            emplacement des captures de référence (voir plus bas)
 ```
 
@@ -62,14 +65,14 @@ design/screens/04-fenetre-episodes-en-contexte.png
 
 ## Limite connue — chargement des données en `file://`
 
-Le cahier des charges demande à la fois un référentiel en fichiers `.json` et un
-fonctionnement en double-clic depuis le disque. Les deux sont incompatibles en
-l'état : un navigateur refuse `fetch()` sur `file://` (politique d'origine).
+Le cahier des charges demande à la fois un référentiel en fichiers `.json`, des
+modules ES, et un fonctionnement en double-clic depuis le disque. Les trois sont
+incompatibles : en `file://` un navigateur refuse aussi bien `fetch()` que
+l'import d'un module ES (politique d'origine).
 
-Proposition, à valider à l'étape 2 : les `.json` restent la source de vérité —
-c'est ce que reprendra Olaqin — et un fichier `data/referentiel.js` généré à
-partir d'eux les embarque pour l'usage hors serveur. Le chargeur tente `fetch()`
-puis retombe sur le module embarqué. Aucune duplication à la main.
+Deux options sont posées, avec leur coût, en section 2 de
+[`docs/SPECIFICATION.md`](docs/SPECIFICATION.md). **Décision attendue : elle
+bloque l'étape 3.**
 
 ## Interdits tenus
 

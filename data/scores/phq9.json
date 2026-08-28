@@ -1,0 +1,161 @@
+{
+  "id": "phq9",
+  "versionSchema": "1.0.0",
+  "version": "1.0.0",
+  "statut": "a-valider",
+
+  "acronyme": "PHQ-9",
+  "libelle": "Patient Health Questionnaire — 9 items",
+  "domaine": "Psychiatrie",
+  "synonymes": ["questionnaire dépression", "questionnaire de santé du patient"],
+  "typePassation": "auto",
+  "dureeEstimeeMin": 3,
+  "reference": "Kroenke K, Spitzer RL, Williams JB. J Gen Intern Med 2001;16:606-13",
+  "licence": "[À VALIDER] conditions de reproduction",
+
+  "consigne": "Au cours des 2 dernières semaines, à quelle fréquence avez-vous été gêné par les problèmes suivants ?",
+
+  "eligibilite": null,
+
+  "modalitesCommunes": [
+    { "valeur": 0, "libelle": "Jamais", "abrege": "0" },
+    { "valeur": 1, "libelle": "Plusieurs jours", "abrege": "1" },
+    { "valeur": 2, "libelle": "Plus d'une semaine", "abrege": "2" },
+    { "valeur": 3, "libelle": "Presque tous les jours", "abrege": "3" }
+  ],
+
+  "items": [
+    {
+      "id": "phq9_1",
+      "numero": 1,
+      "intitule": "[À VALIDER] Intérêt ou plaisir à faire les choses",
+      "aide": null,
+      "type": "ordinal",
+      "requis": true,
+      "inclusDansTotal": true,
+      "modalites": null,
+      "resolveur": null,
+      "alerte": null
+    },
+    {
+      "id": "phq9_2",
+      "numero": 2,
+      "intitule": "[À VALIDER] Humeur dépressive, tristesse, désespoir",
+      "aide": null,
+      "type": "ordinal",
+      "requis": true,
+      "inclusDansTotal": true,
+      "modalites": null,
+      "resolveur": null,
+      "alerte": null
+    },
+    {
+      "id": "phq9_3",
+      "numero": 3,
+      "intitule": "[À VALIDER] Sommeil : difficultés d'endormissement, réveils, ou excès de sommeil",
+      "aide": null,
+      "type": "ordinal",
+      "requis": true,
+      "inclusDansTotal": true,
+      "modalites": null,
+      "resolveur": null,
+      "alerte": null
+    },
+    {
+      "id": "phq9_4",
+      "numero": 4,
+      "intitule": "[À VALIDER] Fatigue, manque d'énergie",
+      "aide": null,
+      "type": "ordinal",
+      "requis": true,
+      "inclusDansTotal": true,
+      "modalites": null,
+      "resolveur": null,
+      "alerte": null
+    },
+    {
+      "id": "phq9_5",
+      "numero": 5,
+      "intitule": "[À VALIDER] Appétit : perte d'appétit ou prise alimentaire excessive",
+      "aide": null,
+      "type": "ordinal",
+      "requis": true,
+      "inclusDansTotal": true,
+      "modalites": null,
+      "resolveur": null,
+      "alerte": null
+    },
+    {
+      "id": "phq9_6",
+      "numero": 6,
+      "intitule": "[À VALIDER] Mauvaise estime de soi, sentiment d'échec ou de culpabilité",
+      "aide": null,
+      "type": "ordinal",
+      "requis": true,
+      "inclusDansTotal": true,
+      "modalites": null,
+      "resolveur": null,
+      "alerte": null
+    },
+    {
+      "id": "phq9_7",
+      "numero": 7,
+      "intitule": "[À VALIDER] Difficultés de concentration",
+      "aide": null,
+      "type": "ordinal",
+      "requis": true,
+      "inclusDansTotal": true,
+      "modalites": null,
+      "resolveur": null,
+      "alerte": null
+    },
+    {
+      "id": "phq9_8",
+      "numero": 8,
+      "intitule": "[À VALIDER] Ralentissement ou agitation psychomotrice",
+      "aide": null,
+      "type": "ordinal",
+      "requis": true,
+      "inclusDansTotal": true,
+      "modalites": null,
+      "resolveur": null,
+      "alerte": null
+    },
+    {
+      "id": "phq9_9",
+      "numero": 9,
+      "intitule": "[À VALIDER] Idées de mort ou d'auto-agression",
+      "aide": null,
+      "type": "ordinal",
+      "requis": true,
+      "inclusDansTotal": true,
+      "modalites": null,
+      "resolveur": null,
+      "alerte": {
+        "operateur": ">=",
+        "valeur": 1,
+        "severite": "avertissement",
+        "masquable": false,
+        "message": "Idées de mort ou d'auto-agression rapportées : une évaluation du risque suicidaire est indiquée."
+      }
+    }
+  ],
+
+  "calcul": {
+    "type": "somme",
+    "min": 0,
+    "max": 27,
+    "unite": null,
+    "decimales": 0
+  },
+
+  "interpretations": [
+    { "min": 0,  "max": 4,  "libelle": "Absence de dépression",         "couleur": "ok" },
+    { "min": 5,  "max": 9,  "libelle": "Dépression légère",             "couleur": "neutre" },
+    { "min": 10, "max": 14, "libelle": "Dépression modérée",            "couleur": "alerte" },
+    { "min": 15, "max": 19, "libelle": "Dépression modérément sévère",  "couleur": "alerte" },
+    { "min": 20, "max": 27, "libelle": "Dépression sévère",             "couleur": "danger" }
+  ],
+
+  "reevaluation": null
+}

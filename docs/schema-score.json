@@ -1,0 +1,395 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://olaqin.example/xmed/schema-score.json",
+  "title": "Definition d'un score clinique XMed",
+  "description": "Schema formel des fichiers data/scores/<id>.json. Version 1.0.0. Toute definition conforme a ce schema est exploitable par le moteur sans ecrire une ligne de JavaScript.",
+  "type": "object",
+  "required": ["id", "versionSchema", "version", "statut", "acronyme", "libelle", "domaine", "typePassation", "items", "calcul"],
+  "additionalProperties": false,
+
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9-]+$",
+      "description": "Identifiant technique, sans accent ni majuscule. Egal au nom du fichier."
+    },
+    "versionSchema": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$",
+      "description": "Version de ce schema respectee par le fichier."
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$",
+      "description": "Version de la definition. Conservee dans chaque evaluation enregistree."
+    },
+    "statut": {
+      "enum": ["brouillon", "a-valider", "valide"],
+      "description": "Etat de validation medicale. Un score non 'valide' est affiche avec la mention correspondante."
+    },
+    "acronyme": { "type": "string" },
+    "libelle": { "type": "string" },
+    "domaine": { "type": "string", "description": "Domaine clinique. Sert au regroupement du catalogue." },
+    "synonymes": { "type": "array", "items": { "type": "string" }, "default": [] },
+    "typePassation": {
+      "enum": ["auto", "hetero", "mixte", "calcule"],
+      "description": "auto = le patient repond ; hetero = le clinicien cote ; calcule = aucune saisie, tout vient du dossier."
+    },
+    "dureeEstimeeMin": { "type": ["integer", "null"], "minimum": 0 },
+    "reference": { "type": ["string", "null"], "description": "Reference bibliographique de l'echelle." },
+    "licence": { "type": ["string", "null"], "description": "Conditions de reproduction. Bloquant avant diffusion publique." },
+    "consigne": { "type": ["string", "null"], "description": "Consigne de passation affichee en tete du formulaire." },
+
+    "eligibilite": {
+      "oneOf": [
+        { "type": "null" },
+        {
+          "type": "object",
+          "required": ["regles"],
+          "additionalProperties": false,
+          "properties": {
+            "regles": { "type": "array", "minItems": 1, "items": { "$ref": "#/definitions/regleEligibilite" } }
+          }
+        }
+      ]
+    },
+
+    "modalitesCommunes": {
+      "oneOf": [
+        { "type": "null" },
+        { "type": "array", "minItems": 2, "items": { "$ref": "#/definitions/modalite" } }
+      ],
+      "description": "Modalites par defaut des items ordinaux. null quand chaque item porte les siennes (HDRS-17)."
+    },
+
+    "items": { "type": "array", "minItems": 1, "items": { "$ref": "#/definitions/item" } },
+
+    "calcul": {
+      "oneOf": [
+        { "$ref": "#/definitions/calculSomme" },
+        { "$ref": "#/definitions/calculPondere" },
+        { "$ref": "#/definitions/calculTableau" }
+      ]
+    },
+
+    "interpretations": {
+      "oneOf": [
+        { "type": "null", "description": "Aucun seuil retenu : le module affiche la valeur brute et la mention 'interpretation non renseignee'." },
+        { "type": "array", "minItems": 1, "items": { "$ref": "#/definitions/tranche" } },
+        { "$ref": "#/definitions/interpretationConditionnelle" }
+      ]
+    },
+
+    "reevaluation": {
+      "oneOf": [
+        { "type": "null" },
+        {
+          "type": "object",
+          "required": ["delaiJours"],
+          "additionalProperties": false,
+          "properties": {
+            "delaiJours": { "type": "integer", "minimum": 1 },
+            "libelle": { "type": ["string", "null"] }
+          }
+        }
+      ],
+      "description": "Champ prevu, non exploite a ce stade. Point ouvert 8 de la specification."
+    }
+  },
+
+  "definitions": {
+
+    "modalite": {
+      "type": "object",
+      "required": ["valeur", "libelle"],
+      "additionalProperties": false,
+      "properties": {
+        "valeur": { "type": ["number", "string", "boolean"] },
+        "libelle": { "type": "string" },
+        "abrege": { "type": ["string", "null"], "description": "Libelle court, affiche quand la largeur manque." }
+      }
+    },
+
+    "item": {
+      "type": "object",
+      "required": ["id", "numero", "intitule", "type", "requis"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-z0-9_]+$" },
+        "numero": { "type": "integer", "minimum": 1 },
+        "intitule": { "type": "string", "description": "Intitule affiche. Prefixer par [A VALIDER] tant que le medecin ne l'a pas arrete." },
+        "aide": { "type": ["string", "null"], "description": "Precision affichee sous l'intitule. Jamais une conduite a tenir." },
+        "type": { "enum": ["ordinal", "enumere", "booleen", "numerique", "calcule"] },
+        "requis": { "type": "boolean", "description": "Un item requis manquant empeche le resultat d'etre presente comme definitif." },
+        "inclusDansTotal": { "type": "boolean", "default": true, "description": "false pour un item qui alimente le calcul sans s'additionner (entree d'abaque)." },
+        "poids": { "type": "number", "default": 1, "description": "Utilise par calcul.type = 'pondere'." },
+
+        "modalites": {
+          "oneOf": [
+            { "type": "null" },
+            { "type": "array", "minItems": 2, "items": { "$ref": "#/definitions/modalite" } }
+          ],
+          "description": "Ecrase modalitesCommunes. Obligatoire pour enumere et booleen."
+        },
+
+        "unite": { "type": ["string", "null"] },
+        "decimales": { "type": ["integer", "null"], "minimum": 0, "maximum": 4 },
+        "min": { "type": ["number", "null"], "description": "Borne de plausibilite basse. Une saisie hors bornes est refusee, jamais corrigee." },
+        "max": { "type": ["number", "null"] },
+        "unitesAcceptees": {
+          "type": ["array", "null"],
+          "items": {
+            "type": "object",
+            "required": ["unite", "vers", "facteur"],
+            "additionalProperties": false,
+            "properties": {
+              "unite": { "type": "string" },
+              "vers": { "type": "string" },
+              "facteur": { "type": "number" }
+            }
+          },
+          "description": "Unites saisissables autres que l'unite de reference. La conversion est toujours affichee."
+        },
+
+        "operation": {
+          "oneOf": [
+            { "type": "null" },
+            {
+              "type": "object",
+              "required": ["operateur", "operandes"],
+              "additionalProperties": false,
+              "properties": {
+                "operateur": { "enum": ["addition", "soustraction", "produit", "quotient", "puissance"] },
+                "operandes": {
+                  "type": "array",
+                  "minItems": 2,
+                  "items": { "type": ["string", "number"] },
+                  "description": "Identifiant d'item ou constante. Expression structuree : pas d'eval, pas d'analyseur a ecrire."
+                }
+              }
+            }
+          ],
+          "description": "Obligatoire pour type = 'calcule'. Si un operande manque, l'item reste vide : il ne vaut jamais zero."
+        },
+
+        "resolveur": {
+          "oneOf": [
+            { "type": "null" },
+            { "$ref": "#/definitions/resolveur" },
+            { "type": "array", "minItems": 1, "items": { "$ref": "#/definitions/resolveur" }, "description": "Essayes dans l'ordre." }
+          ]
+        },
+
+        "alerte": {
+          "oneOf": [
+            { "type": "null" },
+            {
+              "type": "object",
+              "required": ["operateur", "valeur", "severite", "message"],
+              "additionalProperties": false,
+              "properties": {
+                "operateur": { "enum": [">=", ">", "<=", "<", "==", "!="] },
+                "valeur": { "type": ["number", "boolean", "string"] },
+                "severite": { "enum": ["avertissement", "bloquant"] },
+                "masquable": { "type": "boolean", "default": true },
+                "message": { "type": "string", "description": "Rappelle qu'une evaluation est indiquee. Ne prescrit aucune conduite a tenir." }
+              }
+            }
+          ]
+        }
+      },
+
+      "allOf": [
+        {
+          "if": { "properties": { "type": { "const": "calcule" } }, "required": ["type"] },
+          "then": { "required": ["operation"], "properties": { "operation": { "type": "object" } } }
+        },
+        {
+          "if": { "properties": { "type": { "enum": ["enumere", "booleen"] } }, "required": ["type"] },
+          "then": { "required": ["modalites"], "properties": { "modalites": { "type": "array" } } }
+        }
+      ]
+    },
+
+    "resolveur": {
+      "type": "object",
+      "required": ["type"],
+      "properties": {
+        "type": { "enum": ["demographie", "facteurRisque", "biologie", "antecedent", "traitement"] },
+        "champ": { "type": "string", "description": "demographie : 'age' ou 'sexe'." },
+        "libelles": { "type": "array", "items": { "type": "string" }, "description": "facteurRisque : libelles locaux acceptes." },
+        "code": {
+          "type": "object",
+          "properties": {
+            "loinc": { "type": "string" },
+            "atc": { "type": "string" },
+            "libellesLocaux": { "type": "array", "items": { "type": "string" } }
+          },
+          "description": "biologie : code LOINC ; traitement : code ATC ; toujours accompagne des libelles locaux de repli."
+        },
+        "codesCim10": { "type": "array", "items": { "type": "string" }, "description": "antecedent : prefixes CIM-10 recherches dans les episodes ouverts et clos." },
+        "fraicheurMaxJours": {
+          "type": ["integer", "null"],
+          "minimum": 1,
+          "description": "Au-dela, l'item reste vide. Au-dela de la moitie, la valeur est proposee avec une mention de vetuste."
+        },
+        "conversions": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "required": ["vers", "facteur"],
+            "additionalProperties": false,
+            "properties": {
+              "vers": { "type": "string" },
+              "facteur": { "type": "number" }
+            }
+          },
+          "description": "Conversion d'unite a la resolution. Toujours affichee, jamais silencieuse."
+        }
+      },
+      "additionalProperties": false
+    },
+
+    "regleEligibilite": {
+      "type": "object",
+      "required": ["id", "type", "severite", "condition", "message"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string" },
+        "type": { "enum": ["inclusion", "exclusion"] },
+        "severite": { "enum": ["bloquant", "avertissement"] },
+        "condition": {
+          "type": "object",
+          "required": ["source"],
+          "properties": {
+            "source": { "enum": ["demographie", "facteurRisque", "biologie", "antecedent", "traitement", "confirmation"] },
+            "champ": { "type": "string" },
+            "operateur": { "enum": [">=", ">", "<=", "<", "==", "!="] },
+            "valeur": { "type": ["number", "string", "boolean"] },
+            "codesCim10": { "type": "array", "items": { "type": "string" } },
+            "libelles": { "type": "array", "items": { "type": "string" } },
+            "libelle": { "type": "string", "description": "source = 'confirmation' : question posee au clinicien plutot que deduite du dossier." }
+          },
+          "additionalProperties": false
+        },
+        "message": { "type": "string" },
+        "orientation": {
+          "oneOf": [
+            { "type": "null" },
+            {
+              "type": "object",
+              "required": ["libelle"],
+              "additionalProperties": false,
+              "properties": {
+                "score": { "type": ["string", "null"], "description": "Identifiant de l'echelle alternative." },
+                "libelle": { "type": "string" },
+                "disponible": { "type": "boolean", "default": false, "description": "false : citee dans le bandeau, sans lien mort." }
+              }
+            }
+          ]
+        }
+      }
+    },
+
+    "calculSomme": {
+      "type": "object",
+      "required": ["type", "min", "max"],
+      "additionalProperties": false,
+      "properties": {
+        "type": { "const": "somme" },
+        "min": { "type": "number" },
+        "max": { "type": "number", "description": "Verifie au chargement contre la somme des modalites maximales." },
+        "unite": { "type": ["string", "null"] },
+        "decimales": { "type": ["integer", "null"] }
+      }
+    },
+
+    "calculPondere": {
+      "type": "object",
+      "required": ["type", "min", "max"],
+      "additionalProperties": false,
+      "properties": {
+        "type": { "const": "pondere" },
+        "min": { "type": "number" },
+        "max": { "type": "number" },
+        "unite": { "type": ["string", "null"] },
+        "decimales": { "type": ["integer", "null"] }
+      }
+    },
+
+    "calculTableau": {
+      "type": "object",
+      "required": ["type", "abaque", "entrees"],
+      "additionalProperties": false,
+      "properties": {
+        "type": { "const": "tableau" },
+        "abaque": { "type": "string", "description": "Nom du fichier d'abaque, dans data/scores/." },
+        "unite": { "type": ["string", "null"] },
+        "decimales": { "type": ["integer", "null"] },
+        "entrees": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "required": ["item", "axe"],
+            "additionalProperties": false,
+            "properties": {
+              "item": { "type": "string" },
+              "axe": { "type": "string" }
+            }
+          },
+          "description": "Projette chaque item d'entree sur un axe de l'abaque. Une cellule null renvoie { valeur: null, motif: 'abaque incomplet' }."
+        }
+      }
+    },
+
+    "tranche": {
+      "type": "object",
+      "required": ["min", "libelle", "couleur"],
+      "additionalProperties": false,
+      "properties": {
+        "min": { "type": ["number", "null"], "description": "Inclusif." },
+        "max": { "type": ["number", "null"], "description": "Inclusif, sauf si maxExclu vaut true. null = pas de borne haute." },
+        "maxExclu": { "type": "boolean", "default": false },
+        "libelle": { "type": "string" },
+        "couleur": { "enum": ["ok", "neutre", "alerte", "danger"], "description": "Role semantique, pas une couleur. Le rendu vient de tokens.css." }
+      }
+    },
+
+    "interpretationConditionnelle": {
+      "type": "object",
+      "required": ["selon", "groupes"],
+      "additionalProperties": false,
+      "properties": {
+        "selon": {
+          "type": "object",
+          "required": ["item"],
+          "additionalProperties": false,
+          "properties": { "item": { "type": "string", "description": "Item dont depend le jeu de seuils." } }
+        },
+        "groupes": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "required": ["condition", "libelleCondition", "tranches"],
+            "additionalProperties": false,
+            "properties": {
+              "condition": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "min": { "type": ["number", "null"] },
+                  "max": { "type": ["number", "null"] },
+                  "valeur": { "type": ["string", "number", "boolean", "null"] }
+                }
+              },
+              "libelleCondition": { "type": "string" },
+              "tranches": { "type": "array", "minItems": 1, "items": { "$ref": "#/definitions/tranche" } }
+            }
+          }
+        }
+      }
+    }
+  }
+}
