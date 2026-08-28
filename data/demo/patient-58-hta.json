@@ -1,0 +1,77 @@
+{
+  "id": "p58hta",
+  "dossier": "10428",
+  "note": "PATIENT FICTIF. Cas principal de la démonstration : le bouton contextuel est présent sur l'épisode I10, SCORE2 s'ouvre directement, six items sur sept sont renseignés depuis le dossier et le septième est calculé.",
+
+  "identite": {
+    "civilite": "Monsieur",
+    "nom": "BERTHOMIEU",
+    "prenom": "Marcel",
+    "dateNaissance": "1968-03-15",
+    "sexe": "homme",
+    "adresse": "12 rue des Peupliers",
+    "codePostal": "44300",
+    "ville": "NANTES",
+    "telDomicile": "02 40 00 00 00",
+    "gsm": "06 00 00 00 00",
+    "mel": "",
+    "numeroSecu": "1 68 03 44 000 000 00",
+    "medecinTraitant": "ANEX Matthieu",
+    "profession": "MENUISIER",
+    "notesPubliques": "",
+    "ald": false
+  },
+
+  "facteursRisque": [
+    { "libelle": "Tabagisme actif", "debut": "2024-03-12", "notes": "15 paquets-années", "actif": true },
+    { "libelle": "Antécédent familial coronarien", "debut": "2019-03-12", "notes": "père, IDM à 61 ans", "actif": true }
+  ],
+
+  "episodes": [
+    { "id": "p58-e1", "acteur": "MAN", "libelle": "Hypertension essentielle", "cim10": "I10",
+      "debut": "2019-03-12", "dernierContact": "2026-08-10", "notes": "", "aSuivre": true },
+    { "id": "p58-e2", "acteur": "MAN", "libelle": "Hypercholestérolémie pure", "cim10": "E78.0",
+      "debut": "2021-06-05", "dernierContact": "2026-06-12", "notes": "", "aSuivre": true },
+    { "id": "p58-e3", "acteur": "MAN", "libelle": "Lombalgie commune", "cim10": "M54.5",
+      "debut": "2025-11-03", "dernierContact": "2026-02-18", "notes": "", "aSuivre": false }
+  ],
+
+  "episodesFermes": [
+    { "id": "p58-f1", "libelle": "Bronchite aiguë", "cim10": "J20.9", "debut": "2023-01-14", "fin": "2023-02-02", "notes": "" },
+    { "id": "p58-f2", "libelle": "Entorse de la cheville", "cim10": "S93.4", "debut": "2021-08-07", "fin": "2021-09-20", "notes": "" }
+  ],
+
+  "biologie": [
+    { "loinc": "2093-3", "libelle": "Cholestérol total", "valeur": 2.31, "unite": "g/l",
+      "valeur2": null, "unite2": null, "date": "2026-06-12", "anormal": true, "laboratoire": "Biolab (HPRIM)" },
+    { "loinc": "2085-9", "libelle": "Cholestérol HDL", "valeur": 0.48, "unite": "g/l",
+      "valeur2": null, "unite2": null, "date": "2026-06-12", "anormal": true, "laboratoire": "Biolab (HPRIM)" },
+    { "loinc": "2571-8", "libelle": "Triglycérides", "valeur": 1.42, "unite": "g/l",
+      "valeur2": null, "unite2": null, "date": "2026-06-12", "anormal": false, "laboratoire": "Biolab (HPRIM)" },
+    { "loinc": "8480-6", "libelle": "PAS/PAD", "valeur": 152, "unite": "mmHg",
+      "valeur2": 88, "unite2": "mmHg", "date": "2026-08-10", "anormal": true, "laboratoire": "cabinet" },
+    { "loinc": "2160-0", "libelle": "Créatinine", "valeur": 9.8, "unite": "mg/l",
+      "valeur2": 86.6, "unite2": "µmol/l", "date": "2026-06-12", "anormal": false, "laboratoire": "Biolab (HPRIM)" },
+    { "loinc": "2345-7", "libelle": "Glycémie", "valeur": 0.98, "unite": "g/l",
+      "valeur2": 5.44, "unite2": "mmol/l", "date": "2026-06-12", "anormal": false, "laboratoire": "Biolab (HPRIM)" }
+  ],
+
+  "traitements": [
+    { "atc": "C09AA05", "libelle": "RAMIPRIL 5MG CPR", "dernier": "2026-08-10", "periodicite": "3 mois" }
+  ],
+
+  "evaluationsInitiales": [
+    { "id": "p58-ev1", "scoreId": "score2", "versionScore": "1.0.0", "episodeId": "p58-e1",
+      "date": "2024-09-10", "evaluateur": "ANEX Matthieu",
+      "valeurs": { "score2_age": 56, "score2_sexe": "homme", "score2_tabac": true,
+                   "score2_pas": 148, "score2_chol_total": 6.13, "score2_hdl": 1.32, "score2_non_hdl": 4.81 },
+      "resultat": { "valeur": null, "unite": "%", "motif": "abaque incomplet", "interpretation": null },
+      "notes": "Évaluation de démonstration." },
+    { "id": "p58-ev2", "scoreId": "score2", "versionScore": "1.0.0", "episodeId": "p58-e1",
+      "date": "2025-11-20", "evaluateur": "ANEX Matthieu",
+      "valeurs": { "score2_age": 57, "score2_sexe": "homme", "score2_tabac": true,
+                   "score2_pas": 155, "score2_chol_total": 6.05, "score2_hdl": 1.29, "score2_non_hdl": 4.76 },
+      "resultat": { "valeur": null, "unite": "%", "motif": "abaque incomplet", "interpretation": null },
+      "notes": "" }
+  ]
+}

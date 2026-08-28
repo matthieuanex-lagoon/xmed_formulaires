@@ -27,6 +27,10 @@
       "enum": ["brouillon", "a-valider", "valide"],
       "description": "Etat de validation medicale. Un score non 'valide' est affiche avec la mention correspondante."
     },
+    "noteStatut": {
+      "type": ["string", "null"],
+      "description": "Ce qui reste precisement a valider sur CE score. Affiche tel quel dans le bandeau 'Definition a valider' : un texte generique serait faux d'un score a l'autre."
+    },
     "acronyme": { "type": "string" },
     "libelle": { "type": "string" },
     "domaine": { "type": "string", "description": "Domaine clinique. Sert au regroupement du catalogue." },
@@ -258,6 +262,19 @@
         "id": { "type": "string" },
         "type": { "enum": ["inclusion", "exclusion"] },
         "severite": { "enum": ["bloquant", "avertissement"] },
+        "si": {
+          "type": "object",
+          "description": "Prealable : la regle n'est evaluee que s'il est rempli. Evite de poser une question sans objet (grossesse chez un homme). Meme grammaire qu'une condition.",
+          "additionalProperties": false,
+          "properties": {
+            "source": { "enum": ["demographie", "facteurRisque", "biologie", "antecedent", "traitement"] },
+            "champ": { "type": "string" },
+            "operateur": { "enum": [">=", ">", "<=", "<", "==", "!="] },
+            "valeur": { "type": ["number", "string", "boolean"] },
+            "codesCim10": { "type": "array", "items": { "type": "string" } },
+            "libelles": { "type": "array", "items": { "type": "string" } }
+          }
+        },
         "condition": {
           "type": "object",
           "required": ["source"],

@@ -1,0 +1,3594 @@
+{
+  "id": "score2-abaque-bas-risque",
+  "versionSchema": "1.0.0",
+  "version": "1.0.0",
+  "statut": "À COMPLÉTER — vérification médecin requise",
+  "region": "bas risque",
+  "reference": "SCORE2 working group and ESC Cardiovascular risk collaboration. Eur Heart J 2021;42:2439-2454",
+  "licence": "[À VALIDER] conditions de reproduction de l'abaque ESC",
+  "unite": "%",
+  "note": "Toutes les cellules sont a null : aucun pourcentage n'a ete invente. Reporter les valeurs publiees une a une et renseigner 'source'. Tant qu'une cellule vaut null, le moteur renvoie { valeur: null, motif: 'abaque incomplet' } et l'interface affiche 'Abaque non renseigne'.",
+  "axes": {
+    "sexe": {
+      "type": "categoriel",
+      "valeurs": [
+        "femme",
+        "homme"
+      ],
+      "etiquettes": [
+        "femme",
+        "homme"
+      ]
+    },
+    "age": {
+      "type": "tranche",
+      "unite": "ans",
+      "bornes": [
+        [
+          40,
+          44
+        ],
+        [
+          45,
+          49
+        ],
+        [
+          50,
+          54
+        ],
+        [
+          55,
+          59
+        ],
+        [
+          60,
+          64
+        ],
+        [
+          65,
+          69
+        ]
+      ],
+      "etiquettes": [
+        "40-44",
+        "45-49",
+        "50-54",
+        "55-59",
+        "60-64",
+        "65-69"
+      ]
+    },
+    "tabac": {
+      "type": "categoriel",
+      "valeurs": [
+        "non-fumeur",
+        "fumeur"
+      ],
+      "etiquettes": [
+        "non-fumeur",
+        "fumeur"
+      ]
+    },
+    "pas": {
+      "type": "tranche",
+      "unite": "mmHg",
+      "bornes": [
+        [
+          100,
+          119
+        ],
+        [
+          120,
+          139
+        ],
+        [
+          140,
+          159
+        ],
+        [
+          160,
+          179
+        ]
+      ],
+      "etiquettes": [
+        "100-119",
+        "120-139",
+        "140-159",
+        "160-179"
+      ]
+    },
+    "nonHdl": {
+      "type": "tranche",
+      "unite": "mmol/l",
+      "bornes": [
+        [
+          3.0,
+          3.9
+        ],
+        [
+          4.0,
+          4.9
+        ],
+        [
+          5.0,
+          5.9
+        ],
+        [
+          6.0,
+          6.9
+        ]
+      ],
+      "etiquettes": [
+        "3.0-3.9",
+        "4.0-4.9",
+        "5.0-5.9",
+        "6.0-6.9"
+      ]
+    }
+  },
+  "ordreAxes": [
+    "sexe",
+    "age",
+    "tabac",
+    "pas",
+    "nonHdl"
+  ],
+  "cellules": [
+    {
+      "sexe": "femme",
+      "age": "40-44",
+      "tabac": "non-fumeur",
+      "pas": "100-119",
+      "nonHdl": "3.0-3.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "40-44",
+      "tabac": "non-fumeur",
+      "pas": "100-119",
+      "nonHdl": "4.0-4.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "40-44",
+      "tabac": "non-fumeur",
+      "pas": "100-119",
+      "nonHdl": "5.0-5.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "40-44",
+      "tabac": "non-fumeur",
+      "pas": "100-119",
+      "nonHdl": "6.0-6.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "40-44",
+      "tabac": "non-fumeur",
+      "pas": "120-139",
+      "nonHdl": "3.0-3.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "40-44",
+      "tabac": "non-fumeur",
+      "pas": "120-139",
+      "nonHdl": "4.0-4.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "40-44",
+      "tabac": "non-fumeur",
+      "pas": "120-139",
+      "nonHdl": "5.0-5.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "40-44",
+      "tabac": "non-fumeur",
+      "pas": "120-139",
+      "nonHdl": "6.0-6.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "40-44",
+      "tabac": "non-fumeur",
+      "pas": "140-159",
+      "nonHdl": "3.0-3.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "40-44",
+      "tabac": "non-fumeur",
+      "pas": "140-159",
+      "nonHdl": "4.0-4.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "40-44",
+      "tabac": "non-fumeur",
+      "pas": "140-159",
+      "nonHdl": "5.0-5.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "40-44",
+      "tabac": "non-fumeur",
+      "pas": "140-159",
+      "nonHdl": "6.0-6.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "40-44",
+      "tabac": "non-fumeur",
+      "pas": "160-179",
+      "nonHdl": "3.0-3.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "40-44",
+      "tabac": "non-fumeur",
+      "pas": "160-179",
+      "nonHdl": "4.0-4.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "40-44",
+      "tabac": "non-fumeur",
+      "pas": "160-179",
+      "nonHdl": "5.0-5.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "40-44",
+      "tabac": "non-fumeur",
+      "pas": "160-179",
+      "nonHdl": "6.0-6.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "40-44",
+      "tabac": "fumeur",
+      "pas": "100-119",
+      "nonHdl": "3.0-3.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "40-44",
+      "tabac": "fumeur",
+      "pas": "100-119",
+      "nonHdl": "4.0-4.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "40-44",
+      "tabac": "fumeur",
+      "pas": "100-119",
+      "nonHdl": "5.0-5.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "40-44",
+      "tabac": "fumeur",
+      "pas": "100-119",
+      "nonHdl": "6.0-6.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "40-44",
+      "tabac": "fumeur",
+      "pas": "120-139",
+      "nonHdl": "3.0-3.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "40-44",
+      "tabac": "fumeur",
+      "pas": "120-139",
+      "nonHdl": "4.0-4.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "40-44",
+      "tabac": "fumeur",
+      "pas": "120-139",
+      "nonHdl": "5.0-5.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "40-44",
+      "tabac": "fumeur",
+      "pas": "120-139",
+      "nonHdl": "6.0-6.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "40-44",
+      "tabac": "fumeur",
+      "pas": "140-159",
+      "nonHdl": "3.0-3.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "40-44",
+      "tabac": "fumeur",
+      "pas": "140-159",
+      "nonHdl": "4.0-4.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "40-44",
+      "tabac": "fumeur",
+      "pas": "140-159",
+      "nonHdl": "5.0-5.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "40-44",
+      "tabac": "fumeur",
+      "pas": "140-159",
+      "nonHdl": "6.0-6.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "40-44",
+      "tabac": "fumeur",
+      "pas": "160-179",
+      "nonHdl": "3.0-3.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "40-44",
+      "tabac": "fumeur",
+      "pas": "160-179",
+      "nonHdl": "4.0-4.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "40-44",
+      "tabac": "fumeur",
+      "pas": "160-179",
+      "nonHdl": "5.0-5.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "40-44",
+      "tabac": "fumeur",
+      "pas": "160-179",
+      "nonHdl": "6.0-6.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "45-49",
+      "tabac": "non-fumeur",
+      "pas": "100-119",
+      "nonHdl": "3.0-3.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "45-49",
+      "tabac": "non-fumeur",
+      "pas": "100-119",
+      "nonHdl": "4.0-4.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "45-49",
+      "tabac": "non-fumeur",
+      "pas": "100-119",
+      "nonHdl": "5.0-5.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "45-49",
+      "tabac": "non-fumeur",
+      "pas": "100-119",
+      "nonHdl": "6.0-6.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "45-49",
+      "tabac": "non-fumeur",
+      "pas": "120-139",
+      "nonHdl": "3.0-3.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "45-49",
+      "tabac": "non-fumeur",
+      "pas": "120-139",
+      "nonHdl": "4.0-4.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "45-49",
+      "tabac": "non-fumeur",
+      "pas": "120-139",
+      "nonHdl": "5.0-5.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "45-49",
+      "tabac": "non-fumeur",
+      "pas": "120-139",
+      "nonHdl": "6.0-6.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "45-49",
+      "tabac": "non-fumeur",
+      "pas": "140-159",
+      "nonHdl": "3.0-3.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "45-49",
+      "tabac": "non-fumeur",
+      "pas": "140-159",
+      "nonHdl": "4.0-4.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "45-49",
+      "tabac": "non-fumeur",
+      "pas": "140-159",
+      "nonHdl": "5.0-5.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "45-49",
+      "tabac": "non-fumeur",
+      "pas": "140-159",
+      "nonHdl": "6.0-6.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "45-49",
+      "tabac": "non-fumeur",
+      "pas": "160-179",
+      "nonHdl": "3.0-3.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "45-49",
+      "tabac": "non-fumeur",
+      "pas": "160-179",
+      "nonHdl": "4.0-4.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "45-49",
+      "tabac": "non-fumeur",
+      "pas": "160-179",
+      "nonHdl": "5.0-5.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "45-49",
+      "tabac": "non-fumeur",
+      "pas": "160-179",
+      "nonHdl": "6.0-6.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "45-49",
+      "tabac": "fumeur",
+      "pas": "100-119",
+      "nonHdl": "3.0-3.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "45-49",
+      "tabac": "fumeur",
+      "pas": "100-119",
+      "nonHdl": "4.0-4.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "45-49",
+      "tabac": "fumeur",
+      "pas": "100-119",
+      "nonHdl": "5.0-5.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "45-49",
+      "tabac": "fumeur",
+      "pas": "100-119",
+      "nonHdl": "6.0-6.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "45-49",
+      "tabac": "fumeur",
+      "pas": "120-139",
+      "nonHdl": "3.0-3.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "45-49",
+      "tabac": "fumeur",
+      "pas": "120-139",
+      "nonHdl": "4.0-4.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "45-49",
+      "tabac": "fumeur",
+      "pas": "120-139",
+      "nonHdl": "5.0-5.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "45-49",
+      "tabac": "fumeur",
+      "pas": "120-139",
+      "nonHdl": "6.0-6.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "45-49",
+      "tabac": "fumeur",
+      "pas": "140-159",
+      "nonHdl": "3.0-3.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "45-49",
+      "tabac": "fumeur",
+      "pas": "140-159",
+      "nonHdl": "4.0-4.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "45-49",
+      "tabac": "fumeur",
+      "pas": "140-159",
+      "nonHdl": "5.0-5.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "45-49",
+      "tabac": "fumeur",
+      "pas": "140-159",
+      "nonHdl": "6.0-6.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "45-49",
+      "tabac": "fumeur",
+      "pas": "160-179",
+      "nonHdl": "3.0-3.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "45-49",
+      "tabac": "fumeur",
+      "pas": "160-179",
+      "nonHdl": "4.0-4.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "45-49",
+      "tabac": "fumeur",
+      "pas": "160-179",
+      "nonHdl": "5.0-5.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "45-49",
+      "tabac": "fumeur",
+      "pas": "160-179",
+      "nonHdl": "6.0-6.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "50-54",
+      "tabac": "non-fumeur",
+      "pas": "100-119",
+      "nonHdl": "3.0-3.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "50-54",
+      "tabac": "non-fumeur",
+      "pas": "100-119",
+      "nonHdl": "4.0-4.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "50-54",
+      "tabac": "non-fumeur",
+      "pas": "100-119",
+      "nonHdl": "5.0-5.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "50-54",
+      "tabac": "non-fumeur",
+      "pas": "100-119",
+      "nonHdl": "6.0-6.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "50-54",
+      "tabac": "non-fumeur",
+      "pas": "120-139",
+      "nonHdl": "3.0-3.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "50-54",
+      "tabac": "non-fumeur",
+      "pas": "120-139",
+      "nonHdl": "4.0-4.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "50-54",
+      "tabac": "non-fumeur",
+      "pas": "120-139",
+      "nonHdl": "5.0-5.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "50-54",
+      "tabac": "non-fumeur",
+      "pas": "120-139",
+      "nonHdl": "6.0-6.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "50-54",
+      "tabac": "non-fumeur",
+      "pas": "140-159",
+      "nonHdl": "3.0-3.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "50-54",
+      "tabac": "non-fumeur",
+      "pas": "140-159",
+      "nonHdl": "4.0-4.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "50-54",
+      "tabac": "non-fumeur",
+      "pas": "140-159",
+      "nonHdl": "5.0-5.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "50-54",
+      "tabac": "non-fumeur",
+      "pas": "140-159",
+      "nonHdl": "6.0-6.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "50-54",
+      "tabac": "non-fumeur",
+      "pas": "160-179",
+      "nonHdl": "3.0-3.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "50-54",
+      "tabac": "non-fumeur",
+      "pas": "160-179",
+      "nonHdl": "4.0-4.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "50-54",
+      "tabac": "non-fumeur",
+      "pas": "160-179",
+      "nonHdl": "5.0-5.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "50-54",
+      "tabac": "non-fumeur",
+      "pas": "160-179",
+      "nonHdl": "6.0-6.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "50-54",
+      "tabac": "fumeur",
+      "pas": "100-119",
+      "nonHdl": "3.0-3.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "50-54",
+      "tabac": "fumeur",
+      "pas": "100-119",
+      "nonHdl": "4.0-4.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "50-54",
+      "tabac": "fumeur",
+      "pas": "100-119",
+      "nonHdl": "5.0-5.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "50-54",
+      "tabac": "fumeur",
+      "pas": "100-119",
+      "nonHdl": "6.0-6.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "50-54",
+      "tabac": "fumeur",
+      "pas": "120-139",
+      "nonHdl": "3.0-3.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "50-54",
+      "tabac": "fumeur",
+      "pas": "120-139",
+      "nonHdl": "4.0-4.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "50-54",
+      "tabac": "fumeur",
+      "pas": "120-139",
+      "nonHdl": "5.0-5.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "50-54",
+      "tabac": "fumeur",
+      "pas": "120-139",
+      "nonHdl": "6.0-6.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "50-54",
+      "tabac": "fumeur",
+      "pas": "140-159",
+      "nonHdl": "3.0-3.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "50-54",
+      "tabac": "fumeur",
+      "pas": "140-159",
+      "nonHdl": "4.0-4.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "50-54",
+      "tabac": "fumeur",
+      "pas": "140-159",
+      "nonHdl": "5.0-5.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "50-54",
+      "tabac": "fumeur",
+      "pas": "140-159",
+      "nonHdl": "6.0-6.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "50-54",
+      "tabac": "fumeur",
+      "pas": "160-179",
+      "nonHdl": "3.0-3.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "50-54",
+      "tabac": "fumeur",
+      "pas": "160-179",
+      "nonHdl": "4.0-4.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "50-54",
+      "tabac": "fumeur",
+      "pas": "160-179",
+      "nonHdl": "5.0-5.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "50-54",
+      "tabac": "fumeur",
+      "pas": "160-179",
+      "nonHdl": "6.0-6.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "55-59",
+      "tabac": "non-fumeur",
+      "pas": "100-119",
+      "nonHdl": "3.0-3.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "55-59",
+      "tabac": "non-fumeur",
+      "pas": "100-119",
+      "nonHdl": "4.0-4.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "55-59",
+      "tabac": "non-fumeur",
+      "pas": "100-119",
+      "nonHdl": "5.0-5.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "55-59",
+      "tabac": "non-fumeur",
+      "pas": "100-119",
+      "nonHdl": "6.0-6.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "55-59",
+      "tabac": "non-fumeur",
+      "pas": "120-139",
+      "nonHdl": "3.0-3.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "55-59",
+      "tabac": "non-fumeur",
+      "pas": "120-139",
+      "nonHdl": "4.0-4.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "55-59",
+      "tabac": "non-fumeur",
+      "pas": "120-139",
+      "nonHdl": "5.0-5.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "55-59",
+      "tabac": "non-fumeur",
+      "pas": "120-139",
+      "nonHdl": "6.0-6.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "55-59",
+      "tabac": "non-fumeur",
+      "pas": "140-159",
+      "nonHdl": "3.0-3.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "55-59",
+      "tabac": "non-fumeur",
+      "pas": "140-159",
+      "nonHdl": "4.0-4.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "55-59",
+      "tabac": "non-fumeur",
+      "pas": "140-159",
+      "nonHdl": "5.0-5.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "55-59",
+      "tabac": "non-fumeur",
+      "pas": "140-159",
+      "nonHdl": "6.0-6.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "55-59",
+      "tabac": "non-fumeur",
+      "pas": "160-179",
+      "nonHdl": "3.0-3.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "55-59",
+      "tabac": "non-fumeur",
+      "pas": "160-179",
+      "nonHdl": "4.0-4.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "55-59",
+      "tabac": "non-fumeur",
+      "pas": "160-179",
+      "nonHdl": "5.0-5.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "55-59",
+      "tabac": "non-fumeur",
+      "pas": "160-179",
+      "nonHdl": "6.0-6.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "55-59",
+      "tabac": "fumeur",
+      "pas": "100-119",
+      "nonHdl": "3.0-3.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "55-59",
+      "tabac": "fumeur",
+      "pas": "100-119",
+      "nonHdl": "4.0-4.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "55-59",
+      "tabac": "fumeur",
+      "pas": "100-119",
+      "nonHdl": "5.0-5.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "55-59",
+      "tabac": "fumeur",
+      "pas": "100-119",
+      "nonHdl": "6.0-6.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "55-59",
+      "tabac": "fumeur",
+      "pas": "120-139",
+      "nonHdl": "3.0-3.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "55-59",
+      "tabac": "fumeur",
+      "pas": "120-139",
+      "nonHdl": "4.0-4.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "55-59",
+      "tabac": "fumeur",
+      "pas": "120-139",
+      "nonHdl": "5.0-5.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "55-59",
+      "tabac": "fumeur",
+      "pas": "120-139",
+      "nonHdl": "6.0-6.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "55-59",
+      "tabac": "fumeur",
+      "pas": "140-159",
+      "nonHdl": "3.0-3.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "55-59",
+      "tabac": "fumeur",
+      "pas": "140-159",
+      "nonHdl": "4.0-4.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "55-59",
+      "tabac": "fumeur",
+      "pas": "140-159",
+      "nonHdl": "5.0-5.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "55-59",
+      "tabac": "fumeur",
+      "pas": "140-159",
+      "nonHdl": "6.0-6.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "55-59",
+      "tabac": "fumeur",
+      "pas": "160-179",
+      "nonHdl": "3.0-3.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "55-59",
+      "tabac": "fumeur",
+      "pas": "160-179",
+      "nonHdl": "4.0-4.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "55-59",
+      "tabac": "fumeur",
+      "pas": "160-179",
+      "nonHdl": "5.0-5.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "55-59",
+      "tabac": "fumeur",
+      "pas": "160-179",
+      "nonHdl": "6.0-6.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "60-64",
+      "tabac": "non-fumeur",
+      "pas": "100-119",
+      "nonHdl": "3.0-3.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "60-64",
+      "tabac": "non-fumeur",
+      "pas": "100-119",
+      "nonHdl": "4.0-4.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "60-64",
+      "tabac": "non-fumeur",
+      "pas": "100-119",
+      "nonHdl": "5.0-5.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "60-64",
+      "tabac": "non-fumeur",
+      "pas": "100-119",
+      "nonHdl": "6.0-6.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "60-64",
+      "tabac": "non-fumeur",
+      "pas": "120-139",
+      "nonHdl": "3.0-3.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "60-64",
+      "tabac": "non-fumeur",
+      "pas": "120-139",
+      "nonHdl": "4.0-4.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "60-64",
+      "tabac": "non-fumeur",
+      "pas": "120-139",
+      "nonHdl": "5.0-5.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "60-64",
+      "tabac": "non-fumeur",
+      "pas": "120-139",
+      "nonHdl": "6.0-6.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "60-64",
+      "tabac": "non-fumeur",
+      "pas": "140-159",
+      "nonHdl": "3.0-3.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "60-64",
+      "tabac": "non-fumeur",
+      "pas": "140-159",
+      "nonHdl": "4.0-4.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "60-64",
+      "tabac": "non-fumeur",
+      "pas": "140-159",
+      "nonHdl": "5.0-5.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "60-64",
+      "tabac": "non-fumeur",
+      "pas": "140-159",
+      "nonHdl": "6.0-6.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "60-64",
+      "tabac": "non-fumeur",
+      "pas": "160-179",
+      "nonHdl": "3.0-3.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "60-64",
+      "tabac": "non-fumeur",
+      "pas": "160-179",
+      "nonHdl": "4.0-4.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "60-64",
+      "tabac": "non-fumeur",
+      "pas": "160-179",
+      "nonHdl": "5.0-5.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "60-64",
+      "tabac": "non-fumeur",
+      "pas": "160-179",
+      "nonHdl": "6.0-6.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "60-64",
+      "tabac": "fumeur",
+      "pas": "100-119",
+      "nonHdl": "3.0-3.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "60-64",
+      "tabac": "fumeur",
+      "pas": "100-119",
+      "nonHdl": "4.0-4.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "60-64",
+      "tabac": "fumeur",
+      "pas": "100-119",
+      "nonHdl": "5.0-5.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "60-64",
+      "tabac": "fumeur",
+      "pas": "100-119",
+      "nonHdl": "6.0-6.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "60-64",
+      "tabac": "fumeur",
+      "pas": "120-139",
+      "nonHdl": "3.0-3.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "60-64",
+      "tabac": "fumeur",
+      "pas": "120-139",
+      "nonHdl": "4.0-4.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "60-64",
+      "tabac": "fumeur",
+      "pas": "120-139",
+      "nonHdl": "5.0-5.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "60-64",
+      "tabac": "fumeur",
+      "pas": "120-139",
+      "nonHdl": "6.0-6.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "60-64",
+      "tabac": "fumeur",
+      "pas": "140-159",
+      "nonHdl": "3.0-3.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "60-64",
+      "tabac": "fumeur",
+      "pas": "140-159",
+      "nonHdl": "4.0-4.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "60-64",
+      "tabac": "fumeur",
+      "pas": "140-159",
+      "nonHdl": "5.0-5.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "60-64",
+      "tabac": "fumeur",
+      "pas": "140-159",
+      "nonHdl": "6.0-6.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "60-64",
+      "tabac": "fumeur",
+      "pas": "160-179",
+      "nonHdl": "3.0-3.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "60-64",
+      "tabac": "fumeur",
+      "pas": "160-179",
+      "nonHdl": "4.0-4.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "60-64",
+      "tabac": "fumeur",
+      "pas": "160-179",
+      "nonHdl": "5.0-5.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "60-64",
+      "tabac": "fumeur",
+      "pas": "160-179",
+      "nonHdl": "6.0-6.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "65-69",
+      "tabac": "non-fumeur",
+      "pas": "100-119",
+      "nonHdl": "3.0-3.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "65-69",
+      "tabac": "non-fumeur",
+      "pas": "100-119",
+      "nonHdl": "4.0-4.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "65-69",
+      "tabac": "non-fumeur",
+      "pas": "100-119",
+      "nonHdl": "5.0-5.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "65-69",
+      "tabac": "non-fumeur",
+      "pas": "100-119",
+      "nonHdl": "6.0-6.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "65-69",
+      "tabac": "non-fumeur",
+      "pas": "120-139",
+      "nonHdl": "3.0-3.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "65-69",
+      "tabac": "non-fumeur",
+      "pas": "120-139",
+      "nonHdl": "4.0-4.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "65-69",
+      "tabac": "non-fumeur",
+      "pas": "120-139",
+      "nonHdl": "5.0-5.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "65-69",
+      "tabac": "non-fumeur",
+      "pas": "120-139",
+      "nonHdl": "6.0-6.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "65-69",
+      "tabac": "non-fumeur",
+      "pas": "140-159",
+      "nonHdl": "3.0-3.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "65-69",
+      "tabac": "non-fumeur",
+      "pas": "140-159",
+      "nonHdl": "4.0-4.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "65-69",
+      "tabac": "non-fumeur",
+      "pas": "140-159",
+      "nonHdl": "5.0-5.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "65-69",
+      "tabac": "non-fumeur",
+      "pas": "140-159",
+      "nonHdl": "6.0-6.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "65-69",
+      "tabac": "non-fumeur",
+      "pas": "160-179",
+      "nonHdl": "3.0-3.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "65-69",
+      "tabac": "non-fumeur",
+      "pas": "160-179",
+      "nonHdl": "4.0-4.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "65-69",
+      "tabac": "non-fumeur",
+      "pas": "160-179",
+      "nonHdl": "5.0-5.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "65-69",
+      "tabac": "non-fumeur",
+      "pas": "160-179",
+      "nonHdl": "6.0-6.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "65-69",
+      "tabac": "fumeur",
+      "pas": "100-119",
+      "nonHdl": "3.0-3.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "65-69",
+      "tabac": "fumeur",
+      "pas": "100-119",
+      "nonHdl": "4.0-4.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "65-69",
+      "tabac": "fumeur",
+      "pas": "100-119",
+      "nonHdl": "5.0-5.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "65-69",
+      "tabac": "fumeur",
+      "pas": "100-119",
+      "nonHdl": "6.0-6.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "65-69",
+      "tabac": "fumeur",
+      "pas": "120-139",
+      "nonHdl": "3.0-3.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "65-69",
+      "tabac": "fumeur",
+      "pas": "120-139",
+      "nonHdl": "4.0-4.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "65-69",
+      "tabac": "fumeur",
+      "pas": "120-139",
+      "nonHdl": "5.0-5.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "65-69",
+      "tabac": "fumeur",
+      "pas": "120-139",
+      "nonHdl": "6.0-6.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "65-69",
+      "tabac": "fumeur",
+      "pas": "140-159",
+      "nonHdl": "3.0-3.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "65-69",
+      "tabac": "fumeur",
+      "pas": "140-159",
+      "nonHdl": "4.0-4.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "65-69",
+      "tabac": "fumeur",
+      "pas": "140-159",
+      "nonHdl": "5.0-5.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "65-69",
+      "tabac": "fumeur",
+      "pas": "140-159",
+      "nonHdl": "6.0-6.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "65-69",
+      "tabac": "fumeur",
+      "pas": "160-179",
+      "nonHdl": "3.0-3.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "65-69",
+      "tabac": "fumeur",
+      "pas": "160-179",
+      "nonHdl": "4.0-4.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "65-69",
+      "tabac": "fumeur",
+      "pas": "160-179",
+      "nonHdl": "5.0-5.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "femme",
+      "age": "65-69",
+      "tabac": "fumeur",
+      "pas": "160-179",
+      "nonHdl": "6.0-6.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "40-44",
+      "tabac": "non-fumeur",
+      "pas": "100-119",
+      "nonHdl": "3.0-3.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "40-44",
+      "tabac": "non-fumeur",
+      "pas": "100-119",
+      "nonHdl": "4.0-4.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "40-44",
+      "tabac": "non-fumeur",
+      "pas": "100-119",
+      "nonHdl": "5.0-5.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "40-44",
+      "tabac": "non-fumeur",
+      "pas": "100-119",
+      "nonHdl": "6.0-6.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "40-44",
+      "tabac": "non-fumeur",
+      "pas": "120-139",
+      "nonHdl": "3.0-3.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "40-44",
+      "tabac": "non-fumeur",
+      "pas": "120-139",
+      "nonHdl": "4.0-4.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "40-44",
+      "tabac": "non-fumeur",
+      "pas": "120-139",
+      "nonHdl": "5.0-5.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "40-44",
+      "tabac": "non-fumeur",
+      "pas": "120-139",
+      "nonHdl": "6.0-6.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "40-44",
+      "tabac": "non-fumeur",
+      "pas": "140-159",
+      "nonHdl": "3.0-3.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "40-44",
+      "tabac": "non-fumeur",
+      "pas": "140-159",
+      "nonHdl": "4.0-4.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "40-44",
+      "tabac": "non-fumeur",
+      "pas": "140-159",
+      "nonHdl": "5.0-5.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "40-44",
+      "tabac": "non-fumeur",
+      "pas": "140-159",
+      "nonHdl": "6.0-6.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "40-44",
+      "tabac": "non-fumeur",
+      "pas": "160-179",
+      "nonHdl": "3.0-3.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "40-44",
+      "tabac": "non-fumeur",
+      "pas": "160-179",
+      "nonHdl": "4.0-4.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "40-44",
+      "tabac": "non-fumeur",
+      "pas": "160-179",
+      "nonHdl": "5.0-5.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "40-44",
+      "tabac": "non-fumeur",
+      "pas": "160-179",
+      "nonHdl": "6.0-6.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "40-44",
+      "tabac": "fumeur",
+      "pas": "100-119",
+      "nonHdl": "3.0-3.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "40-44",
+      "tabac": "fumeur",
+      "pas": "100-119",
+      "nonHdl": "4.0-4.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "40-44",
+      "tabac": "fumeur",
+      "pas": "100-119",
+      "nonHdl": "5.0-5.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "40-44",
+      "tabac": "fumeur",
+      "pas": "100-119",
+      "nonHdl": "6.0-6.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "40-44",
+      "tabac": "fumeur",
+      "pas": "120-139",
+      "nonHdl": "3.0-3.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "40-44",
+      "tabac": "fumeur",
+      "pas": "120-139",
+      "nonHdl": "4.0-4.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "40-44",
+      "tabac": "fumeur",
+      "pas": "120-139",
+      "nonHdl": "5.0-5.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "40-44",
+      "tabac": "fumeur",
+      "pas": "120-139",
+      "nonHdl": "6.0-6.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "40-44",
+      "tabac": "fumeur",
+      "pas": "140-159",
+      "nonHdl": "3.0-3.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "40-44",
+      "tabac": "fumeur",
+      "pas": "140-159",
+      "nonHdl": "4.0-4.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "40-44",
+      "tabac": "fumeur",
+      "pas": "140-159",
+      "nonHdl": "5.0-5.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "40-44",
+      "tabac": "fumeur",
+      "pas": "140-159",
+      "nonHdl": "6.0-6.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "40-44",
+      "tabac": "fumeur",
+      "pas": "160-179",
+      "nonHdl": "3.0-3.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "40-44",
+      "tabac": "fumeur",
+      "pas": "160-179",
+      "nonHdl": "4.0-4.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "40-44",
+      "tabac": "fumeur",
+      "pas": "160-179",
+      "nonHdl": "5.0-5.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "40-44",
+      "tabac": "fumeur",
+      "pas": "160-179",
+      "nonHdl": "6.0-6.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "45-49",
+      "tabac": "non-fumeur",
+      "pas": "100-119",
+      "nonHdl": "3.0-3.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "45-49",
+      "tabac": "non-fumeur",
+      "pas": "100-119",
+      "nonHdl": "4.0-4.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "45-49",
+      "tabac": "non-fumeur",
+      "pas": "100-119",
+      "nonHdl": "5.0-5.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "45-49",
+      "tabac": "non-fumeur",
+      "pas": "100-119",
+      "nonHdl": "6.0-6.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "45-49",
+      "tabac": "non-fumeur",
+      "pas": "120-139",
+      "nonHdl": "3.0-3.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "45-49",
+      "tabac": "non-fumeur",
+      "pas": "120-139",
+      "nonHdl": "4.0-4.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "45-49",
+      "tabac": "non-fumeur",
+      "pas": "120-139",
+      "nonHdl": "5.0-5.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "45-49",
+      "tabac": "non-fumeur",
+      "pas": "120-139",
+      "nonHdl": "6.0-6.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "45-49",
+      "tabac": "non-fumeur",
+      "pas": "140-159",
+      "nonHdl": "3.0-3.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "45-49",
+      "tabac": "non-fumeur",
+      "pas": "140-159",
+      "nonHdl": "4.0-4.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "45-49",
+      "tabac": "non-fumeur",
+      "pas": "140-159",
+      "nonHdl": "5.0-5.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "45-49",
+      "tabac": "non-fumeur",
+      "pas": "140-159",
+      "nonHdl": "6.0-6.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "45-49",
+      "tabac": "non-fumeur",
+      "pas": "160-179",
+      "nonHdl": "3.0-3.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "45-49",
+      "tabac": "non-fumeur",
+      "pas": "160-179",
+      "nonHdl": "4.0-4.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "45-49",
+      "tabac": "non-fumeur",
+      "pas": "160-179",
+      "nonHdl": "5.0-5.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "45-49",
+      "tabac": "non-fumeur",
+      "pas": "160-179",
+      "nonHdl": "6.0-6.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "45-49",
+      "tabac": "fumeur",
+      "pas": "100-119",
+      "nonHdl": "3.0-3.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "45-49",
+      "tabac": "fumeur",
+      "pas": "100-119",
+      "nonHdl": "4.0-4.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "45-49",
+      "tabac": "fumeur",
+      "pas": "100-119",
+      "nonHdl": "5.0-5.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "45-49",
+      "tabac": "fumeur",
+      "pas": "100-119",
+      "nonHdl": "6.0-6.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "45-49",
+      "tabac": "fumeur",
+      "pas": "120-139",
+      "nonHdl": "3.0-3.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "45-49",
+      "tabac": "fumeur",
+      "pas": "120-139",
+      "nonHdl": "4.0-4.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "45-49",
+      "tabac": "fumeur",
+      "pas": "120-139",
+      "nonHdl": "5.0-5.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "45-49",
+      "tabac": "fumeur",
+      "pas": "120-139",
+      "nonHdl": "6.0-6.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "45-49",
+      "tabac": "fumeur",
+      "pas": "140-159",
+      "nonHdl": "3.0-3.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "45-49",
+      "tabac": "fumeur",
+      "pas": "140-159",
+      "nonHdl": "4.0-4.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "45-49",
+      "tabac": "fumeur",
+      "pas": "140-159",
+      "nonHdl": "5.0-5.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "45-49",
+      "tabac": "fumeur",
+      "pas": "140-159",
+      "nonHdl": "6.0-6.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "45-49",
+      "tabac": "fumeur",
+      "pas": "160-179",
+      "nonHdl": "3.0-3.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "45-49",
+      "tabac": "fumeur",
+      "pas": "160-179",
+      "nonHdl": "4.0-4.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "45-49",
+      "tabac": "fumeur",
+      "pas": "160-179",
+      "nonHdl": "5.0-5.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "45-49",
+      "tabac": "fumeur",
+      "pas": "160-179",
+      "nonHdl": "6.0-6.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "50-54",
+      "tabac": "non-fumeur",
+      "pas": "100-119",
+      "nonHdl": "3.0-3.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "50-54",
+      "tabac": "non-fumeur",
+      "pas": "100-119",
+      "nonHdl": "4.0-4.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "50-54",
+      "tabac": "non-fumeur",
+      "pas": "100-119",
+      "nonHdl": "5.0-5.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "50-54",
+      "tabac": "non-fumeur",
+      "pas": "100-119",
+      "nonHdl": "6.0-6.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "50-54",
+      "tabac": "non-fumeur",
+      "pas": "120-139",
+      "nonHdl": "3.0-3.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "50-54",
+      "tabac": "non-fumeur",
+      "pas": "120-139",
+      "nonHdl": "4.0-4.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "50-54",
+      "tabac": "non-fumeur",
+      "pas": "120-139",
+      "nonHdl": "5.0-5.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "50-54",
+      "tabac": "non-fumeur",
+      "pas": "120-139",
+      "nonHdl": "6.0-6.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "50-54",
+      "tabac": "non-fumeur",
+      "pas": "140-159",
+      "nonHdl": "3.0-3.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "50-54",
+      "tabac": "non-fumeur",
+      "pas": "140-159",
+      "nonHdl": "4.0-4.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "50-54",
+      "tabac": "non-fumeur",
+      "pas": "140-159",
+      "nonHdl": "5.0-5.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "50-54",
+      "tabac": "non-fumeur",
+      "pas": "140-159",
+      "nonHdl": "6.0-6.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "50-54",
+      "tabac": "non-fumeur",
+      "pas": "160-179",
+      "nonHdl": "3.0-3.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "50-54",
+      "tabac": "non-fumeur",
+      "pas": "160-179",
+      "nonHdl": "4.0-4.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "50-54",
+      "tabac": "non-fumeur",
+      "pas": "160-179",
+      "nonHdl": "5.0-5.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "50-54",
+      "tabac": "non-fumeur",
+      "pas": "160-179",
+      "nonHdl": "6.0-6.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "50-54",
+      "tabac": "fumeur",
+      "pas": "100-119",
+      "nonHdl": "3.0-3.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "50-54",
+      "tabac": "fumeur",
+      "pas": "100-119",
+      "nonHdl": "4.0-4.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "50-54",
+      "tabac": "fumeur",
+      "pas": "100-119",
+      "nonHdl": "5.0-5.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "50-54",
+      "tabac": "fumeur",
+      "pas": "100-119",
+      "nonHdl": "6.0-6.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "50-54",
+      "tabac": "fumeur",
+      "pas": "120-139",
+      "nonHdl": "3.0-3.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "50-54",
+      "tabac": "fumeur",
+      "pas": "120-139",
+      "nonHdl": "4.0-4.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "50-54",
+      "tabac": "fumeur",
+      "pas": "120-139",
+      "nonHdl": "5.0-5.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "50-54",
+      "tabac": "fumeur",
+      "pas": "120-139",
+      "nonHdl": "6.0-6.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "50-54",
+      "tabac": "fumeur",
+      "pas": "140-159",
+      "nonHdl": "3.0-3.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "50-54",
+      "tabac": "fumeur",
+      "pas": "140-159",
+      "nonHdl": "4.0-4.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "50-54",
+      "tabac": "fumeur",
+      "pas": "140-159",
+      "nonHdl": "5.0-5.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "50-54",
+      "tabac": "fumeur",
+      "pas": "140-159",
+      "nonHdl": "6.0-6.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "50-54",
+      "tabac": "fumeur",
+      "pas": "160-179",
+      "nonHdl": "3.0-3.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "50-54",
+      "tabac": "fumeur",
+      "pas": "160-179",
+      "nonHdl": "4.0-4.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "50-54",
+      "tabac": "fumeur",
+      "pas": "160-179",
+      "nonHdl": "5.0-5.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "50-54",
+      "tabac": "fumeur",
+      "pas": "160-179",
+      "nonHdl": "6.0-6.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "55-59",
+      "tabac": "non-fumeur",
+      "pas": "100-119",
+      "nonHdl": "3.0-3.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "55-59",
+      "tabac": "non-fumeur",
+      "pas": "100-119",
+      "nonHdl": "4.0-4.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "55-59",
+      "tabac": "non-fumeur",
+      "pas": "100-119",
+      "nonHdl": "5.0-5.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "55-59",
+      "tabac": "non-fumeur",
+      "pas": "100-119",
+      "nonHdl": "6.0-6.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "55-59",
+      "tabac": "non-fumeur",
+      "pas": "120-139",
+      "nonHdl": "3.0-3.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "55-59",
+      "tabac": "non-fumeur",
+      "pas": "120-139",
+      "nonHdl": "4.0-4.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "55-59",
+      "tabac": "non-fumeur",
+      "pas": "120-139",
+      "nonHdl": "5.0-5.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "55-59",
+      "tabac": "non-fumeur",
+      "pas": "120-139",
+      "nonHdl": "6.0-6.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "55-59",
+      "tabac": "non-fumeur",
+      "pas": "140-159",
+      "nonHdl": "3.0-3.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "55-59",
+      "tabac": "non-fumeur",
+      "pas": "140-159",
+      "nonHdl": "4.0-4.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "55-59",
+      "tabac": "non-fumeur",
+      "pas": "140-159",
+      "nonHdl": "5.0-5.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "55-59",
+      "tabac": "non-fumeur",
+      "pas": "140-159",
+      "nonHdl": "6.0-6.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "55-59",
+      "tabac": "non-fumeur",
+      "pas": "160-179",
+      "nonHdl": "3.0-3.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "55-59",
+      "tabac": "non-fumeur",
+      "pas": "160-179",
+      "nonHdl": "4.0-4.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "55-59",
+      "tabac": "non-fumeur",
+      "pas": "160-179",
+      "nonHdl": "5.0-5.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "55-59",
+      "tabac": "non-fumeur",
+      "pas": "160-179",
+      "nonHdl": "6.0-6.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "55-59",
+      "tabac": "fumeur",
+      "pas": "100-119",
+      "nonHdl": "3.0-3.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "55-59",
+      "tabac": "fumeur",
+      "pas": "100-119",
+      "nonHdl": "4.0-4.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "55-59",
+      "tabac": "fumeur",
+      "pas": "100-119",
+      "nonHdl": "5.0-5.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "55-59",
+      "tabac": "fumeur",
+      "pas": "100-119",
+      "nonHdl": "6.0-6.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "55-59",
+      "tabac": "fumeur",
+      "pas": "120-139",
+      "nonHdl": "3.0-3.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "55-59",
+      "tabac": "fumeur",
+      "pas": "120-139",
+      "nonHdl": "4.0-4.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "55-59",
+      "tabac": "fumeur",
+      "pas": "120-139",
+      "nonHdl": "5.0-5.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "55-59",
+      "tabac": "fumeur",
+      "pas": "120-139",
+      "nonHdl": "6.0-6.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "55-59",
+      "tabac": "fumeur",
+      "pas": "140-159",
+      "nonHdl": "3.0-3.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "55-59",
+      "tabac": "fumeur",
+      "pas": "140-159",
+      "nonHdl": "4.0-4.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "55-59",
+      "tabac": "fumeur",
+      "pas": "140-159",
+      "nonHdl": "5.0-5.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "55-59",
+      "tabac": "fumeur",
+      "pas": "140-159",
+      "nonHdl": "6.0-6.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "55-59",
+      "tabac": "fumeur",
+      "pas": "160-179",
+      "nonHdl": "3.0-3.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "55-59",
+      "tabac": "fumeur",
+      "pas": "160-179",
+      "nonHdl": "4.0-4.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "55-59",
+      "tabac": "fumeur",
+      "pas": "160-179",
+      "nonHdl": "5.0-5.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "55-59",
+      "tabac": "fumeur",
+      "pas": "160-179",
+      "nonHdl": "6.0-6.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "60-64",
+      "tabac": "non-fumeur",
+      "pas": "100-119",
+      "nonHdl": "3.0-3.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "60-64",
+      "tabac": "non-fumeur",
+      "pas": "100-119",
+      "nonHdl": "4.0-4.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "60-64",
+      "tabac": "non-fumeur",
+      "pas": "100-119",
+      "nonHdl": "5.0-5.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "60-64",
+      "tabac": "non-fumeur",
+      "pas": "100-119",
+      "nonHdl": "6.0-6.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "60-64",
+      "tabac": "non-fumeur",
+      "pas": "120-139",
+      "nonHdl": "3.0-3.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "60-64",
+      "tabac": "non-fumeur",
+      "pas": "120-139",
+      "nonHdl": "4.0-4.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "60-64",
+      "tabac": "non-fumeur",
+      "pas": "120-139",
+      "nonHdl": "5.0-5.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "60-64",
+      "tabac": "non-fumeur",
+      "pas": "120-139",
+      "nonHdl": "6.0-6.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "60-64",
+      "tabac": "non-fumeur",
+      "pas": "140-159",
+      "nonHdl": "3.0-3.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "60-64",
+      "tabac": "non-fumeur",
+      "pas": "140-159",
+      "nonHdl": "4.0-4.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "60-64",
+      "tabac": "non-fumeur",
+      "pas": "140-159",
+      "nonHdl": "5.0-5.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "60-64",
+      "tabac": "non-fumeur",
+      "pas": "140-159",
+      "nonHdl": "6.0-6.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "60-64",
+      "tabac": "non-fumeur",
+      "pas": "160-179",
+      "nonHdl": "3.0-3.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "60-64",
+      "tabac": "non-fumeur",
+      "pas": "160-179",
+      "nonHdl": "4.0-4.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "60-64",
+      "tabac": "non-fumeur",
+      "pas": "160-179",
+      "nonHdl": "5.0-5.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "60-64",
+      "tabac": "non-fumeur",
+      "pas": "160-179",
+      "nonHdl": "6.0-6.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "60-64",
+      "tabac": "fumeur",
+      "pas": "100-119",
+      "nonHdl": "3.0-3.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "60-64",
+      "tabac": "fumeur",
+      "pas": "100-119",
+      "nonHdl": "4.0-4.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "60-64",
+      "tabac": "fumeur",
+      "pas": "100-119",
+      "nonHdl": "5.0-5.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "60-64",
+      "tabac": "fumeur",
+      "pas": "100-119",
+      "nonHdl": "6.0-6.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "60-64",
+      "tabac": "fumeur",
+      "pas": "120-139",
+      "nonHdl": "3.0-3.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "60-64",
+      "tabac": "fumeur",
+      "pas": "120-139",
+      "nonHdl": "4.0-4.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "60-64",
+      "tabac": "fumeur",
+      "pas": "120-139",
+      "nonHdl": "5.0-5.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "60-64",
+      "tabac": "fumeur",
+      "pas": "120-139",
+      "nonHdl": "6.0-6.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "60-64",
+      "tabac": "fumeur",
+      "pas": "140-159",
+      "nonHdl": "3.0-3.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "60-64",
+      "tabac": "fumeur",
+      "pas": "140-159",
+      "nonHdl": "4.0-4.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "60-64",
+      "tabac": "fumeur",
+      "pas": "140-159",
+      "nonHdl": "5.0-5.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "60-64",
+      "tabac": "fumeur",
+      "pas": "140-159",
+      "nonHdl": "6.0-6.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "60-64",
+      "tabac": "fumeur",
+      "pas": "160-179",
+      "nonHdl": "3.0-3.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "60-64",
+      "tabac": "fumeur",
+      "pas": "160-179",
+      "nonHdl": "4.0-4.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "60-64",
+      "tabac": "fumeur",
+      "pas": "160-179",
+      "nonHdl": "5.0-5.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "60-64",
+      "tabac": "fumeur",
+      "pas": "160-179",
+      "nonHdl": "6.0-6.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "65-69",
+      "tabac": "non-fumeur",
+      "pas": "100-119",
+      "nonHdl": "3.0-3.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "65-69",
+      "tabac": "non-fumeur",
+      "pas": "100-119",
+      "nonHdl": "4.0-4.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "65-69",
+      "tabac": "non-fumeur",
+      "pas": "100-119",
+      "nonHdl": "5.0-5.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "65-69",
+      "tabac": "non-fumeur",
+      "pas": "100-119",
+      "nonHdl": "6.0-6.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "65-69",
+      "tabac": "non-fumeur",
+      "pas": "120-139",
+      "nonHdl": "3.0-3.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "65-69",
+      "tabac": "non-fumeur",
+      "pas": "120-139",
+      "nonHdl": "4.0-4.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "65-69",
+      "tabac": "non-fumeur",
+      "pas": "120-139",
+      "nonHdl": "5.0-5.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "65-69",
+      "tabac": "non-fumeur",
+      "pas": "120-139",
+      "nonHdl": "6.0-6.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "65-69",
+      "tabac": "non-fumeur",
+      "pas": "140-159",
+      "nonHdl": "3.0-3.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "65-69",
+      "tabac": "non-fumeur",
+      "pas": "140-159",
+      "nonHdl": "4.0-4.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "65-69",
+      "tabac": "non-fumeur",
+      "pas": "140-159",
+      "nonHdl": "5.0-5.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "65-69",
+      "tabac": "non-fumeur",
+      "pas": "140-159",
+      "nonHdl": "6.0-6.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "65-69",
+      "tabac": "non-fumeur",
+      "pas": "160-179",
+      "nonHdl": "3.0-3.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "65-69",
+      "tabac": "non-fumeur",
+      "pas": "160-179",
+      "nonHdl": "4.0-4.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "65-69",
+      "tabac": "non-fumeur",
+      "pas": "160-179",
+      "nonHdl": "5.0-5.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "65-69",
+      "tabac": "non-fumeur",
+      "pas": "160-179",
+      "nonHdl": "6.0-6.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "65-69",
+      "tabac": "fumeur",
+      "pas": "100-119",
+      "nonHdl": "3.0-3.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "65-69",
+      "tabac": "fumeur",
+      "pas": "100-119",
+      "nonHdl": "4.0-4.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "65-69",
+      "tabac": "fumeur",
+      "pas": "100-119",
+      "nonHdl": "5.0-5.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "65-69",
+      "tabac": "fumeur",
+      "pas": "100-119",
+      "nonHdl": "6.0-6.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "65-69",
+      "tabac": "fumeur",
+      "pas": "120-139",
+      "nonHdl": "3.0-3.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "65-69",
+      "tabac": "fumeur",
+      "pas": "120-139",
+      "nonHdl": "4.0-4.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "65-69",
+      "tabac": "fumeur",
+      "pas": "120-139",
+      "nonHdl": "5.0-5.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "65-69",
+      "tabac": "fumeur",
+      "pas": "120-139",
+      "nonHdl": "6.0-6.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "65-69",
+      "tabac": "fumeur",
+      "pas": "140-159",
+      "nonHdl": "3.0-3.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "65-69",
+      "tabac": "fumeur",
+      "pas": "140-159",
+      "nonHdl": "4.0-4.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "65-69",
+      "tabac": "fumeur",
+      "pas": "140-159",
+      "nonHdl": "5.0-5.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "65-69",
+      "tabac": "fumeur",
+      "pas": "140-159",
+      "nonHdl": "6.0-6.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "65-69",
+      "tabac": "fumeur",
+      "pas": "160-179",
+      "nonHdl": "3.0-3.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "65-69",
+      "tabac": "fumeur",
+      "pas": "160-179",
+      "nonHdl": "4.0-4.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "65-69",
+      "tabac": "fumeur",
+      "pas": "160-179",
+      "nonHdl": "5.0-5.9",
+      "valeur": null,
+      "source": null
+    },
+    {
+      "sexe": "homme",
+      "age": "65-69",
+      "tabac": "fumeur",
+      "pas": "160-179",
+      "nonHdl": "6.0-6.9",
+      "valeur": null,
+      "source": null
+    }
+  ]
+}

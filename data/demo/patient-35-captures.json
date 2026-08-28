@@ -1,0 +1,74 @@
+{
+  "id": "p35cap",
+  "dossier": "6740",
+  "note": "PATIENT FICTIF. Reprise de la STRUCTURE du dossier des captures (mêmes épisodes, même biologie) mais avec une identité entièrement inventée : le dépôt est public, aucune identité figurant sur une capture n'y est reproduite. Démontre l'absence du bouton contextuel sur la dermite, le recours au catalogue complet, le garde-fou d'éligibilité SCORE2 (35 ans, hors bornes) et la règle de fraîcheur (PAS de 2023, trop ancienne pour être reprise).",
+
+  "identite": {
+    "civilite": "Monsieur",
+    "nom": "TESSIER",
+    "prenom": "Bastien",
+    "dateNaissance": "1990-10-04",
+    "sexe": "homme",
+    "adresse": "59 rue de la Fontaine",
+    "codePostal": "44000",
+    "ville": "NANTES",
+    "telDomicile": "02 40 00 00 00",
+    "gsm": "06 00 00 00 00",
+    "mel": "",
+    "numeroSecu": "1 90 10 44 000 000 00",
+    "medecinTraitant": "ANEX Matthieu",
+    "profession": "",
+    "notesPubliques": "NETTOYAGE INDUSTRIEL",
+    "ald": false
+  },
+
+  "facteursRisque": [],
+
+  "episodes": [
+    { "id": "p35-e1", "acteur": "MAN", "libelle": "Non-Classé", "cim10": null,
+      "debut": "2012-12-14", "dernierContact": null, "notes": "", "aSuivre": false },
+    { "id": "p35-e2", "acteur": "MAN", "libelle": "Trouble anxieux et dépressif mixte", "cim10": "F41.2",
+      "debut": "2015-10-30", "dernierContact": "2016-07-12", "notes": "", "aSuivre": false },
+    { "id": "p35-e3", "acteur": "MAN", "libelle": "Dermite séborrhéique", "cim10": "L21.9",
+      "debut": "2021-11-08", "dernierContact": "2021-11-08", "notes": "", "aSuivre": false },
+    { "id": "p35-e4", "acteur": "MAN", "libelle": "Entorse du genou, droit", "cim10": "S83.6",
+      "debut": "2025-12-30", "dernierContact": "2026-08-28", "notes": "", "aSuivre": true }
+  ],
+
+  "episodesFermes": [
+    { "id": "p35-f1", "libelle": "Algodystrophie", "cim10": "M89.0", "debut": "2018-12-14", "fin": "2019-06-03", "notes": "" },
+    { "id": "p35-f2", "libelle": "Contusion du genou", "cim10": "S80.0", "debut": "2016-11-07", "fin": "2016-12-15", "notes": "" },
+    { "id": "p35-f3", "libelle": "Epitrochléite, coude droit", "cim10": "M77.0", "debut": "2020-12-21", "fin": "2021-03-08", "notes": "date aw 21/12" },
+    { "id": "p35-f4", "libelle": "Sciatique", "cim10": "M54.3", "debut": "2025-06-06", "fin": "2025-07-28", "notes": "" },
+    { "id": "p35-f5", "libelle": "Sténose de l'urètre bulbaire", "cim10": "N35.9", "debut": "2020-06-12", "fin": "2020-11-30", "notes": "chir chu nantes" },
+    { "id": "p35-f6", "libelle": "Tendinite, Poignet, D", "cim10": "M65.4", "debut": "2023-09-19", "fin": "2023-11-02", "notes": "" },
+    { "id": "p35-f7", "libelle": "Tendinite, Poignet, G", "cim10": "M65.4", "debut": "2025-10-30", "fin": "2025-12-11", "notes": "" },
+    { "id": "p35-f8", "libelle": "Tendinite, Poignet, G", "cim10": "M65.4", "debut": "2023-12-07", "fin": "2024-01-25", "notes": "" }
+  ],
+
+  "biologie": [
+    { "loinc": "2823-3", "libelle": "Potassium", "valeur": 4.7, "unite": "mmol/l",
+      "valeur2": null, "unite2": null, "date": "2020-12-01", "anormal": true, "laboratoire": "Biolab (HPRIM)" },
+    { "loinc": "33914-3", "libelle": "Clairance créatinine (MDRD)", "valeur": 76.3, "unite": "ml/mn",
+      "valeur2": null, "unite2": null, "date": "2020-12-01", "anormal": false, "laboratoire": "Biolab (HPRIM)" },
+    { "loinc": "2164-2", "libelle": "Clairance créatinine (Cockcroft)", "valeur": 81.5, "unite": "ml/mn",
+      "valeur2": null, "unite2": null, "date": "2020-12-01", "anormal": false, "laboratoire": "Biolab (HPRIM)" },
+    { "loinc": "2160-0", "libelle": "Créatinine", "valeur": 11.9, "unite": "mg/l",
+      "valeur2": 105.3, "unite2": "µmol/l", "date": "2020-12-01", "anormal": true, "laboratoire": "Biolab (HPRIM)" },
+    { "loinc": "2345-7", "libelle": "Glycémie", "valeur": 0.92, "unite": "g/l",
+      "valeur2": 5.11, "unite2": "mmol/l", "date": "2020-12-01", "anormal": false, "laboratoire": "Biolab (HPRIM)" },
+    { "loinc": "718-7", "libelle": "Hémoglobine", "valeur": 15.6, "unite": "g/100ml",
+      "valeur2": null, "unite2": null, "date": "2020-12-01", "anormal": false, "laboratoire": "Biolab (HPRIM)" },
+    { "loinc": "8480-6", "libelle": "PAS/PAD", "valeur": 110, "unite": "mmHg",
+      "valeur2": 70, "unite2": "mmHg", "date": "2023-05-31", "anormal": false, "laboratoire": "cabinet" },
+    { "loinc": "29463-7", "libelle": "Poids", "valeur": 52, "unite": "kg",
+      "valeur2": null, "unite2": null, "date": "2023-08-03", "anormal": false, "laboratoire": "cabinet" }
+  ],
+
+  "traitements": [
+    { "atc": "D01AC08", "libelle": "KETOCONAZOLE 2% ARROW GEL SACHET 8", "dernier": "2026-08-28", "periodicite": "3 mois" },
+    { "atc": "D07AC01", "libelle": "DIPROSONE 0,05% CR TUB 30G", "dernier": "2026-08-28", "periodicite": "3 mois" }
+  ],
+
+  "evaluationsInitiales": []
+}

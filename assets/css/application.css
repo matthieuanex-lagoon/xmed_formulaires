@@ -1,0 +1,212 @@
+/* ============================================================================
+   application.css — Habillage de l'application de démonstration.
+   ----------------------------------------------------------------------------
+   Complète xmed.css : chrome de la fenêtre principale (barre de titre, menus,
+   barre d'icônes, mosaïque de cadres) et pièces propres au module Scores
+   (items, courbe, encadré de résultat, pied de page).
+
+   Comme xmed.css, aucune couleur en dur : tout vient de tokens.css.
+   ========================================================================== */
+
+/* ==========================================================================
+   1. Chrome de l'application  (capture 01)
+   ========================================================================== */
+
+.xm-app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: var(--xm-fond-mdi);
+}
+
+.xm-app__titre {
+  display: flex; align-items: center; gap: 8px;
+  height: var(--xm-h-titre-fenetre);
+  padding: 0 8px;
+  background: var(--xm-fenetre-titre-fond);
+  border-bottom: 1px solid var(--xm-fenetre-titre-ligne);
+  user-select: none;
+}
+.xm-app__titre-libelle { font-weight: 400; white-space: nowrap;
+                         overflow: hidden; text-overflow: ellipsis; }
+
+/* Sélecteur de patient de démonstration : discret, à droite du titre. */
+.xm-app__demo {
+  margin-left: auto;
+  display: flex; align-items: center; gap: 6px;
+  font-size: var(--xm-taille-petite);
+  color: var(--xm-texte-attenue);
+  white-space: nowrap;
+}
+.xm-selecteur-patient {
+  height: var(--xm-h-champ);
+  font: inherit; font-size: var(--xm-taille-petite);
+  color: var(--xm-texte);
+  background: var(--xm-champ-fond);
+  border: 1px solid var(--xm-champ-bordure);
+  border-radius: 0;
+  max-width: 260px;
+}
+
+.xm-app__menus {
+  display: flex; align-items: center; gap: 0;
+  height: 21px; padding: 0 4px;
+  background: var(--xm-fond-app);
+  user-select: none;
+  overflow: hidden; white-space: nowrap;
+}
+.xm-app__menu { padding: 0 7px; line-height: 21px; cursor: default; }
+.xm-app__menu:hover { background: var(--xm-grille-selection); }
+
+.xm-app__outils {
+  display: flex; align-items: center; gap: 3px;
+  height: 26px; padding: 0 5px;
+  background: var(--xm-fond-app);
+  border-bottom: 1px solid var(--xm-etat-ligne);
+  overflow: hidden;
+}
+.xm-app__separateur {
+  width: 1px; height: 16px; margin: 0 6px;
+  background: var(--xm-etat-separateur);
+}
+.xm-bouton--petit { height: 20px; padding: 0 8px; font-size: var(--xm-taille-petite); }
+
+/* Mosaïque de cadres : trois colonnes, comme sur la capture 01. */
+.xm-app__mosaique {
+  flex: 1;
+  display: grid;
+  grid-template-columns: minmax(280px, 27fr) minmax(320px, 38fr) minmax(300px, 35fr);
+  gap: 5px;
+  padding: 5px;
+  align-content: start;
+  min-height: 0;
+}
+.xm-app__colonne { display: flex; flex-direction: column; gap: 5px; min-width: 0; }
+
+@media (max-width: 1100px) {
+  .xm-app__mosaique { grid-template-columns: 1fr; }
+}
+
+.xm-pied {
+  display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+  padding: 5px 10px;
+  font-size: var(--xm-taille-petite);
+  color: var(--xm-texte-attenue);
+  background: var(--xm-fond-app);
+  border-top: 1px solid var(--xm-etat-ligne);
+}
+
+.xm-lien { color: var(--xm-texte-lien); }
+
+/* ==========================================================================
+   2. Compléments de grille : lignes de regroupement, recherche
+   ========================================================================== */
+
+.xm-grille tbody tr.xm-grille__groupe td {
+  background: var(--xm-bandeau-groupe-fond);
+  border-bottom: 1px solid var(--xm-grille-bordure);
+  color: var(--xm-cadre-titre-texte);
+  font-weight: 700;
+  padding-left: 6px;
+}
+.xm-grille tbody tr.xm-grille__groupe:hover td { background: var(--xm-bandeau-groupe-fond); }
+.xm-grille__groupe-cellule { display: table-cell; }
+.xm-grille__groupe-cellule .xm-tri { display: inline-block; margin-right: 6px; }
+
+.xm-bandeau-groupe__recherche {
+  flex: 1;
+  height: 18px;
+  min-width: 0;
+  border: 1px solid var(--xm-grille-bordure);
+  background: var(--xm-champ-fond);
+}
+.xm-bandeau-groupe__recherche:focus { border-color: var(--xm-champ-focus); outline: none; }
+
+/* ==========================================================================
+   3. Fenêtre de saisie d'un score
+   ========================================================================== */
+
+.xm-entete-score { padding: 0 2px 2px; border-bottom: 1px solid var(--xm-etat-separateur); }
+.xm-valeur-lecture { color: var(--xm-texte-donnee); font-weight: 600; }
+
+.xm-consigne {
+  padding: 3px 4px;
+  color: var(--xm-texte);
+  background: var(--xm-fond-info);
+  border-left: 3px solid var(--xm-cadre-bordure);
+}
+
+.xm-bandeaux { display: flex; flex-direction: column; gap: 4px; }
+.xm-bandeaux:empty { display: none; }
+
+.xm-items {
+  display: flex; flex-direction: column;
+  max-height: 260px;
+  overflow: auto;
+  border: 1px solid var(--xm-grille-bordure);
+  background: var(--xm-grille-fond);
+}
+.xm-items .xm-item + .xm-item { border-top: 1px solid var(--xm-grille-filet); }
+.xm-items--lecture { background: var(--xm-champ-inactif-fond); opacity: .85; }
+.xm-items--lecture .xm-item { pointer-events: none; }
+
+.xm-valeur-calculee {
+  min-width: 56px;
+  padding: 0 4px;
+  font-weight: 700;
+  color: var(--xm-texte-donnee);
+}
+.xm-valeur-calculee.est-attenue { font-weight: 400; color: var(--xm-texte-attenue); }
+
+.xm-item__source { margin-left: 4px; }
+
+.xm-resultat__avis { margin-top: 4px; font-size: var(--xm-taille-petite); font-weight: 700; }
+
+.xm-seg-texte--ok     { color: var(--xm-seg-ok); }
+.xm-seg-texte--neutre { color: var(--xm-texte); }
+.xm-seg-texte--alerte { color: var(--xm-seg-alerte); }
+.xm-seg-texte--danger { color: var(--xm-seg-danger); }
+
+/* ==========================================================================
+   4. Courbe d'évolution  (SVG natif, aucune librairie)
+   ========================================================================== */
+
+.xm-courbe {
+  padding: 4px 2px 0;
+  background: var(--xm-grille-fond);
+  border: 1px solid var(--xm-grille-bordure);
+}
+.xm-courbe--vide {
+  padding: 10px;
+  color: var(--xm-texte-attenue);
+  font-size: var(--xm-taille-petite);
+  text-align: center;
+}
+.xm-courbe__svg { display: block; width: 100%; }
+
+.xm-courbe__bande            { opacity: .18; }
+.xm-courbe__bande--ok        { fill: var(--xm-seg-ok); }
+.xm-courbe__bande--neutre    { fill: var(--xm-seg-neutre); }
+.xm-courbe__bande--alerte    { fill: var(--xm-seg-alerte); }
+.xm-courbe__bande--danger    { fill: var(--xm-seg-danger); }
+
+.xm-courbe__axe        { stroke: var(--xm-grille-bordure); stroke-width: 1; }
+.xm-courbe__ligne      { fill: none; stroke: var(--xm-texte-donnee); stroke-width: 1.6; }
+.xm-courbe__point      { fill: var(--xm-fond-blanc); stroke: var(--xm-texte-donnee);
+                         stroke-width: 1.6; cursor: pointer; }
+.xm-courbe__point:hover,
+.xm-courbe__point:focus { fill: var(--xm-texte-donnee); outline: none; }
+.xm-courbe__graduation { font-family: var(--xm-police); font-size: 10px;
+                         fill: var(--xm-texte-attenue); }
+
+/* ==========================================================================
+   5. Impression : on ne sort que la fenêtre du dessus
+   ========================================================================== */
+
+@media print {
+  .xm-app, .xm-pied { display: none !important; }
+  .xm-voile { position: static; display: block; }
+  .xm-fenetre { border: 0; }
+  .xm-fenetre__titre, .xm-colonne-boutons .xm-bloc-boutons { display: none; }
+  .xm-items { max-height: none; overflow: visible; }
+}

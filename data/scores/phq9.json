@@ -3,27 +3,42 @@
   "versionSchema": "1.0.0",
   "version": "1.0.0",
   "statut": "a-valider",
-
+  "noteStatut": "Les neuf intitulés d'items sont des formulations de travail marquées [À VALIDER] : la rédaction définitive et les conditions de licence de l'échelle relèvent du médecin. Les seuils d'interprétation ont été fournis par le commanditaire.",
   "acronyme": "PHQ-9",
   "libelle": "Patient Health Questionnaire — 9 items",
   "domaine": "Psychiatrie",
-  "synonymes": ["questionnaire dépression", "questionnaire de santé du patient"],
+  "synonymes": [
+    "questionnaire dépression",
+    "questionnaire de santé du patient"
+  ],
   "typePassation": "auto",
   "dureeEstimeeMin": 3,
   "reference": "Kroenke K, Spitzer RL, Williams JB. J Gen Intern Med 2001;16:606-13",
   "licence": "[À VALIDER] conditions de reproduction",
-
   "consigne": "Au cours des 2 dernières semaines, à quelle fréquence avez-vous été gêné par les problèmes suivants ?",
-
   "eligibilite": null,
-
   "modalitesCommunes": [
-    { "valeur": 0, "libelle": "Jamais", "abrege": "0" },
-    { "valeur": 1, "libelle": "Plusieurs jours", "abrege": "1" },
-    { "valeur": 2, "libelle": "Plus d'une semaine", "abrege": "2" },
-    { "valeur": 3, "libelle": "Presque tous les jours", "abrege": "3" }
+    {
+      "valeur": 0,
+      "libelle": "Jamais",
+      "abrege": "0"
+    },
+    {
+      "valeur": 1,
+      "libelle": "Plusieurs jours",
+      "abrege": "1"
+    },
+    {
+      "valeur": 2,
+      "libelle": "Plus d'une semaine",
+      "abrege": "2"
+    },
+    {
+      "valeur": 3,
+      "libelle": "Presque tous les jours",
+      "abrege": "3"
+    }
   ],
-
   "items": [
     {
       "id": "phq9_1",
@@ -140,7 +155,6 @@
       }
     }
   ],
-
   "calcul": {
     "type": "somme",
     "min": 0,
@@ -148,14 +162,37 @@
     "unite": null,
     "decimales": 0
   },
-
   "interpretations": [
-    { "min": 0,  "max": 4,  "libelle": "Absence de dépression",         "couleur": "ok" },
-    { "min": 5,  "max": 9,  "libelle": "Dépression légère",             "couleur": "neutre" },
-    { "min": 10, "max": 14, "libelle": "Dépression modérée",            "couleur": "alerte" },
-    { "min": 15, "max": 19, "libelle": "Dépression modérément sévère",  "couleur": "alerte" },
-    { "min": 20, "max": 27, "libelle": "Dépression sévère",             "couleur": "danger" }
+    {
+      "min": 0,
+      "max": 4,
+      "libelle": "Absence de dépression",
+      "couleur": "ok"
+    },
+    {
+      "min": 5,
+      "max": 9,
+      "libelle": "Dépression légère",
+      "couleur": "neutre"
+    },
+    {
+      "min": 10,
+      "max": 14,
+      "libelle": "Dépression modérée",
+      "couleur": "alerte"
+    },
+    {
+      "min": 15,
+      "max": 19,
+      "libelle": "Dépression modérément sévère",
+      "couleur": "alerte"
+    },
+    {
+      "min": 20,
+      "max": 27,
+      "libelle": "Dépression sévère",
+      "couleur": "danger"
+    }
   ],
-
   "reevaluation": null
 }

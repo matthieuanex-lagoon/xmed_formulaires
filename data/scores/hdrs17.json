@@ -1,0 +1,536 @@
+{
+  "id": "hdrs17",
+  "versionSchema": "1.0.0",
+  "version": "1.0.0",
+  "statut": "a-valider",
+  "noteStatut": "Les intitulés d'items sont des formulations de travail marquées [À VALIDER] et les libellés de modalités restent à rédiger : seule la valeur numérique est affichée. Aucun seuil d'interprétation n'est retenu, plusieurs conventions coexistant.",
+  "acronyme": "HDRS-17",
+  "libelle": "Hamilton Depression Rating Scale — 17 items",
+  "domaine": "Psychiatrie",
+  "synonymes": [
+    "Hamilton",
+    "HAM-D",
+    "échelle de Hamilton"
+  ],
+  "typePassation": "hetero",
+  "dureeEstimeeMin": 15,
+  "reference": "Hamilton M. J Neurol Neurosurg Psychiatry 1960;23:56-62",
+  "licence": "[À VALIDER] conditions de reproduction",
+  "consigne": "Hétéro-évaluation. Coter l'état du patient sur la semaine écoulée.",
+  "eligibilite": null,
+  "modalitesCommunes": null,
+  "items": [
+    {
+      "id": "hdrs_1",
+      "numero": 1,
+      "intitule": "[À VALIDER] Humeur dépressive",
+      "aide": null,
+      "type": "ordinal",
+      "requis": true,
+      "inclusDansTotal": true,
+      "modalites": [
+        {
+          "valeur": 0,
+          "libelle": "0"
+        },
+        {
+          "valeur": 1,
+          "libelle": "1"
+        },
+        {
+          "valeur": 2,
+          "libelle": "2"
+        },
+        {
+          "valeur": 3,
+          "libelle": "3"
+        },
+        {
+          "valeur": 4,
+          "libelle": "4"
+        }
+      ],
+      "resolveur": null,
+      "alerte": null
+    },
+    {
+      "id": "hdrs_2",
+      "numero": 2,
+      "intitule": "[À VALIDER] Sentiments de culpabilité",
+      "aide": null,
+      "type": "ordinal",
+      "requis": true,
+      "inclusDansTotal": true,
+      "modalites": [
+        {
+          "valeur": 0,
+          "libelle": "0"
+        },
+        {
+          "valeur": 1,
+          "libelle": "1"
+        },
+        {
+          "valeur": 2,
+          "libelle": "2"
+        },
+        {
+          "valeur": 3,
+          "libelle": "3"
+        },
+        {
+          "valeur": 4,
+          "libelle": "4"
+        }
+      ],
+      "resolveur": null,
+      "alerte": null
+    },
+    {
+      "id": "hdrs_3",
+      "numero": 3,
+      "intitule": "[À VALIDER] Suicide",
+      "aide": null,
+      "type": "ordinal",
+      "requis": true,
+      "inclusDansTotal": true,
+      "modalites": [
+        {
+          "valeur": 0,
+          "libelle": "0"
+        },
+        {
+          "valeur": 1,
+          "libelle": "1"
+        },
+        {
+          "valeur": 2,
+          "libelle": "2"
+        },
+        {
+          "valeur": 3,
+          "libelle": "3"
+        },
+        {
+          "valeur": 4,
+          "libelle": "4"
+        }
+      ],
+      "resolveur": null,
+      "alerte": {
+        "operateur": ">=",
+        "valeur": 1,
+        "severite": "avertissement",
+        "masquable": false,
+        "message": "Item « suicide » coté : une évaluation du risque suicidaire est indiquée."
+      }
+    },
+    {
+      "id": "hdrs_4",
+      "numero": 4,
+      "intitule": "[À VALIDER] Insomnie d'endormissement",
+      "aide": null,
+      "type": "ordinal",
+      "requis": true,
+      "inclusDansTotal": true,
+      "modalites": [
+        {
+          "valeur": 0,
+          "libelle": "0"
+        },
+        {
+          "valeur": 1,
+          "libelle": "1"
+        },
+        {
+          "valeur": 2,
+          "libelle": "2"
+        }
+      ],
+      "resolveur": null,
+      "alerte": null
+    },
+    {
+      "id": "hdrs_5",
+      "numero": 5,
+      "intitule": "[À VALIDER] Insomnie du milieu de nuit",
+      "aide": null,
+      "type": "ordinal",
+      "requis": true,
+      "inclusDansTotal": true,
+      "modalites": [
+        {
+          "valeur": 0,
+          "libelle": "0"
+        },
+        {
+          "valeur": 1,
+          "libelle": "1"
+        },
+        {
+          "valeur": 2,
+          "libelle": "2"
+        }
+      ],
+      "resolveur": null,
+      "alerte": null
+    },
+    {
+      "id": "hdrs_6",
+      "numero": 6,
+      "intitule": "[À VALIDER] Insomnie du matin",
+      "aide": null,
+      "type": "ordinal",
+      "requis": true,
+      "inclusDansTotal": true,
+      "modalites": [
+        {
+          "valeur": 0,
+          "libelle": "0"
+        },
+        {
+          "valeur": 1,
+          "libelle": "1"
+        },
+        {
+          "valeur": 2,
+          "libelle": "2"
+        }
+      ],
+      "resolveur": null,
+      "alerte": null
+    },
+    {
+      "id": "hdrs_7",
+      "numero": 7,
+      "intitule": "[À VALIDER] Travail et activités",
+      "aide": null,
+      "type": "ordinal",
+      "requis": true,
+      "inclusDansTotal": true,
+      "modalites": [
+        {
+          "valeur": 0,
+          "libelle": "0"
+        },
+        {
+          "valeur": 1,
+          "libelle": "1"
+        },
+        {
+          "valeur": 2,
+          "libelle": "2"
+        },
+        {
+          "valeur": 3,
+          "libelle": "3"
+        },
+        {
+          "valeur": 4,
+          "libelle": "4"
+        }
+      ],
+      "resolveur": null,
+      "alerte": null
+    },
+    {
+      "id": "hdrs_8",
+      "numero": 8,
+      "intitule": "[À VALIDER] Ralentissement psychomoteur",
+      "aide": null,
+      "type": "ordinal",
+      "requis": true,
+      "inclusDansTotal": true,
+      "modalites": [
+        {
+          "valeur": 0,
+          "libelle": "0"
+        },
+        {
+          "valeur": 1,
+          "libelle": "1"
+        },
+        {
+          "valeur": 2,
+          "libelle": "2"
+        },
+        {
+          "valeur": 3,
+          "libelle": "3"
+        },
+        {
+          "valeur": 4,
+          "libelle": "4"
+        }
+      ],
+      "resolveur": null,
+      "alerte": null
+    },
+    {
+      "id": "hdrs_9",
+      "numero": 9,
+      "intitule": "[À VALIDER] Agitation",
+      "aide": null,
+      "type": "ordinal",
+      "requis": true,
+      "inclusDansTotal": true,
+      "modalites": [
+        {
+          "valeur": 0,
+          "libelle": "0"
+        },
+        {
+          "valeur": 1,
+          "libelle": "1"
+        },
+        {
+          "valeur": 2,
+          "libelle": "2"
+        },
+        {
+          "valeur": 3,
+          "libelle": "3"
+        },
+        {
+          "valeur": 4,
+          "libelle": "4"
+        }
+      ],
+      "resolveur": null,
+      "alerte": null
+    },
+    {
+      "id": "hdrs_10",
+      "numero": 10,
+      "intitule": "[À VALIDER] Anxiété psychique",
+      "aide": null,
+      "type": "ordinal",
+      "requis": true,
+      "inclusDansTotal": true,
+      "modalites": [
+        {
+          "valeur": 0,
+          "libelle": "0"
+        },
+        {
+          "valeur": 1,
+          "libelle": "1"
+        },
+        {
+          "valeur": 2,
+          "libelle": "2"
+        },
+        {
+          "valeur": 3,
+          "libelle": "3"
+        },
+        {
+          "valeur": 4,
+          "libelle": "4"
+        }
+      ],
+      "resolveur": null,
+      "alerte": null
+    },
+    {
+      "id": "hdrs_11",
+      "numero": 11,
+      "intitule": "[À VALIDER] Anxiété somatique",
+      "aide": null,
+      "type": "ordinal",
+      "requis": true,
+      "inclusDansTotal": true,
+      "modalites": [
+        {
+          "valeur": 0,
+          "libelle": "0"
+        },
+        {
+          "valeur": 1,
+          "libelle": "1"
+        },
+        {
+          "valeur": 2,
+          "libelle": "2"
+        },
+        {
+          "valeur": 3,
+          "libelle": "3"
+        },
+        {
+          "valeur": 4,
+          "libelle": "4"
+        }
+      ],
+      "resolveur": null,
+      "alerte": null
+    },
+    {
+      "id": "hdrs_12",
+      "numero": 12,
+      "intitule": "[À VALIDER] Symptômes somatiques gastro-intestinaux",
+      "aide": null,
+      "type": "ordinal",
+      "requis": true,
+      "inclusDansTotal": true,
+      "modalites": [
+        {
+          "valeur": 0,
+          "libelle": "0"
+        },
+        {
+          "valeur": 1,
+          "libelle": "1"
+        },
+        {
+          "valeur": 2,
+          "libelle": "2"
+        }
+      ],
+      "resolveur": null,
+      "alerte": null
+    },
+    {
+      "id": "hdrs_13",
+      "numero": 13,
+      "intitule": "[À VALIDER] Symptômes somatiques généraux",
+      "aide": null,
+      "type": "ordinal",
+      "requis": true,
+      "inclusDansTotal": true,
+      "modalites": [
+        {
+          "valeur": 0,
+          "libelle": "0"
+        },
+        {
+          "valeur": 1,
+          "libelle": "1"
+        },
+        {
+          "valeur": 2,
+          "libelle": "2"
+        }
+      ],
+      "resolveur": null,
+      "alerte": null
+    },
+    {
+      "id": "hdrs_14",
+      "numero": 14,
+      "intitule": "[À VALIDER] Symptômes génitaux",
+      "aide": null,
+      "type": "ordinal",
+      "requis": true,
+      "inclusDansTotal": true,
+      "modalites": [
+        {
+          "valeur": 0,
+          "libelle": "0"
+        },
+        {
+          "valeur": 1,
+          "libelle": "1"
+        },
+        {
+          "valeur": 2,
+          "libelle": "2"
+        }
+      ],
+      "resolveur": null,
+      "alerte": null
+    },
+    {
+      "id": "hdrs_15",
+      "numero": 15,
+      "intitule": "[À VALIDER] Hypochondrie",
+      "aide": null,
+      "type": "ordinal",
+      "requis": true,
+      "inclusDansTotal": true,
+      "modalites": [
+        {
+          "valeur": 0,
+          "libelle": "0"
+        },
+        {
+          "valeur": 1,
+          "libelle": "1"
+        },
+        {
+          "valeur": 2,
+          "libelle": "2"
+        },
+        {
+          "valeur": 3,
+          "libelle": "3"
+        },
+        {
+          "valeur": 4,
+          "libelle": "4"
+        }
+      ],
+      "resolveur": null,
+      "alerte": null
+    },
+    {
+      "id": "hdrs_16",
+      "numero": 16,
+      "intitule": "[À VALIDER] Perte de poids",
+      "aide": null,
+      "type": "ordinal",
+      "requis": true,
+      "inclusDansTotal": true,
+      "modalites": [
+        {
+          "valeur": 0,
+          "libelle": "0"
+        },
+        {
+          "valeur": 1,
+          "libelle": "1"
+        },
+        {
+          "valeur": 2,
+          "libelle": "2"
+        }
+      ],
+      "resolveur": null,
+      "alerte": null
+    },
+    {
+      "id": "hdrs_17",
+      "numero": 17,
+      "intitule": "[À VALIDER] Prise de conscience du trouble",
+      "aide": null,
+      "type": "ordinal",
+      "requis": true,
+      "inclusDansTotal": true,
+      "modalites": [
+        {
+          "valeur": 0,
+          "libelle": "0"
+        },
+        {
+          "valeur": 1,
+          "libelle": "1"
+        },
+        {
+          "valeur": 2,
+          "libelle": "2"
+        }
+      ],
+      "resolveur": null,
+      "alerte": null
+    }
+  ],
+  "calcul": {
+    "type": "somme",
+    "min": 0,
+    "max": 52,
+    "unite": null,
+    "decimales": 0
+  },
+  "interpretations": null,
+  "reevaluation": null
+}

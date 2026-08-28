@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>XMed — Scores cliniques (maquette de démonstration)</title>
+<link rel="stylesheet" href="assets/css/tokens.css">
+<link rel="stylesheet" href="assets/css/xmed.css">
+<link rel="stylesheet" href="assets/css/application.css">
+</head>
+<body class="xm">
+
+<div id="application" class="xm-app"></div>
+
+<!-- Référentiel embarqué : lu uniquement quand la démo est ouverte en
+     double-clic depuis le disque, où fetch() est refusé par le navigateur.
+     Servie en HTTP, la démo lit les vrais fichiers .json de data/.
+     Voir docs/SPECIFICATION.md, section 2. -->
+<script src="data/referentiel.js"></script>
+
+<!-- Chargement dans l'ordre des dépendances. Scripts classiques et non modules
+     ES : ces derniers sont refusés en file:// par la politique d'origine. -->
+<script src="assets/js/outils.js"></script>
+<script src="assets/js/donnees.js"></script>
+<script src="assets/js/dossier.js"></script>
+<script src="assets/js/store.js"></script>
+
+<script src="assets/js/resolveurs/registre.js"></script>
+<script src="assets/js/resolveurs/demographie.js"></script>
+<script src="assets/js/resolveurs/facteur-risque.js"></script>
+<script src="assets/js/resolveurs/biologie.js"></script>
+<script src="assets/js/resolveurs/antecedent.js"></script>
+<script src="assets/js/resolveurs/traitement.js"></script>
+
+<script src="assets/js/moteur-score.js"></script>
+<script src="assets/js/rattachement.js"></script>
+
+<script src="assets/js/vues/composants.js"></script>
+<script src="assets/js/vues/courbe-historique.js"></script>
+<script src="assets/js/vues/dossier.js"></script>
+<script src="assets/js/vues/fenetre-episodes.js"></script>
+<script src="assets/js/vues/fenetre-catalogue.js"></script>
+<script src="assets/js/vues/fenetre-score.js"></script>
+
+<script src="assets/js/app.js"></script>
+<script>
+  XMed.app.demarrer(document.getElementById('application'));
+</script>
+
+</body>
+</html>

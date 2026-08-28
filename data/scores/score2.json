@@ -1,0 +1,434 @@
+{
+  "id": "score2",
+  "versionSchema": "1.0.0",
+  "version": "1.0.0",
+  "statut": "a-valider",
+  "noteStatut": "Les intitulés d'items sont établis. Restent à valider : le remplissage de l'abaque ESC (toutes les cellules sont à null), la vérification des bornes d'axes face au document source, et les conditions de licence de l'abaque.",
+  "acronyme": "SCORE2",
+  "libelle": "Risque cardio-vasculaire fatal ou non fatal à 10 ans (ESC 2021)",
+  "domaine": "Cardio-vasculaire",
+  "synonymes": [
+    "risque cardiovasculaire",
+    "SCORE 2",
+    "ESC 2021",
+    "risque CV à 10 ans"
+  ],
+  "typePassation": "calcule",
+  "dureeEstimeeMin": 1,
+  "reference": "SCORE2 working group and ESC Cardiovascular risk collaboration. Eur Heart J 2021;42:2439-2454",
+  "licence": "[À VALIDER] conditions de reproduction de l'abaque ESC",
+  "consigne": "Estimation du risque à 10 ans d'événement cardio-vasculaire fatal ou non fatal chez le sujet apparemment sain. Calibration « région à bas risque », à laquelle appartient la France.",
+  "eligibilite": {
+    "regles": [
+      {
+        "id": "age-minimum",
+        "type": "inclusion",
+        "severite": "bloquant",
+        "condition": {
+          "source": "demographie",
+          "champ": "age",
+          "operateur": ">=",
+          "valeur": 40
+        },
+        "message": "SCORE2 est validé à partir de 40 ans. En deçà, l'échelle n'est pas applicable.",
+        "orientation": null
+      },
+      {
+        "id": "age-maximum",
+        "type": "inclusion",
+        "severite": "bloquant",
+        "condition": {
+          "source": "demographie",
+          "champ": "age",
+          "operateur": "<=",
+          "valeur": 69
+        },
+        "message": "À partir de 70 ans, SCORE2 n'est plus l'échelle adaptée.",
+        "orientation": {
+          "score": "score2-op",
+          "libelle": "SCORE2-OP",
+          "disponible": false
+        }
+      },
+      {
+        "id": "exclusion-ascvd",
+        "type": "exclusion",
+        "severite": "bloquant",
+        "condition": {
+          "source": "antecedent",
+          "codesCim10": [
+            "I21",
+            "I25",
+            "I63",
+            "I70",
+            "I73.9"
+          ]
+        },
+        "message": "Maladie cardio-vasculaire athéroscléreuse établie, codée dans le dossier. SCORE2 s'adresse au sujet apparemment sain.",
+        "orientation": {
+          "score": null,
+          "libelle": "prévention secondaire",
+          "disponible": false
+        }
+      },
+      {
+        "id": "exclusion-diabete",
+        "type": "exclusion",
+        "severite": "bloquant",
+        "condition": {
+          "source": "antecedent",
+          "codesCim10": [
+            "E10",
+            "E11"
+          ]
+        },
+        "message": "Diabète codé dans le dossier.",
+        "orientation": {
+          "score": "score2-diabetes",
+          "libelle": "SCORE2-Diabetes",
+          "disponible": false
+        }
+      },
+      {
+        "id": "exclusion-irc",
+        "type": "exclusion",
+        "severite": "bloquant",
+        "condition": {
+          "source": "antecedent",
+          "codesCim10": [
+            "N18"
+          ]
+        },
+        "message": "Insuffisance rénale chronique codée dans le dossier.",
+        "orientation": null
+      },
+      {
+        "id": "exclusion-hypercholesterolemie-familiale",
+        "type": "exclusion",
+        "severite": "bloquant",
+        "condition": {
+          "source": "antecedent",
+          "codesCim10": [
+            "E78.01"
+          ]
+        },
+        "message": "Hypercholestérolémie familiale codée dans le dossier.",
+        "orientation": null
+      },
+      {
+        "id": "exclusion-grossesse",
+        "type": "exclusion",
+        "severite": "bloquant",
+        "si": {
+          "source": "demographie",
+          "champ": "sexe",
+          "operateur": "==",
+          "valeur": "femme"
+        },
+        "condition": {
+          "source": "confirmation",
+          "libelle": "Grossesse en cours ?"
+        },
+        "message": "SCORE2 n'est pas validé pendant la grossesse.",
+        "orientation": null
+      }
+    ]
+  },
+  "modalitesCommunes": null,
+  "items": [
+    {
+      "id": "score2_age",
+      "numero": 1,
+      "intitule": "Âge",
+      "aide": null,
+      "type": "numerique",
+      "requis": true,
+      "inclusDansTotal": false,
+      "unite": "ans",
+      "decimales": 0,
+      "min": 18,
+      "max": 120,
+      "resolveur": {
+        "type": "demographie",
+        "champ": "age"
+      },
+      "alerte": null
+    },
+    {
+      "id": "score2_sexe",
+      "numero": 2,
+      "intitule": "Sexe",
+      "aide": null,
+      "type": "enumere",
+      "requis": true,
+      "inclusDansTotal": false,
+      "modalites": [
+        {
+          "valeur": "femme",
+          "libelle": "Femme"
+        },
+        {
+          "valeur": "homme",
+          "libelle": "Homme"
+        }
+      ],
+      "resolveur": {
+        "type": "demographie",
+        "champ": "sexe"
+      },
+      "alerte": null
+    },
+    {
+      "id": "score2_tabac",
+      "numero": 3,
+      "intitule": "Tabagisme actif",
+      "aide": null,
+      "type": "booleen",
+      "requis": true,
+      "inclusDansTotal": false,
+      "modalites": [
+        {
+          "valeur": false,
+          "libelle": "Non-fumeur"
+        },
+        {
+          "valeur": true,
+          "libelle": "Fumeur actif"
+        }
+      ],
+      "resolveur": {
+        "type": "facteurRisque",
+        "libelles": [
+          "Tabagisme actif",
+          "Tabac",
+          "Tabagisme"
+        ],
+        "fraicheurMaxJours": 1825
+      },
+      "alerte": null
+    },
+    {
+      "id": "score2_pas",
+      "numero": 4,
+      "intitule": "Pression artérielle systolique",
+      "aide": null,
+      "type": "numerique",
+      "requis": true,
+      "inclusDansTotal": false,
+      "unite": "mmHg",
+      "decimales": 0,
+      "min": 70,
+      "max": 260,
+      "resolveur": {
+        "type": "biologie",
+        "champ": "valeur",
+        "code": {
+          "loinc": "8480-6",
+          "libellesLocaux": [
+            "PAS/PAD",
+            "PAS",
+            "Pression artérielle systolique"
+          ]
+        },
+        "fraicheurMaxJours": 730
+      },
+      "alerte": null
+    },
+    {
+      "id": "score2_chol_total",
+      "numero": 5,
+      "intitule": "Cholestérol total",
+      "aide": null,
+      "type": "numerique",
+      "requis": true,
+      "inclusDansTotal": false,
+      "unite": "mmol/l",
+      "decimales": 2,
+      "min": 1.0,
+      "max": 15.0,
+      "unitesAcceptees": [
+        {
+          "unite": "g/l",
+          "vers": "mmol/l",
+          "facteur": 2.586
+        }
+      ],
+      "resolveur": {
+        "type": "biologie",
+        "champ": "valeur",
+        "code": {
+          "loinc": "2093-3",
+          "libellesLocaux": [
+            "Cholestérol total",
+            "CHOL T",
+            "Cholesterol total"
+          ]
+        },
+        "fraicheurMaxJours": 1095,
+        "conversions": {
+          "g/l": {
+            "vers": "mmol/l",
+            "facteur": 2.586
+          }
+        }
+      },
+      "alerte": null
+    },
+    {
+      "id": "score2_hdl",
+      "numero": 6,
+      "intitule": "Cholestérol HDL",
+      "aide": null,
+      "type": "numerique",
+      "requis": true,
+      "inclusDansTotal": false,
+      "unite": "mmol/l",
+      "decimales": 2,
+      "min": 0.2,
+      "max": 5.0,
+      "unitesAcceptees": [
+        {
+          "unite": "g/l",
+          "vers": "mmol/l",
+          "facteur": 2.586
+        }
+      ],
+      "resolveur": {
+        "type": "biologie",
+        "champ": "valeur",
+        "code": {
+          "loinc": "2085-9",
+          "libellesLocaux": [
+            "Cholestérol HDL",
+            "HDL",
+            "HDL cholestérol"
+          ]
+        },
+        "fraicheurMaxJours": 1095,
+        "conversions": {
+          "g/l": {
+            "vers": "mmol/l",
+            "facteur": 2.586
+          }
+        }
+      },
+      "alerte": null
+    },
+    {
+      "id": "score2_non_hdl",
+      "numero": 7,
+      "intitule": "Cholestérol non-HDL",
+      "aide": "Calculé : cholestérol total moins cholestérol HDL.",
+      "type": "calcule",
+      "requis": true,
+      "inclusDansTotal": false,
+      "unite": "mmol/l",
+      "decimales": 2,
+      "operation": {
+        "operateur": "soustraction",
+        "operandes": [
+          "score2_chol_total",
+          "score2_hdl"
+        ]
+      },
+      "resolveur": null,
+      "alerte": null
+    }
+  ],
+  "calcul": {
+    "type": "tableau",
+    "abaque": "score2-abaque-bas-risque.json",
+    "unite": "%",
+    "decimales": 1,
+    "entrees": [
+      {
+        "item": "score2_sexe",
+        "axe": "sexe"
+      },
+      {
+        "item": "score2_age",
+        "axe": "age"
+      },
+      {
+        "item": "score2_tabac",
+        "axe": "tabac"
+      },
+      {
+        "item": "score2_pas",
+        "axe": "pas"
+      },
+      {
+        "item": "score2_non_hdl",
+        "axe": "nonHdl"
+      }
+    ]
+  },
+  "interpretations": {
+    "selon": {
+      "item": "score2_age"
+    },
+    "groupes": [
+      {
+        "condition": {
+          "max": 49
+        },
+        "libelleCondition": "moins de 50 ans",
+        "tranches": [
+          {
+            "min": 0,
+            "max": 2.5,
+            "maxExclu": true,
+            "libelle": "Risque faible à modéré",
+            "couleur": "ok"
+          },
+          {
+            "min": 2.5,
+            "max": 7.5,
+            "maxExclu": true,
+            "libelle": "Risque élevé",
+            "couleur": "alerte"
+          },
+          {
+            "min": 7.5,
+            "max": null,
+            "libelle": "Risque très élevé",
+            "couleur": "danger"
+          }
+        ]
+      },
+      {
+        "condition": {
+          "min": 50,
+          "max": 69
+        },
+        "libelleCondition": "50 à 69 ans",
+        "tranches": [
+          {
+            "min": 0,
+            "max": 5,
+            "maxExclu": true,
+            "libelle": "Risque faible à modéré",
+            "couleur": "ok"
+          },
+          {
+            "min": 5,
+            "max": 10,
+            "maxExclu": true,
+            "libelle": "Risque élevé",
+            "couleur": "alerte"
+          },
+          {
+            "min": 10,
+            "max": null,
+            "libelle": "Risque très élevé",
+            "couleur": "danger"
+          }
+        ]
+      }
+    ]
+  },
+  "reevaluation": {
+    "delaiJours": 1825,
+    "libelle": "Réévaluation proposée à 5 ans"
+  }
+}

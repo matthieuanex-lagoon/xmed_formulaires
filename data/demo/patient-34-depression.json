@@ -1,0 +1,71 @@
+{
+  "id": "p34dep",
+  "dossier": "10711",
+  "note": "PATIENT FICTIF. Démontre le menu à choix multiple (PHQ-9 et HDRS-17 rattachés à F33), l'historique, la courbe d'évolution et l'alerte de l'item 9.",
+
+  "identite": {
+    "civilite": "Madame",
+    "nom": "CHAUVEAU",
+    "prenom": "Léa",
+    "dateNaissance": "1992-05-20",
+    "sexe": "femme",
+    "adresse": "4 impasse des Charmilles",
+    "codePostal": "44000",
+    "ville": "NANTES",
+    "telDomicile": "",
+    "gsm": "06 00 00 00 00",
+    "mel": "",
+    "numeroSecu": "2 92 05 44 000 000 00",
+    "medecinTraitant": "ANEX Matthieu",
+    "profession": "AIDE-SOIGNANTE",
+    "notesPubliques": "",
+    "ald": false
+  },
+
+  "facteursRisque": [],
+
+  "episodes": [
+    { "id": "p34-e1", "acteur": "MAN", "libelle": "Trouble dépressif récurrent, épisode moyen", "cim10": "F33.1",
+      "debut": "2025-09-15", "dernierContact": "2026-07-17", "notes": "", "aSuivre": true },
+    { "id": "p34-e2", "acteur": "MAN", "libelle": "Migraine sans aura", "cim10": "G43.0",
+      "debut": "2023-02-11", "dernierContact": "2026-01-09", "notes": "", "aSuivre": false }
+  ],
+
+  "episodesFermes": [
+    { "id": "p34-f1", "libelle": "Anémie par carence en fer", "cim10": "D50.9", "debut": "2022-04-05", "fin": "2022-10-18", "notes": "" }
+  ],
+
+  "biologie": [
+    { "loinc": "3016-3", "libelle": "TSH", "valeur": 2.14, "unite": "mUI/l",
+      "valeur2": null, "unite2": null, "date": "2026-04-02", "anormal": false, "laboratoire": "Biolab (HPRIM)" },
+    { "loinc": "718-7", "libelle": "Hémoglobine", "valeur": 12.8, "unite": "g/100ml",
+      "valeur2": null, "unite2": null, "date": "2026-04-02", "anormal": false, "laboratoire": "Biolab (HPRIM)" },
+    { "loinc": "8480-6", "libelle": "PAS/PAD", "valeur": 118, "unite": "mmHg",
+      "valeur2": 72, "unite2": "mmHg", "date": "2026-07-17", "anormal": false, "laboratoire": "cabinet" }
+  ],
+
+  "traitements": [
+    { "atc": "N06AB06", "libelle": "SERTRALINE 50MG CPR", "dernier": "2026-07-17", "periodicite": "3 mois" }
+  ],
+
+  "evaluationsInitiales": [
+    { "id": "p34-ev1", "scoreId": "phq9", "versionScore": "1.0.0", "episodeId": "p34-e1",
+      "date": "2026-03-06", "evaluateur": "ANEX Matthieu",
+      "valeurs": { "phq9_1": 3, "phq9_2": 3, "phq9_3": 3, "phq9_4": 3, "phq9_5": 3,
+                   "phq9_6": 3, "phq9_7": 2, "phq9_8": 2, "phq9_9": 1 },
+      "resultat": { "valeur": 23, "unite": null, "motif": null, "interpretation": "Dépression sévère" },
+      "notes": "Introduction du traitement." },
+    { "id": "p34-ev2", "scoreId": "phq9", "versionScore": "1.0.0", "episodeId": "p34-e1",
+      "date": "2026-05-22", "evaluateur": "ANEX Matthieu",
+      "valeurs": { "phq9_1": 3, "phq9_2": 3, "phq9_3": 3, "phq9_4": 2, "phq9_5": 2,
+                   "phq9_6": 3, "phq9_7": 2, "phq9_8": 2, "phq9_9": 1 },
+      "resultat": { "valeur": 21, "unite": null, "motif": null, "interpretation": "Dépression sévère" },
+      "notes": "" },
+    { "id": "p34-ev3", "scoreId": "phq9", "versionScore": "1.0.0", "episodeId": "p34-e1",
+      "date": "2026-07-17", "evaluateur": "ANEX Matthieu",
+      "valeurs": { "phq9_1": 2, "phq9_2": 3, "phq9_3": 2, "phq9_4": 2, "phq9_5": 1,
+                   "phq9_6": 3, "phq9_7": 2, "phq9_8": 2, "phq9_9": 1 },
+      "resultat": { "valeur": 18, "unite": null, "motif": null, "interpretation": "Dépression modérément sévère" },
+      "notes": "" }
+  ]
+}

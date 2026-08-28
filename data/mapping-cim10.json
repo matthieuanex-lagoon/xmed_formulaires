@@ -1,0 +1,52 @@
+{
+  "versionSchema": "1.0.0",
+  "version": "1.0.0",
+
+  "note": "Rattachement par PRÉFIXE de code : F32 couvre F32.0 à F32.9. Un code peut pointer vers plusieurs scores, ordonnés par pertinence croissante (1 = le plus pertinent). Un score déclaré disponible:false apparaît au catalogue mais ne s'ouvre pas.",
+
+  "parCim10": [
+    {
+      "prefixe": "I10",
+      "libelle": "Hypertension essentielle",
+      "scores": [ { "id": "score2", "pertinence": 1 } ]
+    },
+    {
+      "prefixe": "E78",
+      "libelle": "Anomalies du métabolisme des lipoprotéines",
+      "scores": [ { "id": "score2", "pertinence": 1 } ]
+    },
+    {
+      "prefixe": "F32",
+      "libelle": "Épisode dépressif",
+      "scores": [
+        { "id": "phq9", "pertinence": 1 },
+        { "id": "hdrs17", "pertinence": 2 }
+      ]
+    },
+    {
+      "prefixe": "F33",
+      "libelle": "Trouble dépressif récurrent",
+      "scores": [
+        { "id": "phq9", "pertinence": 1 },
+        { "id": "hdrs17", "pertinence": 2 }
+      ]
+    },
+    {
+      "prefixe": "I48",
+      "libelle": "Fibrillation et flutter auriculaires",
+      "scores": [ { "id": "cha2ds2vasc", "pertinence": 1, "disponible": false } ]
+    }
+  ],
+
+  "parFacteurRisque": [
+    {
+      "libelles": ["Tabagisme actif", "Tabac", "Tabagisme"],
+      "libelle": "Tabagisme actif",
+      "scores": [ { "id": "score2", "pertinence": 2 } ]
+    }
+  ],
+
+  "parCisp2": [],
+
+  "parDrc": []
+}
