@@ -1,0 +1,540 @@
+/* ============================================================================
+   xmed.css — Bibliotheque de composants visuels XMed
+   ----------------------------------------------------------------------------
+   Reproduit les composants observes sur les captures de design/screens/ :
+     .xm-cadre            cadre du dossier patient          (captures 01 / 02)
+     .xm-fenetre          fenetre modale                    (captures 03 / 04)
+     .xm-grille           grille DevExpress                 (toutes)
+     .xm-colonne-boutons  colonne de boutons verticale      (capture 03)
+     .xm-groupe-radio     groupe de boutons radio encadre   (capture 03)
+     .xm-barre-etat       barre d'etat de l'application     (capture 01)
+
+   Aucun coin arrondi au-dela de 2px, aucune ombre portee, aucune animation.
+   Toutes les valeurs viennent de tokens.css : ne pas ecrire de couleur en dur.
+   ========================================================================== */
+
+/* --- Reinitialisation minimale ------------------------------------------- */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+.xm {
+  margin: 0;
+  font-family: var(--xm-police);
+  font-size: var(--xm-taille-base);
+  color: var(--xm-texte);
+  background: var(--xm-fond-app);
+}
+
+/* Barres de defilement : rendu proche des barres Windows classiques.        */
+.xm ::-webkit-scrollbar               { width: 16px; height: 16px; }
+.xm ::-webkit-scrollbar-track         { background: #F0F0F0; }
+.xm ::-webkit-scrollbar-thumb         { background: #CDCDCD; border: 1px solid #BDBDBD; }
+.xm ::-webkit-scrollbar-thumb:hover   { background: #A6A6A6; }
+.xm ::-webkit-scrollbar-corner        { background: #F0F0F0; }
+
+
+/* ==========================================================================
+   1. CADRE DU DOSSIER  (captures 01 et 02)
+   Bordure bleue 1px, barre de titre cyan de 18px, libelle en gras a gauche,
+   bande d'icones 16x16 a droite.
+   ========================================================================== */
+
+.xm-cadre {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  border: 1px solid var(--xm-cadre-bordure);
+  background: var(--xm-cadre-corps);
+}
+
+.xm-cadre__titre {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  height: var(--xm-h-titre-cadre);
+  padding: 0 2px 0 6px;
+  background: linear-gradient(var(--xm-cadre-titre-haut), var(--xm-cadre-titre-bas));
+  border-bottom: 1px solid var(--xm-cadre-titre-ligne);
+  user-select: none;
+}
+
+.xm-cadre__libelle {
+  font-weight: var(--xm-graisse-titre);
+  color: var(--xm-cadre-titre-texte);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Bande d'icones, collee a droite de la barre de titre.                      */
+.xm-cadre__icones { display: flex; align-items: center; gap: 2px; margin-left: auto; }
+
+.xm-cadre__corps { flex: 1; min-height: 0; display: flex; flex-direction: column; }
+
+/* Variante « fiche » : corps teinte, contenu en cle / valeur (Identite).     */
+.xm-cadre--fiche               { background: var(--xm-cadre-fiche-corps); }
+.xm-cadre--fiche .xm-cadre__corps { background: var(--xm-cadre-fiche-corps); }
+
+/* Variante « alerte » : declinaison rouge (Allergies et Intolerances med.).  */
+.xm-cadre--alerte              { border-color: var(--xm-cadre-alerte-bordure);
+                                 background: var(--xm-cadre-alerte-corps); }
+.xm-cadre--alerte .xm-cadre__titre {
+  background: linear-gradient(var(--xm-cadre-alerte-titre-haut), var(--xm-cadre-alerte-titre-bas));
+  border-bottom-color: var(--xm-cadre-alerte-bordure);
+}
+.xm-cadre--alerte .xm-cadre__libelle { color: var(--xm-cadre-alerte-titre-texte); }
+
+/* Variante « inactif » : module non actif (Prevention sur la capture 01).    */
+.xm-cadre--inactif             { border-color: var(--xm-cadre-inactif-bordure);
+                                 background: var(--xm-cadre-inactif-corps); }
+.xm-cadre--inactif .xm-cadre__titre    { background: var(--xm-cadre-inactif-titre);
+                                         border-bottom-color: var(--xm-cadre-inactif-bordure); }
+.xm-cadre--inactif .xm-cadre__libelle  { color: var(--xm-cadre-inactif-texte); }
+
+/* Contenu cle / valeur d'une fiche.                                          */
+.xm-fiche        { display: grid; grid-template-columns: 118px 1fr;
+                   gap: 2px 8px; padding: 4px 6px; align-content: start; }
+.xm-fiche__cle   { color: var(--xm-texte); white-space: nowrap;
+                   overflow: hidden; text-overflow: ellipsis; }
+.xm-fiche__valeur{ color: var(--xm-texte-donnee); font-weight: 600; }
+
+
+/* --- Icones 16x16 de barre de titre --------------------------------------- */
+
+.xm-icone {
+  width: 16px; height: 16px;
+  display: inline-grid; place-items: center;
+  padding: 0;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: var(--xm-rayon);
+  cursor: default;
+}
+.xm-icone:hover  { background: var(--xm-fond-info); border-color: #7DA7C8; }
+.xm-icone:active { background: var(--xm-bouton-enfonce-fond); }
+.xm-icone:focus-visible { outline: 1px dotted var(--xm-texte); outline-offset: -3px; }
+.xm-icone svg    { display: block; }
+
+
+/* ==========================================================================
+   2. FENETRE MODALE  (capture 03)
+   Gabarit invariable : barre de titre systeme, corps en deux colonnes
+   (zone principale a gauche, colonne de boutons a droite).
+   ========================================================================== */
+
+.xm-fenetre {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--xm-fenetre-bordure);
+  background: var(--xm-fond-app);
+}
+
+.xm-fenetre__titre {
+  display: flex;
+  align-items: center;
+  height: var(--xm-h-titre-fenetre);
+  padding-left: 8px;
+  gap: 8px;
+  background: var(--xm-fenetre-titre-fond);
+  border-bottom: 1px solid var(--xm-fenetre-titre-ligne);
+  color: var(--xm-fenetre-titre-texte);
+  user-select: none;
+}
+.xm-fenetre__titre-libelle { flex: 1; white-space: nowrap; overflow: hidden;
+                             text-overflow: ellipsis; }
+
+/* Boutons systeme : gabarit Windows 11, 46x30, glyphes traces en SVG.        */
+.xm-fenetre__systeme       { display: flex; align-self: stretch; }
+.xm-bouton-systeme {
+  width: 46px; align-self: stretch;
+  display: grid; place-items: center;
+  background: transparent; border: 0; padding: 0; cursor: default;
+  color: var(--xm-fenetre-titre-texte);
+}
+.xm-bouton-systeme:hover              { background: var(--xm-fenetre-sys-survol); }
+.xm-bouton-systeme--fermer:hover      { background: var(--xm-fenetre-fermer-fond); color: #FFF; }
+
+/* Corps : zone principale + colonne de boutons.                              */
+.xm-fenetre__corps {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) var(--xm-l-colonne-boutons);
+  gap: var(--xm-marge-fenetre);
+  padding: var(--xm-marge-fenetre);
+  min-height: 0;
+}
+.xm-fenetre__principal {
+  display: flex; flex-direction: column;
+  gap: var(--xm-marge-fenetre);
+  min-width: 0; min-height: 0;
+}
+
+/* Voile de la modale. La capture 04 ne montre pas d'assombrissement du
+   dossier : voile neutralise par defaut, jeton conserve pour arbitrage.      */
+.xm-voile {
+  position: fixed; inset: 0;
+  background: transparent;
+  display: grid; place-items: center;
+  z-index: 100;
+}
+
+
+/* ==========================================================================
+   3. GRILLE DevExpress
+   Bandeau de regroupement + en-tetes triables + colonne de selecteur de ligne
+   + defilement horizontal.
+   ========================================================================== */
+
+.xm-grille-conteneur {
+  display: flex; flex-direction: column;
+  min-height: 0;
+  border: 1px solid var(--xm-grille-bordure);
+  background: var(--xm-grille-fond);
+}
+
+/* Bandeau « Glisser/deposer ici des entetes de colonne... »                  */
+.xm-bandeau-groupe {
+  display: flex; align-items: center; gap: 6px;
+  height: var(--xm-h-bandeau-groupe);
+  padding: 0 4px;
+  background: var(--xm-bandeau-groupe-fond);
+  border-bottom: 1px solid var(--xm-grille-bordure);
+  color: var(--xm-bandeau-groupe-texte);
+  user-select: none;
+}
+.xm-bandeau-groupe__consigne { flex: 1; white-space: nowrap; overflow: hidden;
+                               text-overflow: ellipsis; }
+
+/* Zone defilante contenant le tableau.                                       */
+.xm-grille-defilement { flex: 1; min-height: 0; overflow: auto; }
+
+.xm-grille {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  background: var(--xm-grille-fond);
+}
+
+.xm-grille thead th {
+  position: sticky; top: 0; z-index: 1;
+  height: var(--xm-h-entete-grille);
+  padding: 0 4px;
+  font-weight: 400;
+  text-align: left;
+  color: var(--xm-grille-entete-texte);
+  background: linear-gradient(var(--xm-grille-entete-haut), var(--xm-grille-entete-bas));
+  border-right: 1px solid var(--xm-grille-bordure);
+  border-bottom: 1px solid var(--xm-grille-bordure);
+  white-space: nowrap;
+  user-select: none;
+  cursor: default;
+}
+.xm-grille thead th:hover { background: linear-gradient(#FFFFFF, #EFEFEF); }
+
+.xm-grille__entete { display: flex; align-items: center; gap: 4px; height: 100%; }
+.xm-grille__entete-libelle { overflow: hidden; text-overflow: ellipsis; }
+
+/* Triangle de tri.                                                           */
+.xm-tri { width: 0; height: 0; border-left: 4px solid transparent;
+          border-right: 4px solid transparent; }
+.xm-tri--asc  { border-bottom: 4px solid #555; }
+.xm-tri--desc { border-top: 4px solid #555; }
+
+/* Bouton de filtre : petit entonnoir, colle a droite de l'en-tete.           */
+.xm-filtre {
+  width: 10px; height: 10px; margin-left: auto; background: #6B6B6B;
+  clip-path: polygon(0 0, 100% 0, 62% 42%, 62% 100%, 38% 84%, 38% 42%);
+}
+.xm-filtre--actif { background: var(--xm-bouton-defaut-bord); }
+
+.xm-grille tbody td {
+  height: var(--xm-h-ligne-grille);
+  padding: 0 4px;
+  color: var(--xm-texte-donnee);
+  border-bottom: 1px solid var(--xm-grille-filet);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  cursor: default;
+}
+
+/* Colonne de selecteur de ligne, a gauche : chevron sur la ligne courante.   */
+.xm-grille__indicateur {
+  width: var(--xm-l-indicateur);
+  min-width: var(--xm-l-indicateur);
+  padding: 0 !important;
+  text-align: center;
+  background: var(--xm-grille-indicateur);
+  border-right: 1px solid var(--xm-grille-bordure);
+}
+.xm-grille tbody tr.est-courante .xm-grille__indicateur::after {
+  content: "\25BA"; font-size: 8px; color: #333; line-height: 1;
+}
+
+/* Selection. La teinte depend du focus de la grille : bleu si la grille a le
+   focus, gris sinon — comportement visible sur la capture 03.                */
+.xm-grille tbody tr:hover td            { background: var(--xm-grille-survol); }
+.xm-grille tbody tr.est-selectionnee td { background: var(--xm-grille-selection-inactive); }
+.xm-grille-conteneur.a-le-focus .xm-grille tbody tr.est-selectionnee td {
+  background: var(--xm-grille-selection);
+}
+.xm-grille tbody tr.est-selectionnee .xm-grille__indicateur,
+.xm-grille-conteneur.a-le-focus .xm-grille tbody tr.est-selectionnee .xm-grille__indicateur {
+  background: var(--xm-grille-indicateur);
+}
+
+/* Semantique par la couleur du texte, jamais par une pastille.               */
+.est-alerte  { color: var(--xm-texte-alerte) !important; }
+.est-valide  { color: var(--xm-texte-valide) !important; }
+.est-neutre  { color: var(--xm-texte) !important; }
+.est-attenue { color: var(--xm-texte-attenue) !important; }
+.est-gras    { font-weight: 700; }
+
+/* Alignements de colonnes.                                                   */
+.xm-col--nombre { text-align: right; }
+.xm-col--centre { text-align: center; }
+
+/* Grille sans donnees : fond lavande observe sur les cadres vides.           */
+.xm-grille-vide { flex: 1; background: var(--xm-grille-vide); }
+
+
+/* ==========================================================================
+   4. COLONNE DE BOUTONS  (capture 03)
+   Largeur fixe, boutons pleine largeur de 26px espaces de 4px, regroupes par
+   blocs separes par un espace vertical.
+   ========================================================================== */
+
+.xm-colonne-boutons {
+  display: flex; flex-direction: column;
+  width: var(--xm-l-colonne-boutons);
+}
+.xm-bloc-boutons { display: flex; flex-direction: column; gap: var(--xm-espace-boutons); }
+.xm-bloc-boutons + .xm-bloc-boutons { margin-top: var(--xm-espace-blocs); }
+
+.xm-bouton {
+  height: var(--xm-h-bouton);
+  padding: 0 8px;
+  font: inherit;
+  color: var(--xm-bouton-texte);
+  background: var(--xm-bouton-fond);
+  border: 1px solid var(--xm-bouton-bordure);
+  border-radius: var(--xm-rayon);
+  cursor: default;                       /* application native : pas de main */
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.xm-bouton:hover:not(:disabled)  { background: var(--xm-bouton-survol-fond);
+                                   border-color: var(--xm-bouton-survol-bord); }
+.xm-bouton:active:not(:disabled) { background: var(--xm-bouton-enfonce-fond); }
+.xm-bouton:disabled              { color: var(--xm-bouton-inactif-texte);
+                                   border-color: var(--xm-bouton-inactif-bord); }
+/* Rectangle de focus en pointilles, comme sous Windows.                      */
+.xm-bouton:focus-visible { outline: 1px dotted var(--xm-texte); outline-offset: -4px; }
+
+/* Bouton par defaut : liseré bleu de 2px (« Ajouter » sur la capture 03).    */
+.xm-bouton--defaut { border: 2px solid var(--xm-bouton-defaut-bord); }
+
+/* Bouton portant un menu deroulant : chevron a droite.                       */
+.xm-bouton--menu { display: flex; align-items: center; justify-content: space-between; gap: 6px; }
+.xm-bouton--menu::after { content: "\25BE"; font-size: 10px; }
+
+/* Encadre de texte statique, en pied de colonne (capture 03 : « Liste des ttt
+   prescrits durant la periode de l'episode »).                               */
+.xm-encadre-statique {
+  margin-top: var(--xm-espace-blocs);
+  min-height: 110px;
+  padding: 8px 6px;
+  display: grid; place-items: center;
+  text-align: center; line-height: 1.4;
+  border: 1px solid var(--xm-bouton-bordure);
+  border-radius: var(--xm-rayon);
+  background: var(--xm-fond-app);
+}
+
+
+/* ==========================================================================
+   5. ZONE DE DETAIL : libelles, champs, radios, cases a cocher, notes
+   ========================================================================== */
+
+.xm-detail { display: flex; flex-direction: column; gap: 6px; padding: 2px; }
+
+.xm-ligne      { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+.xm-ligne--haut{ align-items: flex-start; }
+.xm-espaceur   { margin-left: auto; }
+
+.xm-libelle        { color: var(--xm-texte); white-space: nowrap; }
+.xm-libelle--court { width: 60px; }
+.xm-libelle--moyen { width: 108px; }
+.xm-libelle--long  { width: 140px; }
+
+.xm-champ {
+  height: var(--xm-h-champ);
+  padding: 0 3px;
+  font: inherit;
+  color: var(--xm-champ-texte);
+  background: var(--xm-champ-fond);
+  border: 1px solid var(--xm-champ-bordure);
+  border-radius: 0;
+}
+.xm-champ:focus         { outline: none; border-color: var(--xm-champ-focus); }
+.xm-champ:disabled      { background: var(--xm-champ-inactif-fond);
+                          color: var(--xm-texte-attenue); }
+.xm-champ--date         { width: 112px; }
+.xm-champ--nombre       { width: 52px; }
+.xm-champ--moyen        { width: 180px; }
+.xm-champ--large        { flex: 1; min-width: 0; }
+.xm-champ.est-alerte    { color: var(--xm-texte-alerte); }
+
+.xm-zone-notes {
+  min-height: 64px;
+  padding: 2px 3px;
+  font: inherit;
+  color: var(--xm-champ-texte);
+  background: var(--xm-champ-fond);
+  border: 1px solid var(--xm-champ-bordure);
+  resize: vertical;
+}
+.xm-zone-notes:focus { outline: none; border-color: var(--xm-champ-focus); }
+
+/* Groupe de boutons radio encadre (CIM10 / CISP / AMM / Tous / DRC).         */
+.xm-groupe-radio {
+  display: inline-flex; align-items: center; gap: 18px;
+  padding: 3px 12px;
+  border: 1px solid var(--xm-bouton-bordure);
+  border-radius: var(--xm-rayon);
+}
+
+.xm-option { display: inline-flex; align-items: center; gap: 4px;
+             white-space: nowrap; cursor: default; }
+.xm-option input { width: 13px; height: 13px; margin: 0;
+                   accent-color: var(--xm-bouton-defaut-bord); }
+
+/* Cases a cocher disposees sur deux colonnes (capture 03).                   */
+.xm-cases-2col { display: grid; grid-template-columns: repeat(2, max-content);
+                 gap: 5px 28px; }
+
+/* Cotation d'un item de score : radios horizontaux libelles.
+   Jamais de liste deroulante, jamais de curseur.                             */
+.xm-item {
+  display: grid;
+  grid-template-columns: 20px minmax(0, 1fr) auto;
+  align-items: start; gap: 2px 6px;
+  padding: 3px 4px;
+  border: 1px solid transparent;
+}
+.xm-item:hover      { background: var(--xm-grille-survol); }
+.xm-item.a-le-focus { background: var(--xm-grille-survol);
+                      border-color: var(--xm-bouton-defaut-bord); }
+.xm-item__numero    { color: var(--xm-texte-attenue); text-align: right; }
+.xm-item__intitule  { color: var(--xm-texte); }
+.xm-item__cotation  { grid-column: 2 / 4; display: flex; flex-wrap: wrap; gap: 4px 16px; }
+.xm-item__mention   { grid-column: 3; justify-self: end; font-size: var(--xm-taille-petite); }
+
+.xm-mention          { font-size: var(--xm-taille-petite); color: var(--xm-texte-attenue); }
+.xm-mention--auto    { color: var(--xm-texte-valide); }
+.xm-mention--modifie { color: var(--xm-texte-avertissement); }
+.xm-mention--vetuste { color: var(--xm-texte-avertissement); }
+
+
+/* ==========================================================================
+   6. BANDEAUX, INFOBULLE, MENU
+   Aucun alert() / confirm() natif : tout est rendu par ces composants.
+   ========================================================================== */
+
+.xm-bandeau {
+  display: flex; align-items: flex-start; gap: 8px;
+  padding: 4px 6px;
+  border: 1px solid var(--xm-texte-attenue);
+  background: var(--xm-fond-info);
+}
+.xm-bandeau__titre { font-weight: 700; white-space: nowrap; }
+.xm-bandeau__texte { min-width: 0; }
+
+.xm-bandeau--info        { border-color: var(--xm-cadre-bordure);
+                           background: var(--xm-fond-info);
+                           color: var(--xm-texte-lien); }
+.xm-bandeau--avertissement{ border-color: var(--xm-seg-alerte);
+                           background: var(--xm-fond-avertissement);
+                           color: var(--xm-texte-avertissement); }
+.xm-bandeau--bloquant    { border-color: var(--xm-texte-alerte);
+                           background: var(--xm-fond-alerte);
+                           color: var(--xm-texte-alerte); }
+
+/* Infobulle jaune, style Windows : source d'un item pre-rempli.              */
+.xm-infobulle {
+  position: absolute; z-index: 200;
+  max-width: 320px;
+  padding: 3px 6px;
+  font-size: var(--xm-taille-petite);
+  color: #000; background: #FFFFE1;
+  border: 1px solid #767676;
+}
+
+/* Menu deroulant ancre a un bouton.                                          */
+.xm-menu {
+  min-width: 240px;
+  padding: 2px;
+  background: #F2F2F2;
+  border: 1px solid #A0A0A0;
+}
+.xm-menu__item {
+  display: flex; align-items: center; gap: 10px;
+  height: 22px; padding: 0 8px;
+  cursor: default; white-space: nowrap;
+}
+.xm-menu__item:hover      { background: var(--xm-grille-selection); }
+.xm-menu__item-detail     { margin-left: auto; color: var(--xm-texte-attenue); }
+.xm-menu__separateur      { height: 1px; margin: 2px 4px; background: #D0D0D0; }
+
+
+/* ==========================================================================
+   7. ENCADRE DE RESULTAT D'UN SCORE
+   Occupe l'emplacement de l'encadre statique de la capture 03.
+   ========================================================================== */
+
+.xm-resultat {
+  margin-top: var(--xm-espace-blocs);
+  padding: 8px 6px;
+  text-align: center;
+  border: 1px solid var(--xm-bouton-bordure);
+  border-radius: var(--xm-rayon);
+  background: var(--xm-fond-app);
+}
+.xm-resultat__valeur   { font-size: var(--xm-taille-resultat); font-weight: 700; line-height: 1.05; }
+.xm-resultat__max      { font-size: 14px; color: var(--xm-texte-attenue); }
+.xm-resultat__libelle  { margin-top: 4px; font-weight: 700; }
+.xm-resultat__compteur { margin-top: 4px; font-size: var(--xm-taille-petite);
+                         color: var(--xm-texte-attenue); }
+.xm-resultat--partiel .xm-resultat__valeur { color: var(--xm-texte-attenue); }
+
+/* Barre d'interpretation a segments : le curseur marque le seuil atteint.    */
+.xm-barre-interpretation { position: relative; display: flex; height: 10px; margin-top: 6px; }
+.xm-barre-interpretation__segment { flex: 1; }
+.xm-seg--ok     { background: var(--xm-seg-ok); }
+.xm-seg--neutre { background: var(--xm-seg-neutre); }
+.xm-seg--alerte { background: var(--xm-seg-alerte); }
+.xm-seg--danger { background: var(--xm-seg-danger); }
+.xm-barre-interpretation__curseur {
+  position: absolute; top: -3px; width: 2px; height: 16px; background: #000;
+}
+
+
+/* ==========================================================================
+   8. BARRE D'ETAT  (capture 01)
+   ========================================================================== */
+
+.xm-barre-etat {
+  display: flex; align-items: stretch;
+  height: var(--xm-h-barre-etat);
+  font-size: var(--xm-taille-petite);
+  background: var(--xm-etat-fond);
+  border-top: 1px solid var(--xm-etat-ligne);
+  user-select: none;
+}
+.xm-barre-etat__cellule {
+  display: flex; align-items: center; gap: 5px;
+  padding: 0 8px;
+  border-right: 1px solid var(--xm-etat-separateur);
+}
+.xm-barre-etat__cellule--fin { border-right: 0; }
+.xm-barre-etat__espaceur     { flex: 1; }
+.xm-voyant {
+  width: 10px; height: 10px; border-radius: 50%;
+  background: var(--xm-voyant-vert); border: 1px solid var(--xm-voyant-vert-bord);
+}

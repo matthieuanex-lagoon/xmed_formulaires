@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>XMed — Planche de composants (module Scores cliniques)</title>
+<link rel="stylesheet" href="../assets/css/tokens.css">
+<link rel="stylesheet" href="../assets/css/xmed.css">
+<style>
+  /* --- Habillage de la planche de validation. -----------------------------
+     Ces styles servent UNIQUEMENT à la mise en page du document ; ils ne font
+     pas partie de la bibliothèque XMed et ne seront pas repris dans la démo. */
+  body { margin: 0; background: #FFFFFF; color: #1A1A1A;
+         font-family: var(--xm-police); font-size: 13px; }
+  .doc          { max-width: 1180px; margin: 0 auto; padding: 24px 20px 80px; }
+  .doc h1       { font-size: 20px; margin: 0 0 4px; }
+  .doc h2       { font-size: 15px; margin: 32px 0 6px; padding-bottom: 4px;
+                  border-bottom: 1px solid #D8D8D8; }
+  .doc h3       { font-size: 12px; margin: 16px 0 6px; color: #555;
+                  text-transform: uppercase; letter-spacing: .04em; }
+  .doc p        { margin: 0 0 10px; max-width: 76ch; line-height: 1.45; }
+  .doc .avert   { border-left: 3px solid #C00000; background: #FDF2F2;
+                  padding: 8px 10px; margin: 12px 0 18px; }
+  .doc code     { font-family: var(--xm-police-mono); font-size: 12px;
+                  background: #F4F4F4; padding: 0 3px; }
+  .scene        { background: var(--xm-fond-app); border: 1px solid #D0D0D0;
+                  padding: 16px; margin: 8px 0 4px; overflow: auto; }
+  .scene--clair { background: #FFFFFF; }
+  .legende      { font-size: 11px; color: #666; margin: 0 0 18px; }
+  table.jetons  { border-collapse: collapse; font-size: 12px; width: 100%; }
+  table.jetons th, table.jetons td { border: 1px solid #DDD; padding: 3px 6px;
+                                     text-align: left; vertical-align: middle; }
+  table.jetons th { background: #F4F4F4; font-weight: 600; }
+  table.jetons td.nom { font-family: var(--xm-police-mono); font-size: 11px; white-space: nowrap; }
+  .pastille     { display: inline-block; width: 34px; height: 16px;
+                  border: 1px solid #999; vertical-align: middle; }
+  .statut       { font-size: 11px; font-weight: 700; }
+  .statut--lu   { color: #006400; }
+  .statut--est  { color: #B36B00; }
+  .statut--ded  { color: #6A6A6A; }
+  .grille-2     { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+                  gap: 16px; align-items: start; }
+</style>
+</head>
+<body class="xm-planche">
+<div class="doc">
+
+  <h1>XMed — planche de composants</h1>
+  <p>Étape 1 du module « Scores cliniques ». Cette page sert à valider la charte
+     avant toute écriture de fonctionnalité. Elle ne contient aucune logique :
+     uniquement <code>assets/css/tokens.css</code> et
+     <code>assets/css/xmed.css</code>, appliqués à des exemples statiques.</p>
+
+  <div class="avert">
+    <strong>Prélèvement au pixel non réalisé.</strong> Les quatre PNG ne sont pas
+    présents dans <code>design/screens/</code> : les captures ont été collées dans
+    la conversation, pas déposées sur le disque. Les couleurs ci-dessous viennent
+    donc d'une <em>lecture visuelle</em>, pas d'un prélèvement. Chaque jeton porte
+    son statut : <span class="statut statut--lu">[LU]</span> lu sur la capture,
+    <span class="statut statut--est">[ESTIMÉ]</span> approché à l'œil,
+    <span class="statut statut--ded">[DÉDUIT]</span> non visible, déduit du style
+    Windows natif. Dès que les fichiers seront déposés, les valeurs
+    <span class="statut statut--est">[ESTIMÉ]</span> seront reprises par
+    prélèvement direct.
+  </div>
+
+  <!-- ==================================================================== -->
+  <h2>1. Palette</h2>
+  <p>Comparer chaque pastille au même élément sur la capture indiquée. Toute
+     correction se reporte dans <code>tokens.css</code> et se propage partout.</p>
+
+  <table class="jetons">
+    <thead><tr><th style="width:34px"></th><th>Jeton</th><th>Valeur</th>
+      <th>Statut</th><th>Où le vérifier</th></tr></thead>
+    <tbody>
+      <tr><td><span class="pastille" style="background:#F0F0F0"></span></td>
+        <td class="nom">--xm-fond-app</td><td>#F0F0F0</td>
+        <td><span class="statut statut--lu">LU</span></td>
+        <td>Fond de la boîte de dialogue — capture 03</td></tr>
+      <tr><td><span class="pastille" style="background:#4A7EBB"></span></td>
+        <td class="nom">--xm-cadre-bordure</td><td>#4A7EBB</td>
+        <td><span class="statut statut--est">ESTIMÉ</span></td>
+        <td>Contour bleu des cadres — capture 02</td></tr>
+      <tr><td><span class="pastille" style="background:linear-gradient(#DCEEF7,#C5E3F2)"></span></td>
+        <td class="nom">--xm-cadre-titre-haut / -bas</td><td>#DCEEF7 → #C5E3F2</td>
+        <td><span class="statut statut--est">ESTIMÉ</span></td>
+        <td>Barre de titre « Episodes et suivis en cours » — capture 02</td></tr>
+      <tr><td><span class="pastille" style="background:#1F5C8B"></span></td>
+        <td class="nom">--xm-cadre-titre-texte</td><td>#1F5C8B</td>
+        <td><span class="statut statut--est">ESTIMÉ</span></td>
+        <td>Libellé gras du cadre — capture 02</td></tr>
+      <tr><td><span class="pastille" style="background:linear-gradient(#F6F6F6,#E9E9E9)"></span></td>
+        <td class="nom">--xm-grille-entete-haut / -bas</td><td>#F6F6F6 → #E9E9E9</td>
+        <td><span class="statut statut--est">ESTIMÉ</span></td>
+        <td>En-têtes de colonnes — capture 03</td></tr>
+      <tr><td><span class="pastille" style="background:#D6D6D6"></span></td>
+        <td class="nom">--xm-grille-selection-inactive</td><td>#D6D6D6</td>
+        <td><span class="statut statut--lu">LU</span></td>
+        <td>Ligne « Trouble anxieux » sélectionnée — capture 03</td></tr>
+      <tr><td><span class="pastille" style="background:#CBE2F5"></span></td>
+        <td class="nom">--xm-grille-selection</td><td>#CBE2F5</td>
+        <td><span class="statut statut--est">ESTIMÉ</span></td>
+        <td>Ligne « Non-Classé » dans le cadre du dossier — capture 01</td></tr>
+      <tr><td><span class="pastille" style="background:#E7E7F5"></span></td>
+        <td class="nom">--xm-grille-vide</td><td>#E7E7F5</td>
+        <td><span class="statut statut--est">ESTIMÉ</span></td>
+        <td>Fond lavande d'« Antécédents Familiaux » vide — capture 01</td></tr>
+      <tr><td><span class="pastille" style="background:#2B7CD3"></span></td>
+        <td class="nom">--xm-bouton-defaut-bord</td><td>#2B7CD3</td>
+        <td><span class="statut statut--est">ESTIMÉ</span></td>
+        <td>Liseré 2px du bouton « Ajouter » — capture 03.
+            Peut être l'accentuation Windows #0078D4.</td></tr>
+      <tr><td><span class="pastille" style="background:#000080"></span></td>
+        <td class="nom">--xm-texte-donnee</td><td>#000080</td>
+        <td><span class="statut statut--lu">LU</span></td>
+        <td>Texte des grilles Contacts / Episodes — capture 01</td></tr>
+      <tr><td><span class="pastille" style="background:#C00000"></span></td>
+        <td class="nom">--xm-texte-alerte</td><td>#C00000</td>
+        <td><span class="statut statut--lu">LU</span></td>
+        <td>Créatinine 11.9 mg/l, Potassium — capture 01</td></tr>
+      <tr><td><span class="pastille" style="background:#008000"></span></td>
+        <td class="nom">--xm-texte-valide</td><td>#008000</td>
+        <td><span class="statut statut--lu">LU</span></td>
+        <td>« Prescription médicamenteuse », colonne Auteur — capture 01</td></tr>
+      <tr><td><span class="pastille" style="background:#FDECEC"></span></td>
+        <td class="nom">--xm-cadre-alerte-corps</td><td>#FDECEC</td>
+        <td><span class="statut statut--est">ESTIMÉ</span></td>
+        <td>Cadre « Allergies et Intolérances méd. » — capture 01</td></tr>
+      <tr><td><span class="pastille" style="background:#E9F7FC"></span></td>
+        <td class="nom">--xm-cadre-fiche-corps</td><td>#E9F7FC</td>
+        <td><span class="statut statut--est">ESTIMÉ</span></td>
+        <td>Corps du cadre « Identité » — capture 01</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Métriques</h3>
+  <table class="jetons">
+    <thead><tr><th>Jeton</th><th>Valeur</th><th>Statut</th><th>Rôle</th></tr></thead>
+    <tbody>
+      <tr><td class="nom">--xm-taille-base</td><td>12px</td>
+        <td><span class="statut statut--lu">LU</span></td><td>Corps du texte</td></tr>
+      <tr><td class="nom">--xm-h-ligne-grille</td><td>20px</td>
+        <td><span class="statut statut--lu">LU</span></td><td>Hauteur d'une ligne de grille</td></tr>
+      <tr><td class="nom">--xm-h-entete-grille</td><td>21px</td>
+        <td><span class="statut statut--lu">LU</span></td><td>Hauteur d'en-tête</td></tr>
+      <tr><td class="nom">--xm-h-titre-cadre</td><td>18px</td>
+        <td><span class="statut statut--lu">LU</span></td><td>Barre de titre d'un cadre</td></tr>
+      <tr><td class="nom">--xm-h-bouton</td><td>26px</td>
+        <td><span class="statut statut--lu">LU</span></td><td>Bouton de la colonne de droite</td></tr>
+      <tr><td class="nom">--xm-l-colonne-boutons</td><td>195px</td>
+        <td><span class="statut statut--lu">LU</span></td><td>Largeur de la colonne de boutons</td></tr>
+      <tr><td class="nom">--xm-espace-boutons</td><td>4px</td>
+        <td><span class="statut statut--lu">LU</span></td><td>Entre deux boutons d'un bloc</td></tr>
+      <tr><td class="nom">--xm-espace-blocs</td><td>14px</td>
+        <td><span class="statut statut--est">ESTIMÉ</span></td><td>Entre deux blocs de boutons</td></tr>
+      <tr><td class="nom">--xm-rayon</td><td>2px</td>
+        <td><span class="statut statut--lu">LU</span></td><td>Rayon maximal, jamais au-delà</td></tr>
+    </tbody>
+  </table>
+
+  <!-- ==================================================================== -->
+  <h2>2. Cadre du dossier</h2>
+  <p>Réplique du cadre de la capture 02, plus ses trois déclinaisons observées
+     sur la capture 01. La dernière icône de la barre de titre est la
+     <strong>proposition d'insertion du module Scores</strong> : raccourci vers le
+     catalogue filtré sur l'épisode sélectionné.</p>
+
+  <div class="scene">
+    <div class="grille-2">
+
+      <!-- Cadre standard : Episodes et suivis en cours (capture 02) -->
+      <div class="xm-cadre" style="height:190px">
+        <div class="xm-cadre__titre">
+          <span class="xm-cadre__libelle">Episodes et suivis en cours</span>
+          <span class="xm-cadre__icones">
+            <button class="xm-icone" title="Copier"><svg width="16" height="16" viewBox="0 0 16 16"><rect x="3" y="2" width="8" height="10" fill="#FFF" stroke="#7A7A7A"/><rect x="5.5" y="4.5" width="8" height="10" fill="#FFF9D0" stroke="#B9902A"/></svg></button>
+            <button class="xm-icone" title="Filtrer"><svg width="16" height="16" viewBox="0 0 16 16"><path d="M2 3h12l-4.6 5.2V13l-2.8-1.6V8.2z" fill="#6FA8DC" stroke="#2B6CA3"/></svg></button>
+            <button class="xm-icone" title="Réseau"><svg width="16" height="16" viewBox="0 0 16 16"><path d="M8 4v8M8 8H3M8 8h5" stroke="#7A7A7A" fill="none"/><rect x="6" y="1" width="4" height="3" fill="#B7D7F0" stroke="#2B6CA3"/><rect x="1" y="6.5" width="4" height="3" fill="#B7D7F0" stroke="#2B6CA3"/><rect x="11" y="6.5" width="4" height="3" fill="#B7D7F0" stroke="#2B6CA3"/></svg></button>
+            <button class="xm-icone" title="Déplier"><svg width="16" height="16" viewBox="0 0 16 16"><path d="M8 1.5 11 5H5zM8 14.5 5 11h6z" fill="#2B6CA3"/><path d="M3 8h10" stroke="#7A7A7A"/></svg></button>
+            <button class="xm-icone" title="Scores cliniques de cet épisode"><svg width="16" height="16" viewBox="0 0 16 16"><rect x="2" y="1.5" width="12" height="13" fill="#FFF" stroke="#2B6CA3"/><path d="M4.5 5h7M4.5 8h7M4.5 11h4" stroke="#6FA8DC"/><path d="M9.5 12.2 11 13.7 14 10.5" stroke="#008000" stroke-width="1.6" fill="none"/></svg></button>
+            <button class="xm-icone" title="Agrandir"><svg width="16" height="16" viewBox="0 0 16 16"><rect x="3.5" y="3.5" width="9" height="9" fill="none" stroke="#4A4A4A"/></svg></button>
+          </span>
+        </div>
+        <div class="xm-cadre__corps">
+          <div class="xm-grille-conteneur" style="border:0;flex:1">
+            <div class="xm-grille-defilement">
+              <table class="xm-grille">
+                <colgroup><col style="width:18px"><col style="width:80px"><col style="width:28px"><col><col style="width:90px"></colgroup>
+                <thead><tr>
+                  <th class="xm-grille__indicateur"></th>
+                  <th><span class="xm-grille__entete"><span class="xm-grille__entete-libelle">Début</span></span></th>
+                  <th><span class="xm-grille__entete"><span class="xm-grille__entete-libelle">.</span><i class="xm-filtre"></i></span></th>
+                  <th><span class="xm-grille__entete"><span class="xm-grille__entete-libelle">Episode</span><i class="xm-filtre"></i></span></th>
+                  <th><span class="xm-grille__entete"><span class="xm-grille__entete-libelle">Notes</span></span></th>
+                </tr></thead>
+                <tbody>
+                  <tr class="est-courante est-selectionnee">
+                    <td class="xm-grille__indicateur"></td><td>14/12/2012</td>
+                    <td class="xm-col--centre"><input type="checkbox" disabled></td>
+                    <td>Non-Classé</td><td></td></tr>
+                  <tr><td class="xm-grille__indicateur"></td><td>30/10/2015</td>
+                    <td class="xm-col--centre"><input type="checkbox" disabled></td>
+                    <td>Trouble anxieux et dépressif mixte</td><td></td></tr>
+                  <tr><td class="xm-grille__indicateur"></td><td>08/11/2021</td>
+                    <td class="xm-col--centre"><input type="checkbox" disabled></td>
+                    <td>Dermite séborrhéique</td><td></td></tr>
+                  <tr><td class="xm-grille__indicateur"></td><td>30/12/2025</td>
+                    <td class="xm-col--centre"><input type="checkbox" disabled></td>
+                    <td>Entorse du genou, droit</td><td></td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Cadre « fiche » : Identité -->
+      <div class="xm-cadre xm-cadre--fiche" style="height:190px">
+        <div class="xm-cadre__titre">
+          <span class="xm-cadre__libelle">Identité</span>
+          <span class="xm-cadre__icones">
+            <button class="xm-icone" title="Copier"><svg width="16" height="16" viewBox="0 0 16 16"><rect x="3" y="2" width="8" height="10" fill="#FFF" stroke="#7A7A7A"/><rect x="5.5" y="4.5" width="8" height="10" fill="#FFF9D0" stroke="#B9902A"/></svg></button>
+            <button class="xm-icone" title="Validé"><svg width="16" height="16" viewBox="0 0 16 16"><path d="M3 8.5 6.5 12 13 4" stroke="#008000" stroke-width="2.2" fill="none"/></svg></button>
+            <button class="xm-icone" title="Agrandir"><svg width="16" height="16" viewBox="0 0 16 16"><rect x="3.5" y="3.5" width="9" height="9" fill="none" stroke="#4A4A4A"/></svg></button>
+          </span>
+        </div>
+        <div class="xm-cadre__corps">
+          <div class="xm-fiche">
+            <span class="xm-fiche__cle">Date de naissa...</span><span class="xm-fiche__valeur">04/10/1990</span>
+            <span class="xm-fiche__cle">Adresse</span><span class="xm-fiche__valeur">59 rue l'ouchette</span>
+            <span class="xm-fiche__cle">Code postal</span><span class="xm-fiche__valeur">44000</span>
+            <span class="xm-fiche__cle">Ville</span><span class="xm-fiche__valeur">NANTES</span>
+            <span class="xm-fiche__cle">Médecin traitant</span><span class="xm-fiche__valeur">ANEX Matthieu</span>
+            <span class="xm-fiche__cle">Profession</span><span class="xm-fiche__valeur"></span>
+            <span class="xm-fiche__cle">Notes publiques</span><span class="xm-fiche__valeur">NETTOYAGE INDUSTRIEL</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Cadre « alerte » : Allergies -->
+      <div class="xm-cadre xm-cadre--alerte" style="height:120px">
+        <div class="xm-cadre__titre">
+          <span class="xm-cadre__libelle">Allergies et Intolérances méd.</span>
+          <span class="xm-cadre__icones">
+            <button class="xm-icone" title="Copier"><svg width="16" height="16" viewBox="0 0 16 16"><rect x="3" y="2" width="8" height="10" fill="#FFF" stroke="#7A7A7A"/><rect x="5.5" y="4.5" width="8" height="10" fill="#FFF9D0" stroke="#B9902A"/></svg></button>
+            <button class="xm-icone" title="Agrandir"><svg width="16" height="16" viewBox="0 0 16 16"><rect x="3.5" y="3.5" width="9" height="9" fill="none" stroke="#4A4A4A"/></svg></button>
+          </span>
+        </div>
+        <div class="xm-cadre__corps">
+          <div class="xm-grille-defilement">
+            <table class="xm-grille" style="background:transparent">
+              <colgroup><col style="width:18px"><col style="width:80px"><col><col style="width:80px"></colgroup>
+              <thead><tr>
+                <th class="xm-grille__indicateur"></th>
+                <th><span class="xm-grille__entete"><span class="xm-grille__entete-libelle">Date</span></span></th>
+                <th><span class="xm-grille__entete"><span class="xm-grille__entete-libelle">Produit ou substance</span><i class="xm-filtre"></i></span></th>
+                <th><span class="xm-grille__entete"><span class="xm-grille__entete-libelle">Notes</span></span></th>
+              </tr></thead>
+              <tbody>
+                <tr class="est-courante"><td class="xm-grille__indicateur"></td>
+                  <td class="est-alerte">07/07/2018</td>
+                  <td class="est-alerte">BI-PROFENID 150MG CPR SECABLE 20...</td><td></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Cadre inactif : Prévention -->
+      <div class="xm-cadre xm-cadre--inactif" style="height:120px">
+        <div class="xm-cadre__titre">
+          <span class="xm-cadre__libelle">Prévention</span>
+          <span class="xm-cadre__icones">
+            <button class="xm-icone" title="Agrandir"><svg width="16" height="16" viewBox="0 0 16 16"><rect x="3.5" y="3.5" width="9" height="9" fill="none" stroke="#6A6A6A"/></svg></button>
+          </span>
+        </div>
+        <div class="xm-cadre__corps">
+          <div class="xm-grille-defilement">
+            <table class="xm-grille" style="background:transparent">
+              <colgroup><col style="width:70px"><col><col style="width:80px"><col style="width:70px"></colgroup>
+              <thead><tr>
+                <th><span class="xm-grille__entete"><span class="xm-grille__entete-libelle">Type</span></span></th>
+                <th><span class="xm-grille__entete"><span class="xm-grille__entete-libelle">Examen ...</span></span></th>
+                <th><span class="xm-grille__entete"><span class="xm-grille__entete-libelle">Échéance</span></span></th>
+                <th><span class="xm-grille__entete"><span class="xm-grille__entete-libelle">Statut</span></span></th>
+              </tr></thead>
+            </table>
+          </div>
+          <div class="xm-grille-vide"></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <p class="legende">À vérifier : teinte exacte du dégradé de la barre de titre,
+     graisse du libellé, et le fait que les valeurs du cadre Identité soient bien
+     en demi-gras et non en normal.</p>
+
+  <!-- ==================================================================== -->
+  <h2>3. Fenêtre modale — gabarit invariable</h2>
+  <p>Réplique de la capture 03, sans aucun ajout : c'est le gabarit que
+     réutiliseront la fenêtre « Scores cliniques » et la fenêtre de saisie d'un
+     score. Bandeau de regroupement, grille avec sélecteur de ligne et défilement
+     horizontal, colonne de boutons en blocs, encadré statique, zone de détail
+     dense.</p>
+
+  <div class="scene">
+    <div class="xm-fenetre" style="width:1056px">
+
+      <div class="xm-fenetre__titre">
+        <svg width="16" height="16" viewBox="0 0 16 16"><path d="M2 3h4l7 10h-4z" fill="#C0392B"/><path d="M10 3h4L7 13H3z" fill="#E74C3C"/></svg>
+        <span class="xm-fenetre__titre-libelle">Episodes et suivis en cours</span>
+        <span class="xm-fenetre__systeme">
+          <button class="xm-bouton-systeme" title="Réduire"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M1 5h8" stroke="currentColor"/></svg></button>
+          <button class="xm-bouton-systeme" title="Agrandir"><svg width="10" height="10" viewBox="0 0 10 10"><rect x="1" y="1" width="8" height="8" fill="none" stroke="currentColor"/></svg></button>
+          <button class="xm-bouton-systeme xm-bouton-systeme--fermer" title="Fermer"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M1 1l8 8M9 1l-8 8" stroke="currentColor"/></svg></button>
+        </span>
+      </div>
+
+      <div class="xm-fenetre__corps">
+        <div class="xm-fenetre__principal">
+
+          <!-- Grille + bandeau de regroupement -->
+          <div class="xm-grille-conteneur" style="height:236px">
+            <div class="xm-bandeau-groupe">
+              <span class="xm-bandeau-groupe__consigne">Glisser/déposer ici des entêtes de colonne pour effectuer des regroupements</span>
+              <svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><circle cx="7" cy="7" r="4.5" fill="none" stroke="#5A5A5A"/><path d="M10.4 10.4 14 14" stroke="#5A5A5A"/></svg>
+            </div>
+            <div class="xm-grille-defilement">
+              <table class="xm-grille" style="min-width:820px">
+                <colgroup><col style="width:18px"><col style="width:56px"><col><col style="width:82px"><col style="width:110px"><col style="width:140px"></colgroup>
+                <thead><tr>
+                  <th class="xm-grille__indicateur"></th>
+                  <th><span class="xm-grille__entete"><span class="xm-grille__entete-libelle">Acteur</span></span></th>
+                  <th><span class="xm-grille__entete"><span class="xm-grille__entete-libelle">Libellé</span><i class="xm-tri xm-tri--asc"></i></span></th>
+                  <th><span class="xm-grille__entete"><span class="xm-grille__entete-libelle">Début</span></span></th>
+                  <th><span class="xm-grille__entete"><span class="xm-grille__entete-libelle">Dernier contact</span><i class="xm-filtre"></i></span></th>
+                  <th><span class="xm-grille__entete"><span class="xm-grille__entete-libelle">Notes</span></span></th>
+                </tr></thead>
+                <tbody>
+                  <tr><td class="xm-grille__indicateur"></td><td>MAN</td>
+                      <td>Entorse du genou, droit</td><td>30/12/2025</td><td>28/08/2026</td><td></td></tr>
+                  <tr><td class="xm-grille__indicateur"></td><td>MAN</td>
+                      <td>Dermite séborrhéique</td><td>08/11/2021</td><td>08/11/2021</td><td></td></tr>
+                  <tr class="est-courante est-selectionnee"><td class="xm-grille__indicateur"></td><td>MAN</td>
+                      <td>Trouble anxieux et dépressif mixte</td><td>30/10/2015</td><td>12/07/2016</td><td></td></tr>
+                  <tr><td class="xm-grille__indicateur"></td><td>MAN</td>
+                      <td>Non-Classé</td><td>14/12/2012</td><td></td><td></td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Zone de détail -->
+          <div class="xm-detail">
+            <div class="xm-ligne">
+              <span class="xm-groupe-radio">
+                <label class="xm-option"><input type="radio" name="ref" checked> CIM10</label>
+                <label class="xm-option"><input type="radio" name="ref"> CISP</label>
+                <label class="xm-option"><input type="radio" name="ref"> AMM</label>
+                <label class="xm-option"><input type="radio" name="ref"> Tous</label>
+                <label class="xm-option"><input type="radio" name="ref"> DRC</label>
+              </span>
+              <button class="xm-icone" title="Rechercher dans le référentiel"><svg width="16" height="16" viewBox="0 0 16 16"><circle cx="5" cy="8" r="3.2" fill="#DCEEF7" stroke="#2B6CA3"/><circle cx="11" cy="8" r="3.2" fill="#DCEEF7" stroke="#2B6CA3"/><path d="M8.2 8h-.4M1.8 8H0.5M15.5 8h-1.3" stroke="#2B6CA3"/></svg></button>
+              <span class="xm-espaceur"></span>
+              <label class="xm-option">ALD <input type="checkbox"></label>
+              <span class="xm-libelle">Date début :</span><input class="xm-champ xm-champ--date">
+            </div>
+
+            <div class="xm-ligne">
+              <span class="xm-libelle xm-libelle--court">Libellé :</span>
+              <input class="xm-champ xm-champ--large" style="max-width:520px" value="Trouble anxieux et dépressif mixte">
+              <span class="xm-espaceur"></span>
+              <span class="xm-libelle">Date fin :</span><input class="xm-champ xm-champ--date">
+            </div>
+
+            <div class="xm-ligne">
+              <span class="xm-libelle">Survenu à l'âge de :</span>
+              <input class="xm-champ xm-champ--nombre" value="25"><span class="xm-libelle">ans</span>
+              <span style="width:24px"></span>
+              <span class="xm-libelle">Date début :</span><input class="xm-champ xm-champ--date" value="30/10/2015">
+              <span class="xm-libelle">Date fin :</span><input class="xm-champ xm-champ--date">
+              <span class="xm-espaceur"></span>
+              <label class="xm-option"><input type="checkbox"> A suivre</label>
+            </div>
+
+            <div class="xm-ligne">
+              <div class="xm-cases-2col">
+                <label class="xm-option"><input type="checkbox"> Immunodépression</label>
+                <label class="xm-option"><input type="checkbox"> Chirurgical</label>
+              </div>
+              <span class="xm-espaceur"></span>
+              <div class="xm-cases-2col">
+                <label class="xm-option"><input type="checkbox"> AT</label>
+                <label class="xm-option"><input type="checkbox"> MP</label>
+                <label class="xm-option" style="grid-column:1/3"><input type="checkbox"> Facteur de risque</label>
+              </div>
+            </div>
+
+            <div class="xm-ligne"><span class="xm-libelle">Notes :</span></div>
+            <textarea class="xm-zone-notes" rows="4"></textarea>
+          </div>
+        </div>
+
+        <!-- Colonne de boutons -->
+        <div class="xm-colonne-boutons">
+          <div class="xm-bloc-boutons">
+            <button class="xm-bouton xm-bouton--defaut">Ajouter</button>
+            <button class="xm-bouton">Supprimer</button>
+            <button class="xm-bouton">Ok</button>
+            <button class="xm-bouton" disabled>Appliquer</button>
+          </div>
+          <div class="xm-bloc-boutons">
+            <button class="xm-bouton">Imprimer</button>
+            <button class="xm-bouton">Aide</button>
+            <button class="xm-bouton">Annuler</button>
+          </div>
+          <div class="xm-bloc-boutons">
+            <button class="xm-bouton">Clore épisode</button>
+          </div>
+          <div class="xm-encadre-statique">
+            Liste des ttt<br>prescrits durant<br>la période<br>de l'épisode
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <p class="legende">Points à confirmer : hauteur exacte de la barre de titre
+     système (30px retenu), largeur des boutons système (46px), et présence ou non
+     d'une ombre portée / d'un assombrissement du dossier derrière la modale — la
+     capture 04 semble n'en montrer aucun, la maquette n'en met donc pas.</p>
+
+  <!-- ==================================================================== -->
+  <h2>4. Colonne de boutons — états et insertion du module</h2>
+  <p>À gauche, les états. À droite, le bloc « Scores » proposé, inséré
+     <strong>après</strong> « Clore épisode », et le menu déroulant qui s'ouvre
+     quand l'épisode sélectionné porte au moins deux scores.</p>
+
+  <div class="scene">
+    <div style="display:flex;gap:48px;align-items:flex-start">
+
+      <div class="xm-colonne-boutons">
+        <div class="xm-bloc-boutons">
+          <button class="xm-bouton xm-bouton--defaut">Bouton par défaut</button>
+          <button class="xm-bouton">Bouton normal</button>
+          <button class="xm-bouton" disabled>Bouton inactif</button>
+          <button class="xm-bouton xm-bouton--menu">Bouton à menu</button>
+        </div>
+      </div>
+
+      <div class="xm-colonne-boutons">
+        <div class="xm-bloc-boutons">
+          <button class="xm-bouton">Clore épisode</button>
+        </div>
+        <div class="xm-bloc-boutons">
+          <button class="xm-bouton">Scores…</button>
+          <button class="xm-bouton xm-bouton--menu">Scores de cet épisode (2)</button>
+        </div>
+      </div>
+
+      <div>
+        <div class="xm-menu">
+          <div class="xm-menu__item">PHQ-9<span class="xm-menu__item-detail">18 — 17/07/2026</span></div>
+          <div class="xm-menu__item">HDRS-17<span class="xm-menu__item-detail">jamais évalué</span></div>
+          <div class="xm-menu__separateur"></div>
+          <div class="xm-menu__item">Tous les scores…</div>
+        </div>
+        <p class="legende" style="margin-top:6px">Menu ancré au bouton, ouvert sur
+           un épisode F33.1. Le bouton est <em>masqué</em>, et non grisé, quand
+           l'épisode ne porte aucun score.</p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ==================================================================== -->
+  <h2>5. Grille — états et sémantique</h2>
+  <p>La couleur du texte porte le sens : bleu marine pour la donnée, rouge pour
+     une valeur hors normes, vert pour un élément validé. Aucune pastille, aucun
+     badge.</p>
+
+  <div class="scene">
+    <div style="display:flex;gap:16px;align-items:flex-start;flex-wrap:wrap">
+
+      <div class="xm-grille-conteneur a-le-focus" style="width:520px">
+        <div class="xm-grille-defilement">
+          <table class="xm-grille">
+            <colgroup><col style="width:18px"><col style="width:90px"><col><col style="width:70px"><col style="width:60px"></colgroup>
+            <thead><tr>
+              <th class="xm-grille__indicateur"></th>
+              <th><span class="xm-grille__entete"><span class="xm-grille__entete-libelle">Date</span><i class="xm-tri xm-tri--desc"></i></span></th>
+              <th><span class="xm-grille__entete"><span class="xm-grille__entete-libelle">Examen</span><i class="xm-filtre"></i></span></th>
+              <th class="xm-col--nombre"><span class="xm-grille__entete"><span class="xm-grille__entete-libelle">Valeur</span></span></th>
+              <th><span class="xm-grille__entete"><span class="xm-grille__entete-libelle">Unité</span></span></th>
+            </tr></thead>
+            <tbody>
+              <tr class="est-courante est-selectionnee"><td class="xm-grille__indicateur"></td>
+                <td class="est-alerte">01/12/2020</td><td class="est-alerte">Potassium</td>
+                <td class="xm-col--nombre est-alerte">4.7</td><td class="est-alerte">mmol/l</td></tr>
+              <tr><td class="xm-grille__indicateur"></td><td>01/12/2020</td><td>Clairance créatinin...</td>
+                <td class="xm-col--nombre">76.3</td><td>ml/mn</td></tr>
+              <tr><td class="xm-grille__indicateur"></td><td class="est-alerte">01/12/2020</td>
+                <td class="est-alerte">Créatinine</td><td class="xm-col--nombre est-alerte">11.9</td>
+                <td class="est-alerte">mg/l</td></tr>
+              <tr><td class="xm-grille__indicateur"></td><td>31/05/2023</td><td>PAS/PAD</td>
+                <td class="xm-col--nombre">110</td><td>mmHg</td></tr>
+              <tr><td class="xm-grille__indicateur"></td><td class="est-valide">28/08/2026</td>
+                <td class="est-valide">Prescription médicamenteuse</td>
+                <td class="xm-col--nombre est-valide">—</td><td class="est-valide"></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div>
+        <h3 style="margin-top:0">Grille sans focus</h3>
+        <div class="xm-grille-conteneur" style="width:300px">
+          <div class="xm-grille-defilement">
+            <table class="xm-grille">
+              <colgroup><col style="width:18px"><col><col style="width:80px"></colgroup>
+              <thead><tr>
+                <th class="xm-grille__indicateur"></th>
+                <th><span class="xm-grille__entete"><span class="xm-grille__entete-libelle">Libellé</span><i class="xm-tri xm-tri--asc"></i></span></th>
+                <th><span class="xm-grille__entete"><span class="xm-grille__entete-libelle">Début</span></span></th>
+              </tr></thead>
+              <tbody>
+                <tr><td class="xm-grille__indicateur"></td><td>Entorse du genou, droit</td><td>30/12/2025</td></tr>
+                <tr class="est-courante est-selectionnee"><td class="xm-grille__indicateur"></td>
+                  <td>Trouble anxieux et dépressif mixte</td><td>30/10/2015</td></tr>
+                <tr><td class="xm-grille__indicateur"></td><td>Non-Classé</td><td>14/12/2012</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <p class="legende" style="margin-top:6px">Sélection grise tant que la
+           grille n'a pas le focus, bleue quand elle l'a.</p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ==================================================================== -->
+  <h2>6. Saisie : radios, cases, champs, cotation d'un item</h2>
+  <p>La cotation d'un item se fait en boutons radio horizontaux libellés — jamais
+     de liste déroulante, jamais de curseur. Un item pré-rempli depuis le dossier
+     porte la mention <span class="xm-mention xm-mention--auto">Auto</span> ; s'il
+     est repris à la main, elle devient
+     <span class="xm-mention xm-mention--modifie">Modifié</span> et l'origine reste
+     consultable.</p>
+
+  <div class="scene scene--clair">
+    <div style="max-width:720px;display:flex;flex-direction:column;gap:10px">
+
+      <div class="xm-item">
+        <span class="xm-item__numero">1</span>
+        <span class="xm-item__intitule">Peu d'intérêt ou de plaisir à faire les choses <span class="xm-mention">[À VALIDER]</span></span>
+        <span class="xm-item__mention"></span>
+        <span class="xm-item__cotation">
+          <label class="xm-option"><input type="radio" name="i1"> 0 Jamais</label>
+          <label class="xm-option"><input type="radio" name="i1" checked> 1 Plusieurs jours</label>
+          <label class="xm-option"><input type="radio" name="i1"> 2 Plus d'une semaine</label>
+          <label class="xm-option"><input type="radio" name="i1"> 3 Presque tous les jours</label>
+        </span>
+      </div>
+
+      <div class="xm-item a-le-focus">
+        <span class="xm-item__numero">2</span>
+        <span class="xm-item__intitule">Item focalisé — les touches 0 à 3 cotent et passent à l'item suivant</span>
+        <span class="xm-item__mention"></span>
+        <span class="xm-item__cotation">
+          <label class="xm-option"><input type="radio" name="i2"> 0 Jamais</label>
+          <label class="xm-option"><input type="radio" name="i2"> 1 Plusieurs jours</label>
+          <label class="xm-option"><input type="radio" name="i2"> 2 Plus d'une semaine</label>
+          <label class="xm-option"><input type="radio" name="i2"> 3 Presque tous les jours</label>
+        </span>
+      </div>
+
+      <div class="xm-item">
+        <span class="xm-item__numero">3</span>
+        <span class="xm-item__intitule">Cholestérol total</span>
+        <span class="xm-item__mention xm-mention xm-mention--auto">Auto</span>
+        <span class="xm-item__cotation" style="align-items:center">
+          <input class="xm-champ xm-champ--nombre" value="5.97" style="width:64px">
+          <span class="xm-libelle">mmol/l</span>
+          <span class="xm-mention">2.31 g/l → 5.97 mmol/l — 01/12/2020 — Biolab (HPRIM)</span>
+        </span>
+      </div>
+
+      <div class="xm-item">
+        <span class="xm-item__numero">4</span>
+        <span class="xm-item__intitule">Pression artérielle systolique</span>
+        <span class="xm-item__mention xm-mention xm-mention--modifie">Modifié</span>
+        <span class="xm-item__cotation" style="align-items:center">
+          <input class="xm-champ xm-champ--nombre" value="152" style="width:64px">
+          <span class="xm-libelle">mmHg</span>
+          <span class="xm-mention xm-mention--vetuste">valeur du dossier : 110 mmHg — 31/05/2023 (ancienne)</span>
+        </span>
+      </div>
+
+      <div style="position:relative;height:34px">
+        <span class="xm-infobulle" style="position:static;display:inline-block">
+          Cholestérol total 2.31 g/l — 01/12/2020 — Biolab (HPRIM)<br>
+          Converti en 5.97 mmol/l (facteur 2.586). Valeur modifiable.
+        </span>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ==================================================================== -->
+  <h2>7. Bandeaux — aucun alert() natif</h2>
+  <div class="scene">
+    <div style="display:flex;flex-direction:column;gap:8px;max-width:820px">
+      <div class="xm-bandeau xm-bandeau--info">
+        <span class="xm-bandeau__titre">Pré-remplissage</span>
+        <span class="xm-bandeau__texte">4 items renseignés depuis le dossier patient.
+          <a href="#" style="color:inherit">Voir les sources</a> ·
+          <a href="#" style="color:inherit">Tout déverrouiller</a></span>
+      </div>
+      <div class="xm-bandeau xm-bandeau--avertissement">
+        <span class="xm-bandeau__titre">Item 9 coté 1</span>
+        <span class="xm-bandeau__texte">Idées de mort ou d'auto-agression rapportées :
+          une évaluation du risque suicidaire est indiquée.</span>
+      </div>
+      <div class="xm-bandeau xm-bandeau--bloquant">
+        <span class="xm-bandeau__titre">Score non applicable</span>
+        <span class="xm-bandeau__texte">SCORE2 est validé de 40 à 69 ans ; le patient a
+          35 ans. Les items restent saisissables, le résultat n'est pas exploitable.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================================================================== -->
+  <h2>8. Encadré de résultat</h2>
+  <p>Il occupe exactement l'emplacement de l'encadré « Liste des ttt prescrits… »
+     de la capture 03, en pied de la colonne de boutons.</p>
+
+  <div class="scene">
+    <div style="display:flex;gap:24px">
+      <div class="xm-colonne-boutons">
+        <div class="xm-bloc-boutons"><button class="xm-bouton xm-bouton--defaut">Enregistrer</button></div>
+        <div class="xm-resultat">
+          <div class="xm-resultat__valeur">18<span class="xm-resultat__max"> / 27</span></div>
+          <div class="xm-barre-interpretation">
+            <span class="xm-barre-interpretation__segment xm-seg--ok"></span>
+            <span class="xm-barre-interpretation__segment xm-seg--neutre"></span>
+            <span class="xm-barre-interpretation__segment xm-seg--alerte"></span>
+            <span class="xm-barre-interpretation__segment xm-seg--alerte"></span>
+            <span class="xm-barre-interpretation__segment xm-seg--danger"></span>
+            <span class="xm-barre-interpretation__curseur" style="left:74%"></span>
+          </div>
+          <div class="xm-resultat__libelle">Dépression modérément sévère</div>
+          <div class="xm-resultat__compteur">9 / 9 items renseignés</div>
+        </div>
+      </div>
+
+      <div class="xm-colonne-boutons">
+        <div class="xm-bloc-boutons"><button class="xm-bouton xm-bouton--defaut">Enregistrer</button></div>
+        <div class="xm-resultat xm-resultat--partiel">
+          <div class="xm-resultat__valeur">12<span class="xm-resultat__max"> / 27</span></div>
+          <div class="xm-barre-interpretation">
+            <span class="xm-barre-interpretation__segment xm-seg--neutre"></span>
+            <span class="xm-barre-interpretation__segment xm-seg--neutre"></span>
+            <span class="xm-barre-interpretation__segment xm-seg--neutre"></span>
+          </div>
+          <div class="xm-resultat__libelle">Résultat partiel</div>
+          <div class="xm-resultat__compteur">6 / 9 items renseignés</div>
+        </div>
+      </div>
+
+      <div class="xm-colonne-boutons">
+        <div class="xm-bloc-boutons"><button class="xm-bouton xm-bouton--defaut">Enregistrer</button></div>
+        <div class="xm-resultat xm-resultat--partiel">
+          <div class="xm-resultat__valeur" style="font-size:18px;line-height:1.3">Abaque<br>non renseigné</div>
+          <div class="xm-resultat__compteur">7 / 7 items renseignés</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <p class="legende">Le troisième cas est celui de SCORE2 tant que l'abaque ESC
+     n'est pas rempli : le module l'annonce, il ne bricole pas une valeur.</p>
+
+  <!-- ==================================================================== -->
+  <h2>9. Barre d'état</h2>
+  <div class="scene" style="padding:0">
+    <div class="xm-barre-etat">
+      <span class="xm-barre-etat__cellule">
+        <svg width="14" height="14" viewBox="0 0 16 16"><circle cx="8" cy="5" r="3" fill="#6FA8DC" stroke="#2B6CA3"/><path d="M2 14c0-3.3 2.7-5 6-5s6 1.7 6 5z" fill="#6FA8DC" stroke="#2B6CA3"/></svg>
+        ANEX Matthieu (Médical)</span>
+      <span class="xm-barre-etat__cellule">
+        <svg width="14" height="14" viewBox="0 0 16 16"><rect x="2" y="3" width="12" height="8" fill="#DCEEF7" stroke="#2B6CA3"/><path d="M1 13h14" stroke="#2B6CA3"/></svg>
+        192.168.1.253\XMED</span>
+      <span class="xm-barre-etat__cellule">
+        <svg width="14" height="14" viewBox="0 0 16 16"><path d="M2 3h4l7 10h-4z" fill="#C0392B"/><path d="M10 3h4L7 13H3z" fill="#E74C3C"/></svg>
+        XMED_DRANEX</span>
+      <span class="xm-barre-etat__cellule">
+        <span class="xm-voyant"></span><span class="xm-voyant"></span><span class="xm-voyant"></span></span>
+      <span class="xm-barre-etat__cellule">Post-It</span>
+      <span class="xm-barre-etat__espaceur"></span>
+      <span class="xm-barre-etat__cellule">vendredi 28 août 2026</span>
+      <span class="xm-barre-etat__cellule xm-barre-etat__cellule--fin">14:06:36</span>
+    </div>
+  </div>
+
+  <h2>10. Ce qui reste à trancher sur la charte</h2>
+  <ol style="line-height:1.6;max-width:76ch">
+    <li>Dépôt des quatre PNG dans <code>design/screens/</code> pour le prélèvement
+        au pixel — sans eux, treize jetons restent estimés.</li>
+    <li>La modale assombrit-elle le dossier derrière elle ? La maquette dit non.</li>
+    <li>Ombre portée sous la modale : la capture 04 en montre peut-être une, qui
+        serait dessinée par Windows et non par l'application. Non reproduite.</li>
+    <li>Les icônes 16×16 de la démo sont des tracés SVG maison, pas les icônes
+        XMed. L'icône « Scores » proposée est une check-list. À arbitrer par
+        Olaqin, qui dispose de la bibliothèque d'origine.</li>
+    <li>Police : la maquette suppose Segoe UI. Si XMed impose Tahoma 8pt, la
+        densité change légèrement — un seul jeton à modifier.</li>
+  </ol>
+
+</div>
+</body>
+</html>

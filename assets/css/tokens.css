@@ -1,0 +1,159 @@
+/* ============================================================================
+   tokens.css — Jetons visuels XMed
+   ----------------------------------------------------------------------------
+   Source : captures de design/screens/ (dossier patient XMed, fenetre modale
+   « Episodes et suivis en cours »).
+
+   STATUT DES VALEURS
+   Chaque jeton porte l'une de ces mentions :
+     [LU]      valeur lue directement sur la capture, confiance haute
+     [ESTIME]  valeur approchee a l'oeil, a confirmer par prelevement au pixel
+     [DEDUIT]  valeur non visible sur les captures, deduite du style Windows
+               natif employe par XMed (Windows Forms / DevExpress plat)
+
+   Les PNG n'etant pas presents dans design/screens/ au moment de la redaction,
+   AUCUNE valeur n'a pu etre prelevee programmatiquement. Des que les fichiers
+   seront deposes, ce fichier sera repris par prelevement direct et les mentions
+   [ESTIME] disparaitront.
+
+   Convention de nommage : --xm-<famille>-<role>-<variante>
+   ========================================================================== */
+
+:root {
+
+  /* --- Typographie --------------------------------------------------------
+     XMed utilise la police systeme Windows. Aucune police web : la maquette
+     doit se rendre a l'identique sur un poste du cabinet, hors ligne.        */
+  --xm-police:              "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  --xm-police-mono:         Consolas, "Courier New", monospace;
+  --xm-taille-base:         12px;   /* [LU] corps des grilles et formulaires  */
+  --xm-taille-petite:       11px;   /* [LU] barre d'etat, mentions            */
+  --xm-taille-resultat:     34px;   /* [DEDUIT] score en gros caracteres      */
+  --xm-graisse-titre:       700;    /* [LU] titres de cadre en gras           */
+
+  /* --- Fonds generaux ----------------------------------------------------- */
+  --xm-fond-app:            #F0F0F0; /* [LU] fond des boites de dialogue      */
+  --xm-fond-mdi:            #F0F0F0; /* [ESTIME] fond derriere les cadres     */
+  --xm-fond-blanc:          #FFFFFF;
+
+  /* --- Cadres du dossier (capture 01 / 02) --------------------------------
+     Bordure bleue 1px + barre de titre cyan clair degradee.                  */
+  --xm-cadre-bordure:       #4A7EBB; /* [ESTIME] bleu acier de contour        */
+  --xm-cadre-titre-haut:    #DCEEF7; /* [ESTIME] haut du degrade              */
+  --xm-cadre-titre-bas:     #C5E3F2; /* [ESTIME] bas du degrade               */
+  --xm-cadre-titre-ligne:   #A8CFE4; /* [ESTIME] filet sous la barre de titre */
+  --xm-cadre-titre-texte:   #1F5C8B; /* [ESTIME] libelle, gras                */
+  --xm-cadre-corps:         #FFFFFF; /* [LU] fond de cadre par defaut         */
+
+  /* Cadre de type fiche (Identite) : corps teinte cyan tres clair            */
+  --xm-cadre-fiche-corps:   #E9F7FC; /* [ESTIME]                              */
+
+  /* Cadre d'alerte (Allergies et Intolerances med.) : decline en rouge       */
+  --xm-cadre-alerte-bordure:    #C58585; /* [ESTIME]                          */
+  --xm-cadre-alerte-titre-haut: #FBDCDC; /* [ESTIME]                          */
+  --xm-cadre-alerte-titre-bas:  #F3C3C3; /* [ESTIME]                          */
+  --xm-cadre-alerte-titre-texte:#8B1A1A; /* [ESTIME]                          */
+  --xm-cadre-alerte-corps:      #FDECEC; /* [ESTIME]                          */
+
+  /* Cadre inactif / module non actif (Prevention sur la capture 01)          */
+  --xm-cadre-inactif-bordure:   #9BAEBE; /* [ESTIME]                          */
+  --xm-cadre-inactif-titre:     #B9C8D4; /* [ESTIME]                          */
+  --xm-cadre-inactif-texte:     #F4F4F4; /* [ESTIME] libelle en clair         */
+  --xm-cadre-inactif-corps:     #E5E5F3; /* [ESTIME] lavande pale             */
+
+  /* --- Grilles DevExpress ------------------------------------------------- */
+  --xm-grille-entete-haut:   #F6F6F6; /* [ESTIME] degrade d'en-tete, haut     */
+  --xm-grille-entete-bas:    #E9E9E9; /* [ESTIME] degrade d'en-tete, bas      */
+  --xm-grille-entete-texte:  #333333; /* [ESTIME]                             */
+  --xm-grille-bordure:       #C8C8C8; /* [ESTIME] separateurs d'en-tete       */
+  --xm-grille-fond:          #FFFFFF; /* [LU]                                 */
+  --xm-grille-filet:         #EDEDED; /* [ESTIME] filet entre deux lignes     */
+  --xm-grille-vide:          #E7E7F5; /* [ESTIME] lavande des grilles sans
+                                         donnees (cf. Antecedents Familiaux)  */
+  --xm-grille-selection:     #CBE2F5; /* [ESTIME] ligne selectionnee, grille
+                                         ayant le focus                       */
+  --xm-grille-selection-inactive: #D6D6D6; /* [LU] ligne selectionnee, grille
+                                         sans focus (cf. capture 03)          */
+  --xm-grille-indicateur:    #F0F0F0; /* [ESTIME] colonne du selecteur        */
+  --xm-grille-survol:        #EAF3FB; /* [DEDUIT] survol de ligne             */
+
+  /* --- Bandeau de regroupement DevExpress --------------------------------- */
+  --xm-bandeau-groupe-fond:  #F5F5F5; /* [ESTIME]                             */
+  --xm-bandeau-groupe-texte: #8A8A8A; /* [ESTIME] consigne en gris            */
+
+  /* --- Zones de saisie ---------------------------------------------------- */
+  --xm-champ-fond:           #FFFFFF; /* [LU]                                 */
+  --xm-champ-bordure:        #7A7A7A; /* [ESTIME]                             */
+  --xm-champ-texte:          #000000; /* [LU]                                 */
+  --xm-champ-inactif-fond:   #F0F0F0; /* [DEDUIT]                             */
+  --xm-champ-focus:          #2B7CD3; /* [DEDUIT] lisere de focus clavier     */
+
+  /* --- Boutons ------------------------------------------------------------ */
+  --xm-bouton-fond:          #FDFDFD; /* [ESTIME]                             */
+  --xm-bouton-bordure:       #8C8C8C; /* [ESTIME]                             */
+  --xm-bouton-texte:         #000000; /* [LU]                                 */
+  --xm-bouton-survol-fond:   #E8F1FB; /* [DEDUIT]                             */
+  --xm-bouton-survol-bord:   #2B7CD3; /* [DEDUIT]                             */
+  --xm-bouton-enfonce-fond:  #CCE4F7; /* [DEDUIT]                             */
+  --xm-bouton-defaut-bord:   #2B7CD3; /* [ESTIME] 2px, cf. « Ajouter »        */
+  --xm-bouton-inactif-texte: #A0A0A0; /* [ESTIME] cf. « Appliquer » grise     */
+  --xm-bouton-inactif-bord:  #C8C8C8; /* [ESTIME]                             */
+
+  /* --- Semantique par la couleur du texte ---------------------------------
+     Regle XMed : l'information est portee par la couleur du texte, jamais
+     par des pastilles ou des badges.                                         */
+  --xm-texte:                #000000; /* [LU] texte de formulaire             */
+  --xm-texte-donnee:         #000080; /* [LU] bleu marine des grilles         */
+  --xm-texte-alerte:         #C00000; /* [LU] hors normes (Creatinine 11.9)   */
+  --xm-texte-valide:         #008000; /* [LU] valide (Prescription, Auteur)   */
+  --xm-texte-attenue:        #808080; /* [ESTIME] mentions secondaires        */
+  --xm-texte-lien:           #1F5C8B; /* [DEDUIT] action textuelle            */
+
+  /* Declinaisons de fond pour les bandeaux (usage parcimonieux)              */
+  --xm-fond-alerte:          #FDECEC; /* [DEDUIT]                             */
+  --xm-fond-avertissement:   #FFF6E0; /* [DEDUIT]                             */
+  --xm-fond-info:            #EAF4FB; /* [DEDUIT]                             */
+  --xm-texte-avertissement:  #8A5A00; /* [DEDUIT]                             */
+
+  /* Segments de la barre d'interpretation d'un score                         */
+  --xm-seg-ok:               #2E8B57; /* [DEDUIT]                             */
+  --xm-seg-neutre:           #B8B8B8; /* [DEDUIT]                             */
+  --xm-seg-alerte:           #E08A00; /* [DEDUIT]                             */
+  --xm-seg-danger:           #C00000; /* [DEDUIT]                             */
+
+  /* --- Chrome de fenetre modale (capture 03) ------------------------------ */
+  --xm-fenetre-bordure:      #7A7A7A; /* [ESTIME] contour de la fenetre       */
+  --xm-fenetre-titre-fond:   #FFFFFF; /* [LU] barre de titre systeme          */
+  --xm-fenetre-titre-texte:  #1A1A1A; /* [LU]                                 */
+  --xm-fenetre-titre-ligne:  #E0E0E0; /* [ESTIME] filet sous la barre         */
+  --xm-fenetre-sys-survol:   #E9E9E9; /* [DEDUIT] survol reduire/agrandir     */
+  --xm-fenetre-fermer-fond:  #C42B1C; /* [DEDUIT] survol du bouton fermer     */
+  --xm-voile-modale:         rgba(0,0,0,.18); /* [DEDUIT] voile derriere la
+                                         modale ; la capture 04 ne montre pas
+                                         d'assombrissement — a trancher.      */
+
+  /* --- Barre d'etat -------------------------------------------------------- */
+  --xm-etat-fond:            #F0F0F0; /* [LU]                                 */
+  --xm-etat-ligne:           #D0D0D0; /* [ESTIME]                             */
+  --xm-etat-separateur:      #D8D8D8; /* [ESTIME]                             */
+  --xm-voyant-vert:          #22B14C; /* [ESTIME] voyants de connexion        */
+  --xm-voyant-vert-bord:     #1A8438; /* [ESTIME]                             */
+
+  /* --- Metriques ----------------------------------------------------------
+     Ce sont elles qui font la densite XMed. Ne pas les augmenter.            */
+  --xm-h-titre-cadre:        18px;    /* [LU] barre de titre d'un cadre       */
+  --xm-h-entete-grille:      21px;    /* [LU]                                 */
+  --xm-h-ligne-grille:       20px;    /* [LU]                                 */
+  --xm-h-bandeau-groupe:     22px;    /* [ESTIME]                             */
+  --xm-h-bouton:             26px;    /* [LU] colonne de boutons              */
+  --xm-h-champ:              20px;    /* [ESTIME]                             */
+  --xm-h-titre-fenetre:      30px;    /* [ESTIME] barre systeme Windows 11    */
+  --xm-h-barre-etat:         22px;    /* [ESTIME]                             */
+  --xm-l-colonne-boutons:    195px;   /* [LU] largeur de la colonne de droite */
+  --xm-l-indicateur:         18px;    /* [LU] colonne du selecteur de ligne   */
+  --xm-espace-boutons:       4px;     /* [LU] entre deux boutons d'un bloc    */
+  --xm-espace-blocs:         14px;    /* [ESTIME] entre deux blocs de boutons */
+  --xm-marge-dense:          4px;
+  --xm-marge-fenetre:        6px;
+  --xm-rayon:                2px;     /* [LU] jamais au-dela                  */
+}
